@@ -1,0 +1,60 @@
+name: Relevé quotidien des prix
+
+# Relève les prix de tout le catalogue et les range sur la branche `data`,
+# que le site lit ensuite. C'est ce relevé quotidien qui construit l'historique.
+
+on:
+  schedule:
+    - cron: "17 4 * * *" # tous les jours à 4 h 17 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/**
+      - src/lib/pricing/**
+      - src/lib/snapshot.ts
+      - src/lib/tcgdex.ts
+      - .github/workflows/prices.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prices
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Récupérer la branche data
+        run: |
+          if git fetch origin data:data 2>/dev/null; then
+            git worktree add .data data
+          else
+            # Premier relevé : la branche n'existe pas encore.
+            git worktree add --detach .data
+            git -C .data checkout --orphan data
+            git -C .data rm -rf --quiet .
+          fi
+
+      - name: Relever les prix
+        run: node scripts/ingest.ts --out .data
+        env:
+          # Facultatif : sans ces secrets, le relevé se fait sans eBay.
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+
+      - name: Publier
+        working-directory: .data
+        run: |
+          git add -A
+          git -c user.name="poketrack-bot" -c user.email="poketrack-bot@users.noreply.github.com" \
+            commit --quiet -m "Relevé du $(date -u +%F)" || { echo "Rien à publier"; exit 0; }
+          git push origin data
