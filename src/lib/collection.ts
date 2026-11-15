@@ -155,15 +155,25 @@ export function unitValue(item: Item, card: CardSummary | undefined): number | n
 
 // ---------- Historique de la valeur totale ----------
 
-/** Enregistre la valeur du jour et renvoie la série (une valeur par jour de visite). */
-export function recordValue(total: number): { day: string; value: number }[] {
-  let series: Record<string, number> = {};
+const today = () => new Date().toISOString().slice(0, 10);
+function readValues(): Record<string, number> {
   try {
-    series = JSON.parse(localStorage.getItem(VALUES_KEY) ?? "{}");
-    series[new Date().toISOString().slice(0, 10)] = Math.round(total * 100) / 100;
-    localStorage.setItem(VALUES_KEY, JSON.stringify(series));
-  } catch {}
-  return Object.entries(series)
+    return JSON.parse(localStorage.getItem(VALUES_KEY) ?? "{}");
+  } catch {
+    return {};
+  }
+}
+
+/** Valeur de la collection jour après jour (une valeur par jour de visite), aujourd'hui compris. */
+export function valueSeries(total: number): { day: string; value: number }[] {
+  return Object.entries({ ...readValues(), [today()]: Math.round(total * 100) / 100 })
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([day, value]) => ({ day, value }));
+}
+
+/** Note la valeur du jour. */
+export function saveValue(total: number) {
+  try {
+    localStorage.setItem(VALUES_KEY, JSON.stringify({ ...readValues(), [today()]: Math.round(total * 100) / 100 }));
+  } catch {}
 }

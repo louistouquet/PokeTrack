@@ -12,7 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Skills installés (code tiers).
+    ".claude/**",
   ]),
+  // Une variable préfixée par _ est volontairement ignorée (déstructuration).
+  { rules: { "@typescript-eslint/no-unused-vars": ["warn", { varsIgnorePattern: "^_", argsIgnorePattern: "^_" }] } },
 ]);
 
 export default eslintConfig;

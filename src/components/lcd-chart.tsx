@@ -34,6 +34,7 @@ export function LcdChart({ points, label }: { points: Point[]; label: string }) 
   const [width, setWidth] = useState(0);
   const [active, setActive] = useState<number | null>(null);
 
+  const empty = points.length === 0;
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -41,9 +42,9 @@ export function LcdChart({ points, label }: { points: Point[]; label: string }) 
     ro.observe(el);
     return () => ro.disconnect();
     // Le conteneur n'existe qu'à partir du premier point.
-  }, [points.length === 0]);
+  }, [empty]);
 
-  if (!points.length) return <Empty />;
+  if (empty) return <Empty />;
 
   const values = points.map((p) => p.value);
   const ts = ticks(Math.min(...values), Math.max(...values));

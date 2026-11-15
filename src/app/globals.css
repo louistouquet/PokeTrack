@@ -247,7 +247,7 @@ select.field {
   border-radius: 999px;
   background: #4fb86a;
   transform-origin: left;
-  animation: hp-fill 700ms var(--ease-out) backwards;
+  animation: hp-fill 500ms var(--ease-out) backwards;
 }
 .hp[data-level="mid"] > i {
   background: var(--gold);
@@ -333,8 +333,8 @@ select.field {
   }
 }
 .rise {
-  animation: rise 500ms var(--ease-out) backwards;
-  animation-delay: calc(var(--i, 0) * 45ms);
+  animation: rise 400ms var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 30ms);
 }
 @keyframes blink {
   50% {

@@ -81,8 +81,7 @@ export function SetBrowser({ cards }: { cards: CardSummary[] }) {
       </div>
 
       {shown.length ? (
-        // La clé relance l'entrée en cascade quand le tri ou le filtre change.
-        <div key={`${sort}${rarity}${reverse}`} className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {shown.slice(0, limit).map((c, i) => (
             <CardTile key={c.id} card={c} price={reverse ? c.rev : c.std} index={i < PAGE ? i : 0} />
           ))}

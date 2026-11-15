@@ -49,7 +49,10 @@ export function CardView({ detail }: { detail: CardDetail }) {
             </ViewTransition>
           </HoloCard>
         </Slab>
-        <AddToCollection detail={detail} finish={finish} grade={grade} onGrade={setGrade} />
+        {/* Sur grand écran, le formulaire reste sous la carte ; sur téléphone il vient après le prix. */}
+        <div className="hidden lg:block">
+          <AddToCollection detail={detail} finish={finish} grade={grade} onGrade={setGrade} />
+        </div>
       </div>
 
       <div className="min-w-0">
@@ -64,10 +67,15 @@ export function CardView({ detail }: { detail: CardDetail }) {
           </div>
         )}
 
-        {quote.price === null ? (
+        {quote.price === null && (
           <div className="panel px-6 py-10">
             <p className="pixel text-2xl">Pas encore de prix pour cette carte.</p>
             <p className="mt-2 max-w-[55ch] text-ink-soft">Aucune place de marché suivie ne la cote pour le moment. Vous pouvez tout de même l&apos;ajouter à votre collection.</p>
+          </div>
+        )}
+        {quote.price === null ? (
+          <div className="lg:hidden">
+            <AddToCollection detail={detail} finish={finish} grade={grade} onGrade={setGrade} />
           </div>
         ) : (
           <>
@@ -108,6 +116,10 @@ export function CardView({ detail }: { detail: CardDetail }) {
               <Meter label="Liquidité" score={quote.liquidity} hint={quote.listings !== null ? `${quote.listings} en vente sur eBay` : "Facilité à vendre au prix juste"} />
               <Meter label="Confiance" score={quote.confidence} hint="Accord et fraîcheur des sources" />
               <Meter label="Volatilité" score={quote.volatility} invert hint="Écart entre les moyennes récentes" />
+            </div>
+
+            <div className="lg:hidden">
+              <AddToCollection detail={detail} finish={finish} grade={grade} onGrade={setGrade} />
             </div>
 
             <section className="mt-12">

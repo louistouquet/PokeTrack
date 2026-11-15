@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { exportCollection, importCollection, recordValue, unitValue, useCollection, useHydrated, usePrices, type Item, type SetInfo } from "@/lib/collection";
+import { exportCollection, importCollection, saveValue, unitValue, useCollection, useHydrated, usePrices, valueSeries, type Item, type SetInfo } from "@/lib/collection";
 import type { CardSummary } from "@/lib/snapshot";
 import { count, familyStyle, money, percent } from "@/lib/ui";
 import { CardArt } from "./card-tile";
 import { Icon } from "./icon";
 import { ItemPanel, stateLabel } from "./item-panel";
-import { LcdChart, type Point } from "./lcd-chart";
+import { LcdChart } from "./lcd-chart";
 
 interface Row {
   item: Item;
@@ -247,7 +247,6 @@ export function CollectionView() {
   const { cards, sets, loading } = usePrices(items);
   const [view, setView] = useState<View>("binder");
   const [selected, setSelected] = useState<string | null>(null);
-  const [series, setSeries] = useState<Point[]>([]);
 
   const rows = useMemo<Row[]>(
     () =>
@@ -269,9 +268,11 @@ export function CollectionView() {
   const current = rows.find((r) => r.item.key === selected);
 
   // La valeur du jour est notée à chaque visite : c'est l'historique de la collection.
+  const ready = hydrated && !loading && items.length > 0;
+  const series = useMemo(() => (ready ? valueSeries(value) : []), [ready, value]);
   useEffect(() => {
-    if (hydrated && !loading && items.length) setSeries(recordValue(value));
-  }, [hydrated, loading, items.length, value]);
+    if (ready) saveValue(value);
+  }, [ready, value]);
 
   if (!hydrated) return <div className="skeleton h-72" />;
 
