@@ -121,3 +121,67 @@ Note : le même accord couvre, selon son préambule, « New SGC LLC; Ladder Stud
 | Contact | `info@taggrading.com` (section « 10.7 How to Contact Us » des conditions). |
 | Verdict | **C**, et peu utile : `robots.txt` ouvert mais conditions qui interdisent la collecte et la republication ; quasi pas de cartes françaises. |
 | Essai | Dracaufeu Set de Base français : absent (pas d'extension correspondante). Autres cartes : non cherchées. |
+
+### ACE Grading (Royaume-Uni)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://acegrading.com — Royaume-Uni. Société de gradation, « Population Report » (`/pop`), « Grading Reports ». |
+| Langue de la carte distinguée ? | Non vérifié (page bloquée). |
+| Non gradé, gradé | Gradé ACE ; détail non vérifié. |
+| Nature du prix | Aucun prix connu ; non vérifié. |
+| Profondeur | Non vérifiée. |
+| Historique | Non vérifié. |
+| Accès | La page d'accueil se lit ; `https://acegrading.com/pop` renvoie un défi Cloudflare (« Vérification de sécurité en cours », statut 403) avec Playwright le 16/11/2026. Pas d'API trouvée. |
+| Conditions | `robots.txt` (https://acegrading.com/robots.txt) : `User-agent: * / Disallow:` (aucune restriction). Conditions (https://acegrading.com/terms-of-service) lues : aucune clause sur la collecte ou la réutilisation des données trouvée ; seule mention d'usage : « If you are a consumer we only supply the products to you for domestic and private use. » |
+| Contact | `support@acegrading.com` (lien en page d'accueil). |
+| Verdict | **D** (inaccessible : la population est derrière une protection Cloudflare). Si ACE ouvrait l'accès, le `robots.txt` et des conditions muettes laisseraient un B possible ; à demander par écrit (C). |
+| Essai | Non fait. |
+
+### AP Grading
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `apgrading.com` redirige vers https://www.apgrading.net. Pays et offre : non vérifiés. |
+| Langue de la carte distinguée ? | Non vérifié. |
+| Non gradé, gradé | Non vérifié. |
+| Nature du prix | Non vérifié. |
+| Profondeur | Non vérifiée. |
+| Historique | Non vérifié. |
+| Accès | Page d'accueil et `robots.txt` : défi Cloudflare (« Just a moment... », statut 403) avec `curl` et Playwright, le 16/11/2026. Recherche web : aucun résultat sur une population AP Grading. |
+| Conditions | Non lues (bloquées). |
+| Contact | Non vérifié. |
+| Verdict | **D** (inaccessible). |
+| Essai | Non fait. |
+
+### GRAAD (Italie)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://www.graad.eu (Milan, Italie ; `graad.it` ne répond pas, 502). Société de gradation ; « Certified card register: all statistical data » : https://www.graad.eu/en/plaza/card-register/. |
+| Langue de la carte distinguée ? | **Oui, champ distinct** : le formulaire du registre a un filtre `lingua_item` avec la valeur `FRE` (parmi ITA, ENG, JPN, GER, FRE, SPA, KOR, CHI…), et un filtre par pays (`id_nazione`, dont « France »). |
+| Non gradé, gradé | Gradé GRAAD, échelle 1-10 (« Standard grading scale »). Filtres `voto_min`/`voto_max`. |
+| Nature du prix | Aucun prix de carte vu. |
+| Profondeur | Non mesurée (recherche non aboutie). |
+| Historique | Filtres de date de certification (`data_dal`, `data_al`) : historique de certification probablement consultable (déduit du formulaire, non vérifié). |
+| Accès | Pages sans compte, mais la recherche du registre est protégée par reCAPTCHA Enterprise (script `recaptcha/enterprise` chargé par la page) ; je n'ai pas obtenu de résultat et n'ai pas insisté. Pas d'API publique trouvée. |
+| Conditions | `robots.txt` : https://www.graad.eu/robots.txt renvoie une page HTML « GRAAD - 404 » (pas de fichier). Conditions (https://www.graad.eu/en/terms-condition) : « Any reproduction, partial or total, of the content of the website, by means of any process and on any device, must be explicitly authorised in writing by graad.eu. » |
+| Contact | `info@graad.eu` (https://graad.eu/en/contanct-and-help/). |
+| Verdict | **C** (reproduction soumise à autorisation écrite ; recherche protégée par captcha). Intérêt français probablement faible (société italienne), non mesuré. |
+| Essai | Non abouti (captcha). |
+
+### MNT Grading (Canada)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://mntgrading.com — société de gradation orientée cartes de sport (pays non vérifié). Population : https://mntgrading.com/population-report/. |
+| Langue de la carte distinguée ? | Non : le formulaire de population ne propose que « Player Name, Year, Company name, Set Name, Sub set ». |
+| Non gradé, gradé | Gradé MNT, colonnes de 3.00 à 10.00 par demi-point et « 10.0F ». |
+| Nature du prix | Aucun prix. |
+| Profondeur | Non mesurée ; outil pensé pour le sport (« Player »). Cartes Pokémon françaises : non cherchées. |
+| Historique | Non vérifié. |
+| Accès | Pages sans compte. |
+| Conditions | `robots.txt` : uniquement le préambule « content signals » de Cloudflare, sans règle ni signal déclaré. Conditions (https://mntgrading.com/terms-conditions/) : aucune clause sur la collecte trouvée. |
+| Contact | `mntgrading@gmail.com` (en-tête du site). |
+| Verdict | **D** pour notre besoin (hors sujet : pas de langue, pas de prix, orientation sport). |
+| Essai | Non fait (sans objet). |

@@ -2,9 +2,7 @@
 
 Relevé du 16 novembre 2026. Fichier rédigé au fur et à mesure ; les fiches suivent le format de `_consignes.md`. Méthode : `robots.txt` lus par `curl`, pages lues par navigateur Playwright ou par l'outil de lecture de pages, quelques pages par site, aucune extraction en masse. Les protections techniques (Cloudflare) n'ont pas été contournées : un site qui a refusé la lecture est noté comme tel.
 
-## Tableau récapitulatif
-
-(complété en fin de travail, voir plus bas)
+Le tableau récapitulatif et la section « D'où les autres tirent leurs prix » sont en fin de fichier, après les fiches.
 
 ## Fiches
 
@@ -202,3 +200,237 @@ Note : TCG Crew, qui est concurrent et publie des pages comparatives, signale qu
 | Contact | Non vérifié. |
 | Verdict | **D** : aucune plus-value de prix (c'est Cardmarket), conditions non lues. |
 | Essai | Sans objet. |
+
+### 13. Pokedexia et application Compleo (pokedexia.com)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://pokedexia.com ; projet personnel de fan, éditeur « Pokedexia », pays non vérifié ; site (fiches Pokémon et cartes) et application de collection **Compleo** (iOS, Android) |
+| Langue de la carte distinguée ? | **Oui.** Chaque fiche affiche « FR », puis « Near Mint le plus bas · Cardmarket · Prix du 16/11 » et la phrase : « Le prix Near Mint de Gardevoir-ex PAF 233 en version française est de 140,00 € sur Cardmarket (prix du 16 novembre 2026). Dans Compleo, tu as le prix de chaque langue et de chaque état, mis à jour chaque jour. » La même page montre aussi « Tendance Cardmarket · toutes langues et tous états ». |
+| Non gradé, gradé | Non gradé seulement. |
+| Nature du prix | Prix demandé le plus bas, état Near Mint, version française, relevé du jour sur Cardmarket. L'historique complet est dans l'application (Premium : « courbes sur 30 jours »). |
+| Profondeur | Fiches par extension (Écarlate et Violet, Épée et Bouclier, etc.) ; la liste des extensions lue ne contient pas le Set de Base (aucune entrée « base » ancienne, seulement `mega-evolution-base` et `ecarlate-et-violet-base`). Nombre de cartes françaises : non mesuré. |
+| Historique | Non vérifié. |
+| Accès | Pages et application ; pas d'API vue. |
+| Conditions | CGU (https://pokedexia.com/fr/cgu), article 5 : sont interdits « extraire, copier ou réutiliser massivement le contenu du Service (scraping, aspiration de données) sans autorisation » ; article 7 : « Toute reproduction, représentation, modification ou diffusion, totale ou partielle, sans autorisation préalable, est interdite. » Article 8 : « Le Service s'appuie sur des sources tierces, notamment PokéAPI, TCGdex et Cardmarket. » `robots.txt` : les robots d'entraînement d'IA sont bloqués ; `User-agent: *` autorisé. |
+| Contact | Formulaire https://pokedexia.com/fr/contact (mentions légales). |
+| Verdict | **C** : prix « Near Mint, version française, Cardmarket » exactement ce que nous voulons, mais lecture à l'unité seulement et reprise sans autorisation interdite ; la façon dont ils obtiennent le prix Cardmarket par langue n'est pas écrite (non vérifié). |
+| Essai | Lecture de deux fiches le 16 novembre 2026, prix le plus bas Near Mint français sur Cardmarket. 1. Dracaufeu Set de Base 4/102 FR : **non trouvé** (série absente de la liste). 2. Mew ex 205/165 FR : **non trouvé** (l'adresse attendue `.../ecarlate-et-violet-151/mew-ex-mew-205` répond 404 ; seule `mew-ex-mew-193` existe). 3. Noctali VMAX 215/203 FR : **3 000,00 €**, « Stable » (https://pokedexia.com/fr/cartes-pokemon/extensions/epee-et-bouclier-evolution-celeste/noctali-vmax-evs-215). Même carte à **1 199,00 €** sur PkmCards.fr le même jour : écart de 2,5 fois, à expliquer (offre unique ? état ? vendeurs ?) avant de se fier à un seul de ces relevés. |
+
+### 14. Cardzia
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://cardzia.fr ; France (Cardzia SAS, Aix-en-Provence, CGV) ; application de scan et d'estimation Pokémon, One Piece, Lorcana, Yu-Gi-Oh! (« 150 000+ collectionneurs », déclaratif) |
+| Langue de la carte distinguée ? | **Oui, annoncé.** Fiche App Store (https://apps.apple.com/app/id6751027816) : « Toutes les estimations proviennent de vraies ventes réalisées sur le marché de chaque langue » ; le site : « Vos cartes françaises, japonaises ou chinoises ». |
+| Non gradé, gradé | Non gradé ; « Prix séparés selon l'état et la rareté ». Gradé : non vérifié. |
+| Nature du prix | « d'après les dernières ventes réalisées sur le marché » ; CGU article 10.1 : « calculées automatiquement à partir de données de marché émanant de sources tierces (places de marché, historiques de ventes, cotations publiques) ». **Sources non nommées.** |
+| Profondeur, historique | Non vérifié. Société née en 2023 (page d'accueil). |
+| Accès | Application ; pas d'API. Premium : 6,99 $ par mois ou 44,99 $ par an (fiche App Store américaine). |
+| Conditions | CGU (https://cardzia.fr/conditions-generales-dutilisations/), article 7 : sont interdits « toute tentative de reproduction, d'extraction massive, de scraping ou de réutilisation des données et estimations de l'Application » ; « Toute utilisation à des fins commerciales ou professionnelles est interdite, sauf accord écrit préalable » (suite de phrase coupée dans ma lecture). `robots.txt` : Googlebot, Bingbot, Applebot autorisés ; reste non lu. |
+| Contact | contact@cardzia.fr (CGV). |
+| Verdict | **C** : méthode annoncée proche de la nôtre mais sources inconnues et réutilisation interdite. |
+| Essai | Non fait. |
+
+### 15. Booster Breakerz, « la cote des cartes Pokémon »
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://booster-breakerz.fr/cartes-pokemon/ ; France ; site d'actualités jeux vidéo avec un module « cote » du JCC, publicité Google AdSense et liens affiliés (CGU) |
+| Langue de la carte distinguée ? | **Non, et c'est écrit.** « Cotes Cardmarket en euros, relevées le 27 août 2026. Elles portent sur la carte toutes langues confondues, pas sur la seule version française. » |
+| Non gradé, gradé | Non gradé. |
+| Nature du prix | Cote Cardmarket toutes langues. |
+| Profondeur | « 19 797 cartes · 182 sets · 17 012 cartes cotées » sur la page d'index, « paru en français, du Set de Base de 1999 aux sorties les plus récentes » (déclaratif, relevé 16 nov. 2026). Cotes datées du 27 août 2026 : peu à jour. |
+| Historique | Non vérifié. |
+| Accès | Pages (sitemap `sitemap-cartes.xml` publié dans `robots.txt`). Un accès répété a déclenché une réponse 429 de l'hébergeur : je me suis arrêté. |
+| Conditions | CGU (https://booster-breakerz.fr/conditions-generales-dutilisation-cgu), 4.1 : « Toute reproduction, totale ou partielle, sans autorisation est interdite (article L.122-5 du Code de la propriété intellectuelle). » `robots.txt` : `User-agent: *` / `Allow: /wp-admin/admin-ajax.php`, pas d'interdiction des fiches. |
+| Contact | Page https://booster-breakerz.fr/contact (non ouverte). |
+| Verdict | **C** : cote datée de moins fraîche et toutes langues ; aucun intérêt prix, mais l'index français du catalogue (19 797 cartes) est un point de comparaison. |
+| Essai | Non fait. |
+
+### 16. Pokémon Trash (cartes-pokemon)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://www.pokemontrash.com/cartes-pokemon ; France ; site communautaire (jeux, soluces, cartes) avec un module « Ma Collection » et « Cotes du marché » |
+| Langue de la carte distinguée ? | Non établi. La page https://www.pokemontrash.com/cartes-pokemon/prix « Top 1000 Cartes les Plus Chères » affiche des prix en euros avec « Tendance 7j » (ex. « Lugia Aquapolis 1 265,05 € -30% ») sans dire la langue ni la source. |
+| Non gradé, gradé | Non gradé supposé. |
+| Nature du prix | **Non déclarée** (« prix actualisés et tendances »). |
+| Profondeur, historique | Top 1 000 seulement ; le reste non vérifié. |
+| Accès | Pages ; `robots.txt` : `User-Agent: * / Allow: / / Disallow: /api/`. |
+| Conditions | Non trouvées (aucune page CGU relevée en pied de page). |
+| Contact | contact@pokemontrash.com (pied de page). |
+| Verdict | **C** (doute) : source de prix non déclarée, conditions absentes. |
+| Essai | Non fait. |
+
+### 17. Cards N Packs, cote des cartes françaises gradées PSA
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://www.cardsnpacks.com ; France ; boutique et enchères de cartes gradées ; **publie ses propres ventes** dans un article de marché (« Cote des cartes Pokémon françaises gradées PSA : 244 ventes analysées », 27 septembre 2026) |
+| Langue de la carte distinguée ? | **Oui** : « 244 ventes de cartes Pokémon en version française notées par PSA ». Remarque du site : « Beaucoup de prix affichés en ligne sont des prix demandés, pas des prix obtenus, et ils mélangent souvent les versions anglaise, japonaise et française. » |
+| Non gradé, gradé | Gradé PSA seulement (« 6 ventes ... CGC : trop peu pour une cote »). Brutes non comptées. |
+| Nature du prix | **Vente réalisée** : « prix payé, remises déduites, hors port », commandes payées du 14 mars au 25 septembre 2026 sur eBay. Médiane et quartiles par **note et époque**, pas par carte (ex. Wizard PSA 10 : médiane 300 €, 48 ventes ; Moderne PSA 10 : 315 €, 69 ventes ; le site écrit lui-même que les quartiles sont larges). Aucune case sous 10 ventes. |
+| Profondeur | 244 ventes, dont 110 du Set de Base ; trop peu pour une cote par carte. |
+| Historique | Une période, six mois, pas de série régulière. |
+| Accès | Pages (article). |
+| Conditions | `robots.txt` (https://www.cardsnpacks.com/robots.txt) : `User-agent: * / Allow: /` ; robots d'entraînement dont ClaudeBot bloqués après un incident de charge décrit dans le fichier. Pas de clause relevée sur la réutilisation de l'article ; mentions légales https://www.cardsnpacks.com/mentions-legales/ non lues. |
+| Contact | https://www.cardsnpacks.com/contact/ |
+| Verdict | **C** : seul relevé de ventes réelles françaises gradées trouvé dans cette famille, mais agrégé par note ; utilisable tout au plus comme repère de contrôle, avec accord. |
+| Essai | Dracaufeu 4/102 gradé : pas de médiane propre à la carte dans l'article (le tableau est par note et époque). |
+
+### 18. Dex (dextcg.com, éditeur Dexbit)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://dextcg.com ; droit portugais (CGU) ; application de collection, web gratuit, « Dex+ » payant |
+| Langue de la carte distinguée ? | Non, d'après un comparatif tiers (folio.fyi) : « Une seule région « International » » ; non vérifié chez Dex. |
+| Non gradé, gradé | Non vérifié. |
+| Nature du prix | « Live market prices TCGplayer, Cardmarket, CardTrader and eBay, converted to your currency » (accueil). |
+| Profondeur, historique | « More than 25,000 reviews » ; reste non vérifié. |
+| Accès | Application, web ; pas d'API vue. |
+| Conditions | https://dextcg.com/terms-of-service : « We grant you a limited, non-exclusive, revocable license to use the Services for personal, non-commercial purposes. » `robots.txt` : `Allow: /` pour tous. |
+| Contact | Page https://dextcg.com/help ; pas d'adresse lue. |
+| Verdict | **D** : usage personnel non commercial, aucune distinction de langue, pas de plus-value par rapport aux sources qu'il agrège. |
+| Essai | Sans objet. |
+
+### 19. Limitless TCG (limitlesstcg.com)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://limitlesstcg.com ; non vérifié ; base de cartes et de tournois |
+| Langue de la carte distinguée ? | Le texte des cartes existe en 7 langues (page À propos) ; le prix, non : fiche SVI #1 : « Scarlet & Violet #1 $0.11 0.03€ », liens « Buy on TCGplayer / Buy on Cardmarket », sans langue. |
+| Non gradé, gradé | Non gradé. |
+| Nature du prix | TCGplayer (USD) et Cardmarket (EUR), prix d'achat affichés. |
+| Profondeur, historique | Non mesuré ; « Price History » présent. |
+| Accès | Pages. |
+| Conditions | Pas de page d'utilisation (`/terms` répond 404) ; « Site Notice » non lue. `robots.txt` : « User-agent: * / Disallow: » (vide : tout est permis). |
+| Contact | https://limitlesstcg.com/contact (non ouvert). |
+| Verdict | **C** (doute : conditions non lues) ; sans intérêt pour le français. |
+| Essai | Sans objet. |
+
+### 20. Autres sources examinées plus brièvement
+
+| Source | Ce qui a été lu | Verdict |
+| --- | --- | --- |
+| PokeData (pokedata.io) | `robots.txt` : « User-agent: * / Disallow: ». Page d'accueil : prix en USD (« Mega Rayquaza ex Holofoil 141 Raw $349.35 »), onglets « English Japanese Chinese », Pokedata PRO. Page des conditions (`/termsandconditions`) vide à l'affichage, FAQ 404 : conditions et sources **non vérifiées**. Aucun français. | C (doute), sans intérêt |
+| pkmncards.com | `robots.txt` : « Disallow: /*?s= » seulement. Fiches de cartes anglaises avec un prix TCGplayer (« 499.99 » pour Charizard Base Set 4) et liens affiliés. TCGplayer seul : exclu par notre règle du prix américain. | D (sans objet) |
+| PokePrices.io (pokeprices.io) | « 100% Free No Login No Data Collection », « Price guide rebuilt nightly from recent sold-sales activity », « English & Japanese sets ». `robots.txt` : `Allow: /`, `Disallow: /admin /intel /api`. Conditions non lues. Pas de français. | D (sans objet) |
+| CollX (collx.app) | Conditions (https://www.collx.app/terms) : « extensively or automatically copy any content from the Services (in other words, no scraping). You may use our Services only for your personal non-commercial use ». `robots.txt` : sitemap seul. Marché américain. | D |
+| TCGCollector (tcgcollector.com) | Page d'accueil derrière Cloudflare (« Performing security verification »), `robots.txt` : connexion refusée (réinitialisation). Non lu. Un comparatif tiers écrit que la langue n'a aucun effet sur le prix (non vérifié). | D (inaccessible) |
+| Card Ladder (cardladder.com) | Cloudflare (« Performing security verification »), `robots.txt` non servi (502 sur `www`, 404 sur le domaine nu). Non lu. | D (inaccessible) |
+| Mavin (mavin.io) | `robots.txt` servi en `curl` (« User-agent: * / Allow: / ») mais le navigateur est redirigé vers une page de vente du domaine (GoDaddy « forsale ») : service apparemment arrêté. À revérifier par un humain. | D |
+| Cardboard (cardboard.app), Ludex (ludex.ai) | Aucune réponse exploitable : tunnel refusé (502), `ludex.ai` réinitialise la connexion ou répond 502. Non lus. | D (inaccessible) |
+| Rare Candy (rarecandy.com) | Place de marché américaine de produits (boîtes scellées, cartes), « Unlimited free TCG card scanner ». Pas de cote lue. | D (sans objet) |
+| Shiny | « Shiny » trouvé (getshiny.app) est une application de nettoyage de photos pour iPhone, sans rapport avec les cartes. Aucune application de cartes de ce nom trouvée. | Hors sujet |
+| MyPokeCard (mypokecard.com) | Générateur de cartes personnalisées, pas de cote. | Hors sujet |
+| Poképédia (pokepedia.fr) | Encyclopédie collaborative ; la page d'une carte (Dracaufeu, Set de Base 4) ne contient pas de prix. `robots.txt` : exclusions de pages spéciales seulement. | D (pas de cote) |
+| Pokébip (pokebip.com) | Site communautaire ; pas de cote vue ; pied de page renvoie vers PokéCardex. `robots.txt` : « User-agent: ClaudeBot / Disallow: / », autres autorisés hors forum et compte. | D (pas de cote) |
+| Pokécote / Poké-cote (pokecote.com) | Le domaine répond « This deployment is temporarily paused » (HTTP 402, hébergeur Vercel) ; `www.poke-cote.fr` : tunnel refusé. Aucun site actif trouvé par la recherche. | D (inaccessible) |
+| Pokéscan (pokescan.fr) | Erreur TLS puis 502 « upstream request failed ». Une recherche ne trouve que des applications anglophones de même nom. Non vérifié. | D (inaccessible) |
+| Cardex (cardex.fr) | Homonyme sans rapport : impression de cartes plastiques et badges. Aucune application de cartes Pokémon de ce nom trouvée. | Hors sujet |
+| Cardmarket « tendance de prix » (rappel) | Pas réexaminé. Selon un comparatif tiers (folio.fyi), la tendance est « une régression sur les 28 derniers jours de vente » et les langues d'un produit « partagent un produit et une tendance » : à recouper par la famille Cardmarket. | Rappel |
+| Cotes papier, magazines | Une recherche (« argus », « catalogue de cotation ») ne remonte aucun guide papier français de cote des cartes Pokémon ; seulement des boutiques qui publient leur cote en ligne. Non vérifié en librairie. | Aucune trouvée |
+
+## Tableau récapitulatif
+
+Légende : langue = la version française a-t-elle une valeur distincte de l'anglaise ? Oui, Non, ? (non établi). Nature : D = demandé, V = vente réalisée.
+
+| # | Source | Adresse | Type | Langue distinguée | Gradé | Nature du prix | Verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | PokéCardex | pokecardex.com | appli FR | ? (liens Cardmarket filtrés) | non (collection seulement) | Cardmarket, TCGplayer | C |
+| 2 | TCG Sense | tcgsense.com | appli FR | ? (collection par langue) | ? | cote européenne, source non lue | C |
+| 3 | Collectr | getcollectr.com | appli | ? | oui | eBay, TCGplayer (V) | D |
+| 4 | PriceCharting | pricecharting.com | guide US | non | oui | ventes, USD, payant | D |
+| 5 | Pokellector | pokellector.com | catalogue US | non | non | annonces de marchands | D |
+| 6 | PokemonPriceTracker | pokemonpricetracker.com | API | non | oui | eBay, TCGplayer, Cardmarket | D |
+| 7 | PokeTrace | poketrace.com | API | non | oui (payant) | eBay (V), TCGplayer, Cardmarket | D |
+| 8 | PkmCards.fr | pkmcards.fr | site FR | **oui** | non | Cardmarket plus bas, vendeurs francophones (D) | C |
+| 9 | ZebraDex | zebradex.fr | appli FR | annoncé (« Prix FR ») | non | ventes conclues, source non nommée (V) | C |
+| 10 | ValoTCG / Valo.Data | valotcg.com | appli + API FR | **oui** (API) | oui | Cardmarket, eBay (V), TCGplayer | D |
+| 11 | TCG Crew | tcgcrew.com | appli FR | **oui** (≥ 10 €) | oui (par note) | Cardmarket 1er prix NM français (D) | C |
+| 12 | Pokoya | pokoya.app | appli | ? | ? | Cardmarket | D |
+| 13 | Pokedexia / Compleo | pokedexia.com | site + appli | **oui** | non | Cardmarket NM français plus bas (D) | C |
+| 14 | Cardzia | cardzia.fr | appli FR | annoncé | ? | ventes « de chaque langue », source non nommée | C |
+| 15 | Booster Breakerz | booster-breakerz.fr | site FR | non (écrit) | non | Cardmarket toutes langues | C |
+| 16 | Pokémon Trash | pokemontrash.com | site FR | ? | non | non déclarée | C |
+| 17 | Cards N Packs | cardsnpacks.com | boutique FR | **oui** | oui (PSA, par note) | ses ventes eBay (V) | C |
+| 18 | Dex | dextcg.com | appli | non | ? | TCGplayer, Cardmarket, CardTrader, eBay | D |
+| 19 | Limitless TCG | limitlesstcg.com | base de cartes | non | non | TCGplayer, Cardmarket (D) | C |
+| 20 | PokeData | pokedata.io | site US | non | ? | USD, non lu | C |
+| 21 | pkmncards.com | pkmncards.com | catalogue US | non | non | TCGplayer | D |
+| 22 | PokePrices.io | pokeprices.io | site | non | oui (PSA 10) | ventes, source non lue | D |
+| 23 | CollX | collx.app | appli US | ? | ? | non lu | D |
+| 24 | TCGCollector | tcgcollector.com | appli | ? | ? | inaccessible | D |
+| 25 | Card Ladder | cardladder.com | guide US | ? | oui | inaccessible | D |
+| 26 | Mavin | mavin.io | guide US | ? | ? | domaine à vendre | D |
+| 27 | Cardboard, Ludex | cardboard.app, ludex.ai | applis | ? | ? | inaccessibles | D |
+| 28 | Rare Candy | rarecandy.com | place de marché US | ? | ? | pas de cote lue | D |
+| 29 | Poképédia, Pokébip | pokepedia.fr, pokebip.com | communauté FR | sans objet | sans objet | pas de prix | D |
+| 30 | Pokécote, Pokéscan | pokecote.com, pokescan.fr | ? | ? | ? | sites inactifs | D |
+| 31 | Shiny, MyPokeCard, Cardex | | | hors sujet | | | hors sujet |
+
+Décompte : 0 A, 0 B, 12 C, 21 D, 3 hors sujet, soit 36 noms examinés. Parmi eux, 7 sont injoignables ou parqués (TCGCollector, Card Ladder, Mavin, Cardboard, Ludex, Pokécote, Pokéscan) ; TCG Sense n'a été lu que par `robots.txt`, `llms.txt` et les sitemaps. Les 28 autres ont eu au moins une page ou leurs conditions lues.
+
+## D'où les autres tirent leurs prix
+
+Sources amont déclarées par chaque agrégateur ou application (déclaratif sauf mention). « Non nommée » = le site dit se baser sur des ventes ou des places de marché sans les citer.
+
+| Source | Marché amont déclaré | Où c'est écrit |
+| --- | --- | --- |
+| PokéCardex | Cardmarket, TCGplayer | https://www.pokecardex.com/app : « Suivez le prix de vente sur les plateformes Cardmarket et TCGPlayer » |
+| TCG Sense | « marché européen » (précision non lue) | `llms.txt` |
+| Collectr | eBay, TCGplayer (guide) ; Cardmarket et eBay en Europe selon un comparatif tiers | https://www.getcollectr.com/prices |
+| PriceCharting | ventes réalisées, source non relevée | non vérifié |
+| Pokellector | TCGplayer, Troll & Toad, eBay (annonces), Collector's Cache, Cool Stuff Inc | fiche Charizard Base Set |
+| PokemonPriceTracker | eBay, TCGplayer, Cardmarket ; données de gradation et populations | `/faq`, `/licensing` (« we don't disclose how it is collected ») |
+| PokeTrace | eBay (ventes), TCGplayer, Cardmarket ; 15 sociétés de gradation | https://poketrace.com/pricing |
+| PkmCards.fr | Cardmarket **et Cardnexus** | fiches de cartes |
+| CardNexus (feedback.cardnexus.com) | Cardmarket (Europe), TCGplayer (Amérique du Nord) | https://feedback.cardnexus.com/help/articles/2287029-understanding-prices |
+| ZebraDex | ventes conclues, vendeurs bien notés, place non nommée | `/methodologie-prix` |
+| ValoTCG / Valo.Data | Cardmarket, TCGplayer (marché US), ventes eBay « best effort » ; populations PSA, PCA, CCC | https://valotcg.com/fr/developers |
+| TCG Crew | **guide de prix Cardmarket « importé quotidiennement »**, premier prix Near Mint français relevé sur Cardmarket ; API officielle d'eBay pour les annonces en cours ; source des « valeurs de référence » anglais/japonais non nommée | https://tcgcrew.com/methodologie |
+| Pokoya | Cardmarket | `/faq` |
+| Pokedexia / Compleo | Cardmarket, TCGdex, PokéAPI | CGU, article 8 |
+| Cardzia | « places de marché, historiques de ventes, cotations publiques », non nommées | CGU, article 10.1 |
+| Booster Breakerz | Cardmarket, toutes langues | page d'index |
+| Cards N Packs | ses propres ventes eBay | article du 27 septembre 2026 |
+| Dex | TCGplayer, Cardmarket, CardTrader, eBay | accueil |
+| Limitless TCG | TCGplayer, Cardmarket | fiches de cartes |
+| pkmncards.com | TCGplayer | fiches de cartes |
+| TCGdex (déjà utilisé par le projet) | Cardmarket (EUR, quotidien), TCGplayer (USD, horaire à quotidien) | https://tcgdex.dev/markets-prices |
+
+À retenir pour le chantier :
+- Presque tous remontent à **Cardmarket** (et à TCGplayer pour l'Amérique). Aucune source indépendante de prix de ventes françaises n'a été découverte, hormis les ventes propres de Cards N Packs (gradé).
+- Sources amont nouvelles par rapport à ce que nous connaissions : **Cardnexus** (place de marché, aussi lue par PkmCards.fr), le **guide de prix Cardmarket importé quotidiennement** (cité par TCG Crew ; d'où il vient exactement, fichier public ou accès réservé, n'est pas écrit : non vérifié), et les API **Valo.Data** et **PokeTrace** (payantes pour l'Europe).
+- Les sites qui distinguent la langue (PkmCards.fr, Pokedexia, TCG Crew, ValoTCG) le font tous de la même façon : **premier prix Near Mint filtré sur la langue française sur Cardmarket**, éventuellement avec les vendeurs francophones, ce qui est un prix demandé. Les écarts entre eux sur une même carte (Noctali VMAX 215/203 : 1 199 € contre 3 000 € le 16 novembre 2026) montrent qu'un seul relevé n'est pas fiable sans plancher d'offres.
+- TCG Crew écrit que, depuis le 19 août 2026, eBay bloque l'accès aux ventes conclues ; ValoTCG qualifie sa collecte eBay de « best effort ». À recouper avec la famille eBay.
+- Déclaration de TCG Crew à vérifier avant d'écrire notre filtre de langue : les offres « françaises » de Base Set 2, Gym Heroes, Gym Challenge, Legendary Collection et Skyridge sur Cardmarket seraient des erreurs d'étiquetage.
+
+## Sources croisées hors de ma famille
+
+- Cardmarket (prix tendance, guide de prix, filtre de langue et de vendeur) : famille Cardmarket.
+- TCGdex (prix Cardmarket et TCGplayer, déjà intégré) : famille API de catalogue.
+- CardNexus (place de marché, prix Cardmarket) : à examiner comme place de marché.
+- CardTrader (déjà intégré, cité par Dex).
+- eBay : API officielle d'annonces en cours ; ventes conclues bloquées selon TCG Crew.
+- Cards N Packs : boutique et enchères de cartes gradées, ventes eBay propres.
+- Autres applications françaises vues en passant, non examinées : TCG Pro (tcgpro.fr), iEstims, Scanémon, Treasurewise (lien partenaire de PokéCardex).
+
+## Marchés anglais, américain, japonais (à noter sans approfondir)
+
+- TCGplayer : prix américain, exclu de tout prix affiché par notre règle ; Collectr, PokeTrace, PokemonPriceTracker, Pokellector, pkmncards.com et Limitless l'affichent.
+- eBay États-Unis : ventes conclues relayées par PokeTrace, PokemonPriceTracker, PriceCharting, PokePrices.io.
+- Japon : PokeData, PokePrices.io, PokemonPriceTracker (page « Japanese Card Prices ») ont des prix japonais ; non examinés.
+
+## Ce que je n'ai pas pu vérifier
+
+- TCG Sense : méthode de cote, conditions, couverture française, prix par langue, gradé (pages derrière un défi Cloudflare, non contourné).
+- Cardmarket « guide de prix importé » : accès exact à ce fichier.
+- Pages de cartes sur PokéCardex (adresse non trouvée), PokeData (conditions vides), Pokoya (conditions), Pokémon Trash (source), TCGCollector, Card Ladder, Cardboard, Ludex, Pokéscan, Pokécote.
+- Couverture en nombre de cartes françaises avec prix : aucune mesure faite (pas d'extraction en masse) ; seuls des chiffres déclaratifs.
+- Écart Noctali VMAX 1 199 € contre 3 000 € : non expliqué.
+
+## Crédits Firecrawl dépensés
+
+0. Aucun appel à Firecrawl (ni scrape, ni recherche, ni exécution de fournisseur Alexandria).
