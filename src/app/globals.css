@@ -153,13 +153,85 @@ h3 {
   outline: none;
   box-shadow: 0 1px 2px #23215a2e inset, 0 0 0 2px var(--berry);
 }
-select.field {
+select.field,
+.select-trigger {
   appearance: none;
   padding-right: 2.2rem;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%2323215a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.8rem center;
   background-size: 0.7rem;
+}
+
+/* Liste déroulante dessinée par le site (composant Select) : rien n'est laissé au navigateur. */
+.select {
+  position: relative;
+}
+.select-trigger {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+}
+.select-trigger[aria-expanded="true"] {
+  box-shadow: 0 1px 2px #23215a2e inset, 0 0 0 2px var(--berry);
+}
+.select-list {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 100%;
+  max-height: 18.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--shell-hi);
+  color: var(--ink);
+  font-weight: 400;
+  box-shadow: 0 0 0 1px var(--line), 0 14px 30px -12px #23215a80;
+  transform-origin: top left;
+  transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out);
+}
+.select-list[data-up] {
+  top: auto;
+  bottom: calc(100% + 6px);
+  transform-origin: bottom left;
+}
+.select-list[data-instant] {
+  transition: none;
+}
+@starting-style {
+  .select-list {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+.select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  min-height: 2.5rem;
+  padding: 0 0.7rem;
+  border-radius: 7px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.select-option[data-active] {
+  background: var(--shell-lo);
+}
+.select-option[aria-selected="true"] {
+  font-weight: 700;
+}
+.select-option[aria-selected="true"]::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--berry);
 }
 
 /* Interrupteur à deux ou trois positions (finition, vue, état…). */
@@ -371,6 +443,7 @@ select.field {
   }
   .tile,
   .btn,
+  .select-list,
   .segmented > * {
     transition: none;
   }

@@ -41,3 +41,21 @@ export function familyStyle(serieId: string) {
 const HOLO = /holo|rare|ex|brillant|chromatique|secr|illustration|magnifique|shiny|légende|prime|turbo|v$|vmax|vstar|gx|ace|radieux|high-?tech/i;
 /** Les cartes au-dessus de « peu commune » reçoivent le reflet holographique. */
 export const isShiny = (rarity: string | undefined) => !!rarity && !/^(commune|peu commune|aucune)$/i.test(rarity) && HOLO.test(rarity);
+
+// Raretés de la plus courante à la plus rare, d'après les intitulés français de TCGdex.
+// Chaque ligne est un palier ; une rareté inconnue se range avec les rares simples.
+const RARITY_TIERS: RegExp[] = [
+  /^(sans rareté|aucune|promo|collection classique)$/i,
+  /^commune$/i,
+  /^peu commune$/i,
+  /^rare$/i,
+  /^(holo rare|rare holo)$/i,
+  /^(double rare|holo rare v|rare prime|rare holo lv\.x|high-tech rare|radieux rare|magnifique|légende|pikachu rare|mega attack rare)$/i,
+  /^(holo rare vmax|holo rare vstar|ultra rare|dresseur full art|shiny rare|shiny rare v|illustration rare|rgb rare|futuristic rare|rare noir blanc)$/i,
+  /^(shiny rare vmax|magnifique rare|illustration spéciale rare|chromatique ultra rare)$/i,
+  /^(hyper rare|méga hyper rare)$/i,
+];
+export const rarityRank = (rarity: string | undefined) => {
+  const tier = RARITY_TIERS.findIndex((re) => re.test(rarity ?? "aucune"));
+  return tier < 0 ? 3 : tier;
+};

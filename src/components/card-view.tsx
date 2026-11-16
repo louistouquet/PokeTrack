@@ -13,6 +13,7 @@ import { HoloCard } from "./holo-card";
 import { Icon } from "./icon";
 import { LcdChart } from "./lcd-chart";
 import { Meter } from "./meter";
+import { Select } from "./select";
 import { Slab } from "./slab";
 
 const SOURCE_NAMES: Record<SourceId, string> = { cardmarket: "Cardmarket", ebay: "eBay France" };
@@ -306,21 +307,16 @@ function AddToCollection({ detail, finish, grade, onGrade }: { detail: CardDetai
         <div className="grid grid-cols-2 gap-3">
           <label className="block text-sm font-semibold">
             Société
-            <select className="field mt-1" value={grade.company} onChange={(e) => onGrade({ company: e.target.value as CompanyId, grade: COMPANIES.find((c) => c.id === e.target.value)!.grades[0].grade })}>
-              {COMPANIES.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
+<Select
+              className="mt-1"
+              value={grade.company}
+              onChange={(id) => onGrade({ company: id, grade: COMPANIES.find((c) => c.id === id)!.grades[0].grade })}
+              options={COMPANIES.map((c) => ({ value: c.id, label: c.name }))}
+            />
           </label>
           <label className="block text-sm font-semibold">
             Note
-            <select className="field mt-1" value={grade.grade} onChange={(e) => onGrade({ company: grade.company, grade: e.target.value })}>
-              {company.grades.map((g) => (
-                <option key={g.grade}>{g.grade}</option>
-              ))}
-            </select>
+<Select className="mt-1" value={grade.grade} onChange={(g) => onGrade({ company: grade.company, grade: g })} options={company.grades.map((g) => ({ value: g.grade, label: g.grade }))} />
           </label>
         </div>
       )}

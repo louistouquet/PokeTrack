@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Era } from "@/lib/pricing/graded";
 import { GradingAdvisor } from "./grading-advisor";
+import { Select } from "./select";
 
 const ERAS: { id: Era; label: string }[] = [
   { id: "recent", label: "Récente : Épée et Bouclier, Écarlate et Violet, Méga-Évolution" },
@@ -29,13 +30,7 @@ export function GradingCalculator({ initialPrice, initialEra }: { initialPrice?:
         </label>
         <label className="block font-semibold">
           Époque
-          <select className="field mt-1" value={era} onChange={(e) => setEra(e.target.value as Era)}>
-            {ERAS.map((e) => (
-              <option key={e.id} value={e.id}>
-                {e.label}
-              </option>
-            ))}
-          </select>
+<Select className="mt-1" value={era} onChange={setEra} options={ERAS.map((e) => ({ value: e.id, label: e.label }))} />
         </label>
       </div>
       <div className="mt-8">
