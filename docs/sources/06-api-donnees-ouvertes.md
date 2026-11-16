@@ -6,7 +6,32 @@ Identifiants des cartes d'essai utilisés : Dracaufeu `base1-4` (Cardmarket `idP
 
 ## Récapitulatif
 
-(Tableau complété en fin de rédaction, voir plus bas.)
+Vingt fiches, vingt-deux sources examinées (la fiche 19 regroupe trois projets), plus le catalogue Alexandria de Firecrawl (section à part).
+
+| # | Source | Adresse | Type | Langue distinguée | Gradé | Nature du prix | Verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Fichiers de prix Cardmarket | downloads.s3.cardmarket.com | Fichier JSON officiel | Non | Non | Ventes réalisées (moyennes) et demandé (`low`) | A sous réserve |
+| 2 | Pokémon TCG API | api.pokemontcg.io | API ouverte, obsolète | Non (anglais) | Non | Relais TCGplayer et Cardmarket (Cardmarket figé depuis 2025 ou juillet 2026) | D |
+| 3 | Scrydex | scrydex.com | API payante | Anglais, japonais | Oui (PSA, BGS, CGC, TAG, ACE) | Marché américain | D |
+| 4 | PokemonPriceTracker | pokemonpricetracker.com | API, gratuit limité | Anglais, japonais | Oui (eBay vendus) | TCGplayer, eBay, Cardmarket bêta | D |
+| 5 | PokeTrace | poketrace.com | API, gratuit limité | Anglais, japonais, chinois ; pas de français | Oui, payant | eBay, TCGplayer, Cardmarket payant | D |
+| 6 | JustTCG | justtcg.com | API, gratuit limité | Non documenté ; Amérique du Nord seule | Oui (ventes de boîtiers) | Ventes réalisées | D |
+| 7 | TCG API | tcgapi.dev | API, gratuit limité | Non documenté | Oui, payant | TCGplayer, eBay vendus | D |
+| 8 | TCGAPIs | tcgapis.com | API payante | Oui (formule à 499 £/mois) | Non | TCGplayer, Cardmarket, CardTrader | D |
+| 9 | TCGCSV | tcgcsv.com | Fichiers ouverts (copie de TCGplayer) | Anglais, japonais | Non | TCGplayer : demandé et marché | C |
+| 10 | PriceCharting API | pricecharting.com | API et CSV payants | Anglais, japonais, chinois, coréen ; pas de français | Oui (9, PSA 10, BGS 10, CGC 10) | Valeurs courantes | D |
+| 11 | PSA Public API | api.psacard.com | API officielle, compte | Non vérifié | Certificats PSA, aucun prix | Aucun | D (prix) |
+| 12 | API Cardmarket v2 | api.cardmarket.com | API officielle fermée | Oui (annonces), non vérifié | Non | Annonces, guide | C |
+| 13 | eBay (rappel) | developer.ebay.com | API avec clés | Par le titre | Oui | Demandé ; vendus restreints | C |
+| 14 | pokemon-tcg-data | github.com/PokemonTCG | Jeu de données sans licence | Non | Non | Aucun | D |
+| 15 | TCGdex cards-database | github.com/tcgdex | Catalogue MIT | Oui (fr, en, de…) | Non | Aucun ; identifiants Cardmarket et TCGplayer par variante | A (déjà branché) |
+| 16 | TCG Price History | huggingface.co | Jeu de données (5 lignes) | Non | Annoncé | Exemple | D |
+| 17 | Jeux Kaggle | kaggle.com | Jeux de particuliers | Non vérifié | Non vérifié | Copies PriceCharting, TCGplayer | D |
+| 18 | CardNexus | docs.cardnexus.com | API sur permission | Oui pour ses annonces | Non mentionné | Valeurs Cardmarket et TCGplayer quotidiennes depuis nov. 2024 | C |
+| 19 | GoupixDex, CMScrape, Gather | github.com | Projets libres | Non | Gather : PSA (non vérifié) | Reprennent Cardmarket toutes langues | Sans objet (pas une source) |
+| 20 | GemRate | docs.gemrate.com | API population | Non vérifié | Population seulement | Aucun | D |
+
+**En une phrase** : aucune API ni aucun jeu de données ouvert ne donne un prix propre à la carte française, ni non gradée ni gradée. Les API qui ont du gradé sont américaines, anglaises et payantes dès qu'on veut afficher les prix.
 
 ## Fiches
 
@@ -316,3 +341,42 @@ Constat : aucun projet libre trouvé ne publie un prix propre aux cartes frança
 | Verdict | **D** pour le prix. Pourrait servir un jour à l'appariement des numéros de certificats entre sociétés ; non prioritaire. |
 | Essai | Sans objet. |
 
+## Catalogue Alexandria de Firecrawl
+
+Consulté gratuitement le 16 novembre 2026 (`alexandria_library_search`, `firecrawl_find_tools` avec `includeCosts`). **Aucun fournisseur n'a été exécuté.** Rappel : un fournisseur de collecte ne rend pas la collecte permise par le site d'origine ; chaque site garde ses conditions et son `robots.txt`.
+
+Recherche : `grep -ril "pokemon" /library` ne renvoie qu'un fournisseur (Steel City Collectibles) ; `grep -ril "trading card"` ne renvoie rien. Aucun fournisseur pour Cardmarket, CardTrader, TCGplayer, Vinted, Leboncoin, Rakuten, Catawiki, Delcampe ou Whatnot, ni aucune boutique française.
+
+| Fournisseur | Ce qu'il promet (texte du catalogue) | Coût | Intérêt pour nous |
+| --- | --- | --- | --- |
+| `ebay-com` | « eBay.com listings through the site's item-module JSON: item detail, variations, shipping and returns terms, and search autosuggest. Keyword search, sold listings and seller pages are … not offered. Public US marketplace (www.ebay.com, USD) » | 5 crédits par appel (`listings/item`, `item_shipping`, `item_variations`, `suggest`) | Nul : eBay américain, pas de recherche ni de ventes terminées. L'API officielle eBay fait mieux et gratuitement. |
+| `psacard-com` | « Browse public collectible price-guide categories, sets, grade values and featured dealer profiles. No cert or population lookup. » ; `collectibles/values` : « published guide values by grade … These are not offers or recent sales. » | 5 crédits par appel | Cote PSA par note (valeurs publiées, américaines, cartes anglaises surtout). Le site PSA est derrière Cloudflare : relève de la famille gradation. |
+| `steelcitycollectibles-com` | Boutique américaine de cartes de sport et de jeux : recherche, fiches produit avec prix USD | 5 crédits par appel | Nul (produits scellés américains). |
+| `stockx-com` | « per-size market state (lowest ask, highest bid, last sale…), recent sales and the ask/bid order book. US and GB markets. » | 5 crédits par appel | Faible : la couverture des cartes Pokémon n'est pas annoncée. |
+| `hibid-com` | Enchères nord-américaines, « archive (hammer prices) » | 5 crédits par appel | Nul pour la France. |
+| `christies-com` | Lots et « prices realised » de Christie's | Non relevé (5 crédits probable, non vérifié) | Anecdotique. |
+| `auctions-yahoo-co-jp` | Recherche Yahoo! Auctions Japon, « sold-price history for a keyword » | 5 crédits par appel | Marché japonais seulement. |
+| `marktplaats-nl` | Petites annonces des Pays-Bas | 5 crédits par appel | Nul pour la France. |
+| `shopify` | Recherche de produits dans les boutiques Shopify (« Storefront: Search products … by store_domain ») | 5 crédits par appel | **Potentiel** : beaucoup de boutiques françaises de cartes tournent sous Shopify. Mais ces boutiques exposent souvent elles-mêmes leur catalogue public gratuitement ; la permission dépend des conditions de chaque boutique (famille « boutiques »). |
+| `woocommerce-com` | « Product catalogue, prices or stock from a store running WooCommerce (WordPress shops on their own domain) » | 5 crédits par appel | Même remarque que Shopify. |
+| `affiliate-com` | Réseaux d'affiliation (Awin, Rakuten, CJ, Impact), recherche de produits et de marchands | 25 crédits par appel | Indirect : savoir quelles boutiques françaises ont un programme d'affiliation (voie permise de lien). |
+
+## Sources croisées hors de ma famille
+
+- CardNexus : place de marché avec annonces par langue et état (famille places de marché).
+- PSA « Auction Prices Realized » et cote PSA par note (famille gradation).
+- PriceCharting comme site de cote (famille cotes et agrégateurs).
+- Boutiques françaises sous Shopify ou WooCommerce : catalogues publics lisibles par programme (famille boutiques).
+- eBay France, ventes terminées via l'OAuth d'un vendeur (comme le fait GoupixDex) : usage propre au vendeur, pas une source pour nous.
+- TCGplayer : API fermée ; la communauté TCGplayer indique « we are no longer granting new API access at this time » (citation lue dans un extrait de recherche, page non ouverte).
+- Wayback Machine : l'archive des fichiers Cardmarket pourrait donner un historique toutes langues, mais `web.archive.org` est bloqué par le réseau de cette session (« Blocked by egress policy ») : non vérifié.
+
+## Marchés anglais, américain, japonais (noté sans approfondir)
+
+- Pour les cartes anglaises et japonaises, les API ne manquent pas : TCGCSV (gratuit, historique quotidien TCGplayer depuis février 2024), PokemonPriceTracker, PokeTrace, JustTCG, tcgapi.dev, Scrydex, PriceCharting. Le gradé américain (PSA, CGC, BGS issus des ventes eBay) n'y est servi que par des formules payantes.
+- Japon : catégorie TCGplayer `85` « Pokemon Japan » dans TCGCSV ; Yahoo! Auctions Japon dans Alexandria ; Scrydex et PokeTrace couvrent le japonais.
+- La table `variants_detailed[].thirdParty` de TCGdex (Cardmarket et TCGplayer par variante) suffirait à brancher TCGCSV pour un marché anglais un jour.
+
+## Crédits Firecrawl dépensés
+
+**0 crédit.** Seules la consultation du catalogue (`alexandria_library_search`, 9 appels) et `firecrawl_find_tools` (4 appels) ont servi, toutes deux gratuites (`"creditsCost":0` dans chaque réponse). Aucun `firecrawl_scrape`, `firecrawl_search`, `alexandria_library_read` ni `firecrawl_agent`.
