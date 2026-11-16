@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { CardArt } from "@/components/card-tile";
-import { GradingAdvisor } from "@/components/grading-advisor";
-import { GradingCalculator } from "@/components/grading-calculator";
+import { GradingAdvisor, GradingFees } from "@/components/grading-advisor";
 import { getCardDetail } from "@/lib/data";
 import { money } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Faut-il faire grader sa carte ?",
-  description: "Comparez PSA, PCA, CGC, BGS et Collect Aura : frais, chances de gain et gain espéré selon l'état de votre carte Pokémon.",
+  description: "Comparez PSA, PCA, CGC, BGS et Collect Aura : frais, délais, et gain espéré quand des ventes gradées sont observées pour votre carte Pokémon.",
 };
 
 async function Calculator({ searchParams }: Pick<PageProps<"/gradation">, "searchParams">) {
@@ -18,7 +17,7 @@ async function Calculator({ searchParams }: Pick<PageProps<"/gradation">, "searc
   const detail = id ? await getCardDetail(id) : null;
   const quote = detail && (params.finition === "reverse" && detail.reverse ? detail.reverse : detail.standard);
 
-  if (!detail || !quote?.price) return <GradingCalculator />;
+  if (!detail || !quote?.price) return <GradingFees />;
   const { card } = detail;
   return (
     <div className="grid gap-8 md:grid-cols-[11rem_1fr]">
@@ -32,9 +31,6 @@ async function Calculator({ searchParams }: Pick<PageProps<"/gradation">, "searc
           <Link href={`/cartes/${card.id}`} className="underline">
             Voir la fiche
           </Link>
-          <Link href="/gradation" className="underline">
-            Calculer pour un autre prix
-          </Link>
         </p>
       </div>
       <GradingAdvisor raw={quote.price} era={detail.era} observations={detail.observations} editable />
@@ -47,8 +43,8 @@ export default function GradingPage({ searchParams }: PageProps<"/gradation">) {
     <div className="wrap max-w-[60rem] pt-10">
       <h1 className="text-4xl sm:text-5xl">Faut-il la faire grader ?</h1>
       <p className="mb-9 mt-3 max-w-[64ch] text-lg text-ink-soft">
-        Faire grader coûte de l&apos;argent et le résultat n&apos;est jamais garanti. Ce calcul pèse les frais contre ce que la carte vaudrait à chaque note possible, selon
-        son état.
+        Faire grader coûte de l&apos;argent et le résultat n&apos;est jamais garanti. Ce calcul pèse les frais contre ce que la carte vaut réellement à chaque note possible,
+        d&apos;après les annonces observées.
       </p>
       <Suspense fallback={<div className="skeleton h-72" />}>
         <Calculator searchParams={searchParams} />

@@ -6,6 +6,40 @@ Version 0, 16 novembre 2026. Rédigé par l'assistant à la demande du fondateur
 
 Convention : ce qui a été **vérifié aujourd'hui** renvoie à sa source. Ce qui est une **estimation**, un **avis** ou un souvenir **non vérifié** est marqué comme tel.
 
+## Décisions du fondateur
+
+Prises le 16 novembre 2026, après lecture de la version 0. Elles priment sur le reste du document ; les sections qu'elles contredisent sont à relire à leur lumière.
+
+| Sujet | Décision | Conséquence |
+| --- | --- | --- |
+| **Budget** | Zéro euro de dépense. | Pas de nom de domaine payant, pas de dépôt de marque, pas de conseil juridique payant, hébergement et automatisations gratuits uniquement. |
+| **Modèle** | Projet communautaire et open source. Des revenus sont bienvenus, sans être recherchés ; les prix seront bas. La concurrence n'est pas un critère. | L'offre payante de la section 3 devient facultative et tardive. La priorité est l'usage et la communauté. |
+| **Structure** | Auto-entreprise, le jour où il y a des revenus. | Rien à créer tant qu'il n'y a pas de revenu. |
+| **Marché** | Français uniquement pour l'instant. Les marchés anglais, américain et japonais viendront peut-être plus tard. | Le prix affiché doit être celui de la carte française, et le site doit dire quand il ne l'est pas. |
+| **Prix gradés** | Uniquement des données observées, sur eBay et les autres sites de vente, en moyenne pondérée. Aucun multiplicateur. | Fait le 16 novembre : sans source branchée, aucun prix gradé n'est affiché. |
+| **eBay** | Annonces en cours avec lien, comme recommandé. Le fondateur veut aussi s'en servir pour les prix. | Les deux ne sont compatibles qu'avec un accord écrit d'eBay : la licence interdit de modéliser des prix. Demande à envoyer. |
+| **Illustrations** | L'illustration française d'abord ; l'anglaise en dernier recours, avec une mention. | Les scans de PokéCardex ne sont pas réutilisables sans leur accord (« Toute duplication des textes ou images de ce site sans autorisation est interdite »). |
+| **Surveillance** | Pas de tâche planifiée Claude. Le relevé doit être fiable par lui-même. | Contrôles et alertes dans GitHub Actions uniquement. |
+| **Nom** | Plus tard. Il devra contenir « tcg ». | La liste de la section 8 est caduque. |
+| **Design** | Original et haut de gamme ; aucun contrôle laissé au rendu du navigateur. | Fait pour les listes déroulantes le 16 novembre. |
+| **Exigence générale** | Un fonctionnement très robuste et très fiable. | Passe avant les nouvelles fonctions. |
+
+### Ce que le budget zéro implique
+
+- **L'open source n'est pas un choix d'image, c'est ce qui rend le zéro euro possible.** Un dépôt public donne gratuitement les relevés automatiques (GitHub Actions), l'hébergement des données (branche `data`) et le canal de contribution. Fermer le code ferait payer ces trois postes.
+- **Hébergement.** Le site est sur la formule gratuite de Vercel, réservée de mémoire à un usage non commercial (clause non relue). Le premier euro de revenu oblige à vérifier ce point, et peut-être à changer d'hébergeur.
+- **Nom.** Sans dépôt de marque, le nom n'est pas protégé. Sans domaine payant, l'adresse restera un sous-domaine gratuit.
+- **Agents.** Leur seul coût est l'abonnement Claude déjà payé ; les routines doivent rester peu nombreuses.
+- **Juridique.** Sans conseil, la prudence remplace l'avis : accords écrits des sources avant tout usage discutable, et pas d'offre payante sur des données de tiers.
+
+### Ce que « être sûr du prix français » demande réellement
+
+Mesuré le 16 novembre avec le jeton CardTrader du fondateur : voir `ROADMAP.md`. En résumé, CardTrader donne un vrai prix français pour une minorité de cartes, surtout récentes. Le gros du marché français est sur Cardmarket (pas d'accès par langue), eBay (licence restrictive), Vinted et Leboncoin (pas d'accès autorisé). Trois voies, toutes gratuites :
+
+1. **Demander des accords écrits** à CardTrader, eBay et Cardmarket. L'assistant rédige, le fondateur envoie.
+2. **Dire la vérité carte par carte** : chaque fiche indique si son prix est français ou européen. C'est fait.
+3. **La communauté comme source** : les utilisateurs déclarent leurs achats et leurs ventes (le champ « prix d'achat » existe déjà). C'est la seule source que personne ne peut nous retirer, et c'est le cœur d'un projet communautaire. Elle demande des comptes, donc le cadre RGPD de la section 4.
+
 ## 1. Ce que dit ce document en une page
 
 1. **Le modèle Supabase se transpose en partie seulement.** La méthode de lancement (positionnement, dates fixes, tout en public) se transpose bien. Le moteur économique ne se transpose pas : Supabase vend des ressources d'infrastructure, nous n'en avons pas à vendre.

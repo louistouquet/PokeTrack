@@ -7,10 +7,10 @@ La cote des cartes Pokémon françaises : un prix juste pour chaque carte, non g
 ## Ce que fait le site
 
 - **Catalogue français complet** : les familles (Méga-Évolution, Écarlate et Violet, Épée et Bouclier… jusqu'au Set de Base), leurs extensions, et pour chaque carte son illustration, sa rareté, son numéro. Environ 20 000 cartes.
-- **Prix juste non gradé** : calculé sur les indicateurs de vente de Cardmarket, le marché européen, avec une fourchette, une tendance, et trois indices : liquidité, confiance, volatilité.
-- **Prix gradés** : estimation par société (PSA, PCA, CGC, BGS, Collect Aura) et par note.
+- **Prix juste non gradé** : calculé sur les ventes de Cardmarket (Europe, toutes langues) et, quand il y en a, sur les annonces de cartes françaises de CardTrader, avec une fourchette, une tendance, et trois indices : liquidité, confiance, volatilité.
+- **Prix gradés** : par société (PSA, PCA, CGC, BGS, Collect Aura) et par note, uniquement à partir d'annonces observées. Aucune source n'est encore branchée : ils sont vides pour l'instant.
 - **Collection** : chaque carte s'ajoute non gradée ou gradée (société + note), en vue classeur, par séries ou en liste. Valeur totale, plus-value si le prix d'achat est renseigné, graphique de la valeur.
-- **Faut-il la faire grader ?** : pour une carte non gradée, compare les sociétés (frais, chances de gain, gain espéré) selon l'état de la carte.
+- **Faut-il la faire grader ?** : compare les sociétés à partir des prix gradés observés pour la carte. Sans source branchée, la page n'affiche que les frais et les délais.
 - **Historique** : un relevé par jour à partir de la mise en ligne. Les courbes se construisent avec le temps.
 
 La méthode de calcul complète, avec ses limites, est sur la page [/methode](src/app/methode/page.tsx) du site.
@@ -44,6 +44,7 @@ npm test
 | Moteur de prix | `src/lib/pricing/` | Prix juste (`raw.ts`), prix gradés (`graded.ts`), rentabilité de la gradation (`grading-roi.ts`). Fonctions pures, testées. |
 | Catalogue | `src/lib/tcgdex.ts` | Client de l'API [TCGdex](https://tcgdex.dev) (cartes françaises + prix Cardmarket). |
 | Relevé quotidien | `scripts/ingest.ts` | Parcourt le catalogue, écrit l'état du jour et ajoute un point à l'historique. |
+| CardTrader | `scripts/cardtrader.ts` | Annonces de cartes françaises (optionnel : secret `CARDTRADER_TOKEN`). |
 | eBay | `scripts/ebay.ts` | Annonces eBay France (optionnel, voir plus bas). |
 | Site | `src/app/`, `src/components/` | Next.js 16 (App Router), React 19, Tailwind 4. Aucune autre dépendance. |
 | Collection | `src/lib/collection.ts` | Stockée dans le navigateur (localStorage), exportable en JSON. |
@@ -92,7 +93,8 @@ La liste complète des défauts connus et la direction du projet sont dans [ROAD
 
 - Le prix n'est pas encore propre à la carte française : Cardmarket mélange les langues. Le marché américain (TCGplayer) n'entre plus dans le calcul.
 - Environ 2 900 cartes n'ont pas d'illustration dans la source.
-- Les prix gradés sont un modèle (multiples du prix non gradé par époque et par société) tant qu'aucune annonce eBay ne les corrige. Les coefficients sont dans `src/lib/pricing/graded.ts` et méritent d'être affinés.
+- Les prix gradés ne sont affichés que s'ils sont observés ; faute de source branchée, il n'y en a aucun aujourd'hui.
+- Le prix n'est propre à la carte française que pour les cartes qui ont au moins trois annonces françaises sur CardTrader (environ 5 % du catalogue).
 - Cardmarket publie un prix par carte, toutes langues confondues.
 - La quantité en vente n'est connue que via eBay.
 - Les tarifs de gradation sont indicatifs (novembre 2026) et modifiables dans le calculateur.

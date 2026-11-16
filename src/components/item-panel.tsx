@@ -88,7 +88,7 @@ export function ItemPanel({ item, card, unit, onClose }: { item: Item; card?: Ca
 <Select
                 className="mt-1"
                 value={item.grade.company}
-                onChange={(id) => updateItem(item.key, { grade: { company: id, grade: COMPANIES.find((c) => c.id === id)!.grades[0].grade } })}
+                onChange={(id) => updateItem(item.key, { grade: { company: id, grade: COMPANIES.find((c) => c.id === id)!.grades[0] } })}
                 options={COMPANIES.map((c) => ({ value: c.id, label: c.name }))}
               />
             </label>
@@ -98,7 +98,7 @@ export function ItemPanel({ item, card, unit, onClose }: { item: Item; card?: Ca
                 className="mt-1"
                 value={item.grade.grade}
                 onChange={(grade) => updateItem(item.key, { grade: { company: item.grade!.company, grade } })}
-                options={company.grades.map((g) => ({ value: g.grade, label: g.grade }))}
+                options={company.grades.map((g) => ({ value: g, label: g }))}
               />
             </label>
           </>

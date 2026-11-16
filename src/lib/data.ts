@@ -28,7 +28,9 @@ async function readData<T>(path: string): Promise<T | null> {
 /** Toutes les familles avec leurs extensions, de la plus récente à la plus ancienne. */
 export async function getSeries(): Promise<Serie[]> {
   cacheLife("days");
-  const series = await Promise.all((await listSeries()).map((s) => fetchSerie(s.id)));
+  // Le relevé publie le catalogue (catalog.json) : le site et sa construction ne dépendent
+  // alors plus de la disponibilité de TCGdex. Repli sur TCGdex tant que ce fichier n'existe pas.
+  const series = (await readData<Serie[]>("catalog.json")) ?? (await Promise.all((await listSeries()).map((s) => fetchSerie(s.id))));
   return series
     .filter((s): s is Serie => s !== null && s.sets.length > 0)
     .sort((a, b) => (b.releaseDate ?? "").localeCompare(a.releaseDate ?? ""));
@@ -36,7 +38,7 @@ export async function getSeries(): Promise<Serie[]> {
 
 export async function getSerie(id: string): Promise<Serie | null> {
   cacheLife("days");
-  return fetchSerie(id);
+  return (await readData<Serie[]>("catalog.json"))?.find((s) => s.id === id) ?? fetchSerie(id);
 }
 
 /** État du jour d'une extension : relevé quotidien, sinon calcul en direct. */
@@ -81,7 +83,7 @@ export async function getCardDetail(id: string): Promise<CardDetail | null> {
   const index = snapshot?.cards.findIndex((c) => c.id === id) ?? -1;
   const stored = snapshot?.cards[index];
   const serie = snapshot?.set.serie ?? { id: "", name: "" };
-  const standard = quoteFor(card, "standard", stored?.ebay);
+  const standard = quoteFor(card, "standard", stored?.ebay, stored?.fr);
   if (stored?.shared || stored?.far) standard.confidence = Math.min(standard.confidence, DOUBT_CAP);
   const series = (key: string): Point[] =>
     (history?.prices[key] ?? []).flatMap((value, i) => (value === null ? [] : [{ day: history!.days[i], value }]));
@@ -90,7 +92,7 @@ export async function getCardDetail(id: string): Promise<CardDetail | null> {
     era: eraOfSerie(serie.id),
     serie,
     standard,
-    reverse: card.variants?.reverse ? quoteFor(card, "reverse") : null,
+    reverse: card.variants?.reverse ? quoteFor(card, "reverse", undefined, stored?.fr) : null,
     observations: stored?.ebay?.graded ?? {},
     shared: !!stored?.shared,
     far: !!stored?.far,

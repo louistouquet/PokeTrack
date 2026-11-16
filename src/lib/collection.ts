@@ -3,7 +3,7 @@
 // Elle s'exporte et s'importe en JSON pour changer d'appareil ou la sauvegarder.
 
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { eraOfSerie, gradedPrice, type CompanyId } from "./pricing/graded";
+import { gradedPrice, type CompanyId } from "./pricing/graded";
 import type { Finish } from "./pricing/raw";
 import type { CardSummary, SetHistory, SetSnapshot } from "./snapshot";
 
@@ -145,12 +145,11 @@ export const useHydrated = () => useSyncExternalStore(() => () => {}, () => true
 /** Prix non gradé de la finition possédée. */
 export const rawValue = (item: Pick<Item, "finish">, card: CardSummary | undefined) => (item.finish === "reverse" ? card?.rev?.p : card?.std?.p) ?? null;
 
-/** Valeur unitaire d'un exemplaire, dans son état (gradé ou non). */
+/** Valeur unitaire d'un exemplaire, dans son état. Gradé : prix observé, ou null s'il n'y en a pas. */
 export function unitValue(item: Item, card: CardSummary | undefined): number | null {
-  const raw = rawValue(item, card);
-  if (raw === null || !item.grade) return raw;
+  if (!item.grade) return rawValue(item, card);
   const { company, grade } = item.grade;
-  return gradedPrice(raw, eraOfSerie(item.serieId), company, grade, card?.ebay?.graded[`${company}:${grade}`])?.price ?? null;
+  return gradedPrice(card?.ebay?.graded[`${company}:${grade}`]);
 }
 
 // ---------- Historique de la valeur totale ----------

@@ -2,7 +2,7 @@
 // Tout est en euros. La méthode est décrite pour les humains dans /methode.
 
 export type Finish = "standard" | "reverse";
-export type SourceId = "cardmarket" | "ebay";
+export type SourceId = "cardmarket" | "cardtrader" | "ebay";
 
 type Num = number | null | undefined;
 
@@ -16,6 +16,11 @@ export interface TcgdexPricing {
 export interface EbayObservation {
   prices: number[]; // prix demandés, en EUR
   total: number; // nombre d'annonces trouvées
+}
+/** Annonces de la carte en version FRANÇAISE (CardTrader), les moins chères d'abord. */
+export interface FrenchObservation {
+  prices: number[]; // prix demandés, en EUR, cartes en très bon état
+  total: number; // exemplaires en vente
 }
 
 export interface SourceQuote {
@@ -35,6 +40,7 @@ export interface Quote {
   volatility: number; // 0..100
   trend: number | null; // moyenne 7 j vs 30 j, en fraction (0.05 = +5 %)
   listings: number | null; // quantité en vente, toutes sources connues
+  french: number; // annonces de cartes françaises entrées dans le prix (0 = prix européen, toutes langues)
   sources: SourceQuote[];
 }
 
@@ -110,7 +116,7 @@ const ageDays = (iso: string | undefined, now: number) => (iso ? Math.max(0, (no
 
 export function computeQuote(
   pricing: TcgdexPricing | null | undefined,
-  opts: { finish?: Finish; ebay?: EbayObservation | null; now?: number } = {},
+  opts: { finish?: Finish; ebay?: EbayObservation | null; french?: FrenchObservation | null; now?: number } = {},
 ): Quote {
   const finish = opts.finish ?? "standard";
   const now = opts.now ?? Date.now();
@@ -129,9 +135,27 @@ export function computeQuote(
       updated: pricing?.cardmarket?.updated,
     });
   }
-  // Référence pour juger eBay : Cardmarket (marché européen) s'il existe.
-  const anchor = cm?.price ?? ebay?.price ?? null;
+  // Annonces françaises : médiane des cinq moins chères. C'est le prix auquel on trouve
+  // réellement la carte française aujourd'hui ; les annonces plus chères ne se vendent pas.
+  const frPrices = opts.french?.prices.filter((p) => p > 0).sort((a, b) => a - b) ?? [];
+  const fr = frPrices.length ? { price: median(frPrices.slice(0, 5)), n: frPrices.length } : null;
+
+  // Référence pour juger les annonces : Cardmarket (marché européen) s'il existe.
+  const anchor = cm?.price ?? fr?.price ?? ebay?.price ?? null;
   const agreement = (p: number) => (anchor ? Math.abs(Math.log(p / anchor)) : 0);
+  if (fr) {
+    // Une ou deux annonces ne font pas un marché : le poids monte vite avec leur nombre et
+    // dépasse Cardmarket (toutes langues) à partir de trois. Avec cinq annonces, le prix
+    // français pèse les trois quarts. Une annonce isolée et lointaine est presque ignorée.
+    const far = fr.n < 3 && agreement(fr.price) > Math.LN2;
+    raw.push({
+      source: "cardtrader",
+      price: fr.price,
+      weight: 3 * Math.min(1, fr.n / 5) ** 1.5 * (far ? 0.25 : 1),
+      low: frPrices[0],
+      listings: opts.french!.total,
+    });
+  }
   if (ebay) {
     const far = agreement(ebay.price) > Math.LN2;
     raw.push({
@@ -145,7 +169,7 @@ export function computeQuote(
 
   const wsum = raw.reduce((s, q) => s + q.weight, 0);
   if (!raw.length || wsum <= 0) {
-    return { price: null, range: null, confidence: 0, liquidity: 0, volatility: 0, trend: null, listings: null, sources: [] };
+    return { price: null, range: null, confidence: 0, liquidity: 0, volatility: 0, trend: null, listings: null, french: 0, sources: [] };
   }
   const price = raw.reduce((s, q) => s + q.price * q.weight, 0) / wsum;
   const sources = raw.map((q) => ({ ...q, price: round2(q.price), weight: round2(q.weight / wsum), low: q.low ? round2(q.low) : undefined }));
@@ -154,9 +178,11 @@ export function computeQuote(
   const cross = raw.length > 1 ? Math.max(...raw.map((q) => Math.abs(Math.log(q.price / price)))) : 0;
 
   // Confiance : nombre de sources, accord entre elles, cohérence interne, fraîcheur.
-  let confidence = cm ? 50 : 35;
+  let confidence = cm ? 50 : fr && fr.n >= 3 ? 45 : 30;
   if (cm) confidence += 20 * Math.max(0, 1 - cm.dispersion / 0.5) + (cm.fields - 1) * 3;
   if (ebay && cm) confidence += 9 * Math.max(0, 1 - agreement(ebay.price) / Math.LN2);
+  // Le prix français recoupe le prix européen : c'est le signal de confiance le plus fort.
+  if (fr && cm) confidence += 15 * Math.min(1, fr.n / 5) * Math.max(0, 1 - agreement(fr.price) / Math.LN2);
   confidence *= Math.exp(-ageDays(pricing?.cardmarket?.updated, now) / 30);
 
   // Liquidité (indice) : activité récente, stabilité des moyennes, écart au prix plancher,
@@ -182,6 +208,7 @@ export function computeQuote(
     volatility: Math.round(clamp((dispersion / 0.6) * 100)),
     trend: cm?.avg7 && cm.avg30 ? round2(cm.avg7 / cm.avg30 - 1) : null,
     listings,
+    french: fr?.n ?? 0,
     sources,
   };
 }

@@ -20,9 +20,12 @@ export function GradingAdvisor({ raw, era, observations, editable = false }: { r
   const [condition, setCondition] = useState<Condition>("nearMint");
   const [fees, setFees] = useState<Record<string, number>>({});
 
-  const verdicts = SERVICES.map((s) => gradingVerdict(raw, era, condition, { ...s, fee: fees[s.company] ?? s.fee }, observations)!).sort((a, b) => b.expectedGain - a.expectedGain);
+  const verdicts = SERVICES.flatMap((s) => gradingVerdict(raw, era, condition, { ...s, fee: fees[s.company] ?? s.fee }, observations) ?? []).sort((a, b) => b.expectedGain - a.expectedGain);
   const best = verdicts[0];
   const name = (id: string) => COMPANIES.find((c) => c.id === id)!.name;
+
+  // Sans prix gradés observés pour cette carte, on ne calcule rien : on donne les frais, qui eux sont connus.
+  if (!best) return <GradingFees />;
 
   return (
     <div className="@container">
@@ -42,7 +45,7 @@ export function GradingAdvisor({ raw, era, observations, editable = false }: { r
       <p className="mt-6 text-lg" aria-live="polite">
         {best.expectedGain > 0 ? (
           <>
-            D&apos;après le modèle, le meilleur choix est <strong>{name(best.company)}</strong>, pour un gain moyen de <strong>{money(best.expectedGain)}</strong> et{" "}
+            D&apos;après les prix observés, le meilleur choix est <strong>{name(best.company)}</strong>, pour un gain moyen de <strong>{money(best.expectedGain)}</strong> et{" "}
             {Math.round(best.winChance * 100)} % de chances de finir gagnant.
           </>
         ) : (
@@ -116,6 +119,39 @@ export function GradingAdvisor({ raw, era, observations, editable = false }: { r
         Tarifs indicatifs de novembre 2026 ({SERVICES.map((s) => `${name(s.company)} ${money(serviceCost(s))}`).join(", ")} tout compris) : vérifiez-les sur le site de chaque société. Les
         frais de revente ne sont pas comptés.
       </p>
+    </div>
+  );
+}
+
+/** Ce qu'on sait dire sans prix gradés observés : ce que coûte chaque société. */
+export function GradingFees() {
+  return (
+    <div>
+      <p className="panel max-w-[64ch] px-5 py-5 text-ink-soft">
+        <strong className="text-ink">Pas assez de ventes gradées observées pour faire ce calcul.</strong> Il compare ce que la carte vaudrait à chaque note, et nous
+        n&apos;affichons que des prix gradés constatés, jamais calculés à partir de la carte non gradée. En attendant, voici ce que coûte chaque société.
+      </p>
+      <div className="panel mt-4 overflow-x-auto">
+        <table className="w-full min-w-[24rem] text-left">
+          <thead className="text-sm text-ink-soft">
+            <tr>
+              <th className="px-4 py-2.5 font-semibold">Société</th>
+              <th className="px-4 py-2.5 text-right font-semibold">Coût par carte</th>
+              <th className="px-4 py-2.5 text-right font-semibold">Délai courant</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SERVICES.map((s) => (
+              <tr key={s.company} className="border-t border-line/60">
+                <td className="px-4 py-3 font-semibold">{COMPANIES.find((c) => c.id === s.company)!.name}</td>
+                <td className="px-4 py-3 text-right font-bold">{money(serviceCost(s))}</td>
+                <td className="px-4 py-3 text-right">{s.weeks} semaines</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-3 text-sm text-ink-soft">Tarifs indicatifs relevés en novembre 2026, envoi assuré et TVA à l&apos;import compris. Les sites officiels font foi.</p>
     </div>
   );
 }

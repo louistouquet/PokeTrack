@@ -12,8 +12,10 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
+import type { Serie } from "../src/lib/tcgdex.ts";
 import { runProblems, summarizeSet, type CardSummary, type Market, type MarketCard, type MarketHistory, type SetHistory, type SetSnapshot } from "../src/lib/snapshot.ts";
-import { fetchCard, fetchSerie, fetchSet, listSeries } from "../src/lib/tcgdex.ts";
+import { fetchCard, fetchSerie, fetchSet, fetchSetEn, listSeries, retry } from "../src/lib/tcgdex.ts";
+import { cardtraderClient, frenchAsks, matchExpansion } from "./cardtrader.ts";
 import { ebayClient } from "./ebay.ts";
 
 const { values: args } = parseArgs({ options: { out: { type: "string", default: ".data" }, sets: { type: "string" } } });
@@ -21,6 +23,8 @@ const out = args.out!;
 const only = args.sets?.split(",");
 const today = new Date().toISOString().slice(0, 10);
 const CONCURRENCY = 10;
+// TCGdex a des indisponibilités de quelques secondes (503) : le relevé attend jusqu'à 25 s par requête.
+retry.tries = 7;
 // Quota eBay gratuit : 5 000 appels par jour. On garde de la marge.
 const EBAY_BUDGET = Number(process.env.EBAY_DAILY_CALLS ?? 4000);
 
@@ -58,19 +62,37 @@ function setDay(days: string[], rows: Record<string, (number | null)[]>, values:
   }
 }
 
+/** Annonces françaises des cartes d'une extension, ou null si CardTrader ne la connaît pas. */
+async function frenchForSet(set: { id: string; abbreviation?: { official?: string }; cards: { id: string; localId: string }[] }) {
+  if (!cardtrader) return null;
+  const en = await fetchSetEn(set.id);
+  const expansion = matchExpansion({ code: set.abbreviation?.official, enName: en?.name }, cardtrader.expansions);
+  if (!expansion || !en) return null;
+  const enNames = new Map(en.cards.map((c) => [c.localId, c.name]));
+  const { asks, rejected } = frenchAsks(await cardtrader.listings(expansion.id), set.cards.map((c) => ({ ...c, enName: enNames.get(c.localId) })));
+  frStats.sets++;
+  frStats.cards += asks.size;
+  frStats.rejected += rejected;
+  return asks;
+}
+
 await mkdir(join(out, "latest"), { recursive: true });
 await mkdir(join(out, "history"), { recursive: true });
 const ebay = await ebayClient();
-console.log(`Relevé du ${today} — eBay ${ebay ? "activé" : "désactivé (pas de clés)"}`);
+const cardtrader = await cardtraderClient();
+console.log(`Relevé du ${today} — CardTrader ${cardtrader ? "activé" : "désactivé (pas de jeton)"} — eBay ${ebay ? "activé" : "désactivé (pas de clés)"}`);
+const frStats = { sets: 0, cards: 0, rejected: 0 }; // extensions reliées, cartes avec annonces françaises, annonces écartées
 
 const previous = await readJson<Market>("market.json");
 const market: Market = { updated: new Date().toISOString(), cards: 0, priced: 0, series: [], top: [], up: [], down: [] };
 const all: MarketCard[] = [];
+const catalog: Serie[] = []; // familles et extensions, publiées pour que le site ne dépende pas de TCGdex
 let failed = 0; // cartes que TCGdex n'a pas su servir, même au second essai
 
 for (const brief of await listSeries()) {
   const serie = await fetchSerie(brief.id);
   if (!serie) continue;
+  catalog.push(serie);
   const stats = { id: serie.id, name: serie.name, value: 0, priced: 0, cards: 0 };
   for (const setBrief of serie.sets) {
     if (only && !only.includes(setBrief.id)) continue;
@@ -79,7 +101,15 @@ for (const brief of await listSeries()) {
     // undefined = échec de lecture (null = la carte n'existe pas). Second essai, une à la fois.
     const full = await pool(set.cards, (c) => fetchCard(c.id).catch(() => undefined));
     for (const [i, c] of set.cards.entries()) if (full[i] === undefined) full[i] = await fetchCard(c.id).catch(() => undefined);
-    const fresh = new Map(summarizeSet(full.filter((c) => c != null)).map((c) => [c.id, c]));
+    // Annonces de cartes françaises. Une panne de CardTrader ne doit pas faire échouer le
+    // relevé : les prix du jour se calculent alors sans elles.
+    let french: Awaited<ReturnType<typeof frenchForSet>> = null;
+    try {
+      french = await frenchForSet(set);
+    } catch (err) {
+      console.error(`CardTrader indisponible pour ${set.id} : ${err}`);
+    }
+    const fresh = new Map(summarizeSet(full.filter((c) => c != null), french ?? undefined).map((c) => [c.id, c]));
     // Une carte illisible aujourd'hui garde sa fiche de la veille (sans point d'historique)
     // plutôt que de disparaître de l'extension.
     const before = new Map((await readJson<SetSnapshot>(`latest/${setBrief.id}.json`))?.cards.map((c) => [c.id, c]));
@@ -159,11 +189,13 @@ if (!only) {
   market.up = await pick([...liquid].sort((a, b) => b.std!.t! - a.std!.t!), 24);
   market.down = await pick([...liquid].sort((a, b) => a.std!.t! - b.std!.t!), 24);
   await writeJson("market.json", market);
+  await writeJson("catalog.json", catalog);
 
   const mh = (await readJson<MarketHistory>("market-history.json")) ?? { days: [], total: [], series: {} };
   const rows: Record<string, (number | null)[]> = { ...mh.series, total: mh.total };
   setDay(mh.days, rows, { ...Object.fromEntries(market.series.map((s) => [s.id, s.value])), total: market.series.reduce((s, x) => s + x.value, 0) });
   const { total, ...series } = rows;
   await writeJson("market-history.json", { days: mh.days, total, series });
+  if (cardtrader) console.log(`CardTrader : ${frStats.sets} extensions reliées, ${frStats.cards} cartes avec annonces françaises, ${frStats.rejected} annonces écartées (nom différent).`);
   console.log(`${market.cards} cartes, ${market.priced} avec un prix, ${failed} illisibles, ${market.top.filter((c) => c.image).length}/${market.top.length} illustrations vérifiées en tête de classement.`);
 }

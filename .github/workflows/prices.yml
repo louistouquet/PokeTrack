@@ -51,6 +51,8 @@ jobs:
       - name: Relever les prix
         run: node scripts/ingest.ts --out .data
         env:
+          # Facultatif : sans ce secret, le relevé se fait sans les annonces de cartes françaises.
+          CARDTRADER_TOKEN: ${{ secrets.CARDTRADER_TOKEN }}
           # Facultatif : sans ces secrets, le relevé se fait sans eBay.
           EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}

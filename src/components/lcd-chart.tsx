@@ -84,7 +84,7 @@ export function LcdChart({ points, label }: { points: Point[]; label: string }) 
             <g key={t}>
               <line x1={PAD.left} x2={width - PAD.right} y1={y(t)} y2={y(t)} stroke="var(--lcd-mid)" strokeWidth="1" />
               <text x={PAD.left - 8} y={y(t) + 4} textAnchor="end" fontSize="12" fill="var(--lcd-dim)">
-                {hi >= 100 ? money(Math.round(t)).replace(",00", "") : money(t)}
+                {hi >= 100 && ts[1] - ts[0] >= 1 ? money(Math.round(t)).replace(",00", "") : money(t)}
               </text>
             </g>
           ))}

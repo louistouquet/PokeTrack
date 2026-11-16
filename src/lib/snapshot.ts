@@ -1,6 +1,6 @@
 // Format des fichiers produits chaque jour par scripts/ingest.ts et lus par le site.
 
-import { computeQuote, type EbayObservation, type Finish, type Quote } from "./pricing/raw.ts";
+import { computeQuote, type EbayObservation, type Finish, type FrenchObservation, type Quote } from "./pricing/raw.ts";
 import type { GradedObservations } from "./pricing/graded.ts";
 import type { Card, SerieBrief, SetBrief } from "./tcgdex.ts";
 
@@ -10,6 +10,17 @@ export interface Mini {
   c: number; // confiance 0..100
   l: number; // liquidité 0..100
   t: number | null; // tendance 7 j vs 30 j
+  f?: number; // annonces de cartes françaises entrées dans le prix (absent = prix européen, toutes langues)
+}
+/** Annonces d'une finition : exemplaires en vente et prix les moins chers, en EUR. */
+export interface Asks {
+  n: number;
+  p: number[];
+}
+/** Annonces de la carte en version française (CardTrader), par finition. */
+export interface FrenchAsks {
+  std?: Asks;
+  rev?: Asks;
 }
 export interface EbayData {
   n: number; // annonces non gradées trouvées
@@ -25,6 +36,7 @@ export interface CardSummary {
   std?: Mini;
   rev?: Mini;
   ebay?: EbayData;
+  fr?: FrenchAsks;
   /** La source attribue le même produit à plusieurs cartes de l'extension : prix douteux. */
   shared?: true;
   /** Prix européen sans commune mesure avec le prix américain : prix douteux. */
@@ -59,26 +71,33 @@ export interface MarketHistory {
 }
 
 const mini = (q: Quote): Mini | undefined =>
-  q.price === null ? undefined : { p: q.price, c: q.confidence, l: q.liquidity, t: q.trend };
+  q.price === null ? undefined : { p: q.price, c: q.confidence, l: q.liquidity, t: q.trend, ...(q.french ? { f: q.french } : {}) };
+
+const frenchObservation = (a: Asks | undefined): FrenchObservation | null => (a ? { prices: a.p, total: a.n } : null);
 
 export const ebayObservation = (e: EbayData | undefined): EbayObservation | null =>
   e ? { prices: e.raw, total: e.n } : null;
 
-export function quoteFor(card: Card, finish: Finish, ebay?: EbayData): Quote {
+export function quoteFor(card: Card, finish: Finish, ebay?: EbayData, fr?: FrenchAsks): Quote {
   // Les annonces eBay relevées concernent la version standard de la carte.
-  return computeQuote(card.pricing, { finish, ebay: finish === "standard" ? ebayObservation(ebay) : null });
+  return computeQuote(card.pricing, {
+    finish,
+    ebay: finish === "standard" ? ebayObservation(ebay) : null,
+    french: frenchObservation(finish === "standard" ? fr?.std : fr?.rev),
+  });
 }
 
-export function summarize(card: Card, ebay?: EbayData): CardSummary {
+export function summarize(card: Card, ebay?: EbayData, fr?: FrenchAsks): CardSummary {
   return {
     id: card.id,
     localId: card.localId,
     name: card.name,
     image: card.image,
     rarity: card.rarity,
-    std: mini(quoteFor(card, "standard", ebay)),
-    rev: card.variants?.reverse ? mini(quoteFor(card, "reverse")) : undefined,
+    std: mini(quoteFor(card, "standard", ebay, fr)),
+    rev: card.variants?.reverse ? mini(quoteFor(card, "reverse", undefined, fr)) : undefined,
     ebay,
+    fr,
   };
 }
 
@@ -116,12 +135,12 @@ export function runProblems(prev: { cards: number; priced: number } | null, run:
  * leur prix est le même pour toutes : on le garde mais sa confiance est plafonnée.
  * Même traitement quand le prix est sans commune mesure avec le marché américain.
  */
-export function summarizeSet(cards: Card[]): CardSummary[] {
+export function summarizeSet(cards: Card[], french?: Map<string, FrenchAsks>): CardSummary[] {
   const seen = new Map<unknown, number>();
   const product = (c: Card) => c.pricing?.cardmarket?.idProduct;
   for (const c of cards) if (product(c)) seen.set(product(c), (seen.get(product(c)) ?? 0) + 1);
   return cards.map((card) => {
-    const summary = summarize(card);
+    const summary = summarize(card, undefined, french?.get(card.id));
     if ((seen.get(product(card)) ?? 0) > 1) summary.shared = true;
     if (summary.std && usGap(card, summary.std.p)) summary.far = true;
     if (summary.shared || summary.far) for (const m of [summary.std, summary.rev]) if (m) m.c = Math.min(m.c, DOUBT_CAP);

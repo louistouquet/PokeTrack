@@ -25,7 +25,7 @@ export function classifyListing(title: string): string | null {
   const company = COMPANY_ALIASES.find(([re]) => re.test(title))?.[1];
   if (!company) return /\b(grad[ée]e?|graded|slab)\b/i.test(title) ? null : "raw";
   const grade = title.match(/\b(10|9[.,]5|9|8[.,]5|8|7)\b(?!\s*\/)/)?.[1].replace(",", ".");
-  const known = COMPANIES.find((c) => c.id === company)!.grades.some((g) => g.grade === grade);
+  const known = COMPANIES.find((c) => c.id === company)!.grades.includes(grade ?? "");
   return known ? `${company}:${grade}` : null;
 }
 

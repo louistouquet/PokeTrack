@@ -562,8 +562,14 @@ select.field,
     background: var(--ink);
     color: #fff;
   }
+  /* Note sans prix observé : visible, mais on ne peut pas la choisir. */
+  .grade-cell:disabled {
+    opacity: 0.45;
+    cursor: default;
+    transform: none;
+  }
   @media (hover: hover) and (pointer: fine) {
-    .grade-cell:not([aria-pressed="true"]):hover {
+    .grade-cell:not([aria-pressed="true"]):not(:disabled):hover {
       background: var(--shell-lo);
     }
   }
