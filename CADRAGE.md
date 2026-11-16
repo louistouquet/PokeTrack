@@ -328,6 +328,7 @@ Regroupées. La recommandation de l'assistant est donnée pour chacune.
 11. Quel deuxième jeu, et jouez-vous ou collectionnez-vous vous-même l'un d'eux ? *Recommandation : Magic, sous réserve de l'étude des sources.*
 12. Un monde visuel par jeu, borné comme en section 7 : d'accord ?
 13. Le projet reste-t-il centré sur la France et le français, ou vise-t-il l'Europe dès le renommage ?
+14. Illustrations : 1 402 cartes françaises sans image ont une image de la version anglaise. L'affiche-t-on avec la mention « illustration de la version anglaise », ou préférez-vous une case vide tant que l'image française manque ? *Recommandation : l'afficher, avec la mention.*
 
 ## Sources
 

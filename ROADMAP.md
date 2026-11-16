@@ -47,7 +47,9 @@ Il n'existe aucun contrôle qui compare nos prix à une référence extérieure.
 
 - 2 941 cartes sur 20 226 n'ont pas d'illustration côté TCGdex. Les plus touchées : Diamant & Perle (754), Soleil et Lune (692), Kits du dresseur (464), Épée et Bouclier (354), McDonald's (235), Méga-Évolution (154), L'appel des Légendes (106).
 - En plus, certaines illustrations annoncées n'existent pas (7 des 60 cartes les plus chères). Le nombre total n'est pas connu : seules ces 60 cartes sont vérifiées.
-- Pistes : contribuer les images manquantes à TCGdex, ou une source de repli (attention aux droits et à la langue de la carte).
+- Mesuré le 16 novembre sur les 2 941 cartes sans illustration française : 1 402 ont une illustration de la version anglaise chez TCGdex (toutes vérifiées, le fichier existe) ; 1 539 n'en ont dans aucune des deux langues.
+- Illustrations annoncées mais absentes : 1 sur un échantillon de 1 441 (sm5-147). Extrapolé au catalogue, de l'ordre d'une quinzaine de cartes : c'est une estimation.
+- Pistes : afficher l'illustration anglaise avec une mention explicite (décision du fondateur, `CADRAGE.md`), contribuer les images manquantes à TCGdex, ou une source de repli (attention aux droits et à la langue de la carte).
 
 ### Relevé quotidien
 

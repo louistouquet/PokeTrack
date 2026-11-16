@@ -1,6 +1,6 @@
 # Travailler sur ce dépôt
 
-Lire d'abord `ROADMAP.md` (état, défauts connus, direction), puis `PRODUCT.md` et `DESIGN.md`.
+Lire d'abord `ROADMAP.md` (état, défauts connus, direction), puis `PRODUCT.md` et `DESIGN.md`. `CADRAGE.md` est la proposition de cadrage du projet : tant que le fondateur ne l'a pas validée, ne rien construire de l'architecture d'agents qu'elle décrit.
 
 ## Commandes
 
@@ -22,6 +22,17 @@ Lire d'abord `ROADMAP.md` (état, défauts connus, direction), puis `PRODUCT.md`
 - La police d'affichage doit avoir des chiffres sans ambiguïté (Pixelify Sans a été écartée : son 5 se lit S).
 - Les fichiers importés par `scripts/` s'exécutent tels quels dans Node : imports relatifs avec extension `.ts`, pas d'alias `@/`, syntaxe TypeScript effaçable uniquement.
 - GitHub Actions peut sauter un déclenchement planifié. Vérifier la branche `data` plutôt que supposer.
+- TCGdex renvoie des erreurs passagères sous charge : un relevé complet peut perdre des dizaines de cartes si l'on ne réessaie pas. `scripts/ingest.ts` réessaie et refuse de publier un relevé anormal ; garder ce comportement.
+- Le prix américain (TCGplayer) ne doit jamais entrer dans un prix affiché. Il ne sert que d'alarme (`usGap` dans `src/lib/snapshot.ts`).
+- eBay : ne pas activer `scripts/ebay.ts` sans décision du fondateur, la licence de l'API l'interdit en l'état (voir `ROADMAP.md`).
+- Avant de comparer des chiffres à la production, relancer `git fetch origin main data` : la copie locale date du démarrage de la session.
+
+## Outils qui marchent depuis une session cloud
+
+- Marques : TMview ne répond qu'à un vrai navigateur (Playwright), pas à `curl`.
+- Domaines : `https://rdap.org/domain/<nom>` (404 = pas d'enregistrement) recoupé par une requête DNS. Cela ne dit ni le prix ni si le domaine est « premium ».
+- Comptes GitHub d'autrui : `curl` est refusé par le proxy, passer par l'outil de lecture de pages web.
+- Vercel : le connecteur est sur le bon compte mais doit être autorisé pour l'espace « clip-studio » (lien à usage unique, valable 10 minutes, à demander à l'assistant).
 
 ## Façon de faire
 
