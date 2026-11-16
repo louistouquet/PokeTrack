@@ -208,3 +208,111 @@ Identifiants des cartes d'essai utilisés : Dracaufeu `base1-4` (Cardmarket `idP
 
 Déjà étudié (`ROADMAP.md`, `CADRAGE.md`). API Browse avec clés de développeur ; la licence interdit de modéliser des prix sans accord écrit ; décision du fondateur : n'afficher que les annonces en cours avec un lien. Les ventes terminées passent par l'API « Marketplace Insights », à accès restreint (non revérifié dans cette mission). Verdict inchangé : **C** pour un prix, usage d'affichage d'annonces permis. Pas d'essai.
 
+### 14. pokemon-tcg-data (GitHub)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://github.com/PokemonTCG/pokemon-tcg-data` (lu via `raw.githubusercontent.com`). Jeu de données JSON. |
+| Langue de la carte distinguée ? | Non : dossier `cards/en/` seulement. |
+| Non gradé, gradé | Aucun prix : `cards/en/base1.json`, carte `base1-4` : `"tcgplayer": null, "cardmarket": null`. |
+| Nature du prix | Sans objet. |
+| Profondeur | Catalogue anglais. |
+| Historique | Sans objet. |
+| Accès | Fichiers publics. |
+| Conditions | README : « This project is being deprecated » ; « The Pokémon TCG API is scheduled to be taken offline on March 1, 2027. » ; « Existing data in this repository will remain available for historical and compatibility purposes. » **Aucun fichier de licence** à la racine (`LICENSE` et `LICENSE.md` : 404) : réutilisation non accordée explicitement. |
+| Contact | Renvoi vers Scrydex. |
+| Verdict | **D** pour les prix (il n'y en a pas). Catalogue anglais sans licence : à ne pas reprendre ; TCGdex fait mieux. |
+| Essai | Sans objet. |
+
+### 15. TCGdex `cards-database` (catalogue multilingue pour l'appariement)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://github.com/tcgdex/cards-database`. Jeu de données TypeScript, base de l'API TCGdex déjà branchée. |
+| Langue de la carte distinguée ? | Oui : noms et textes par langue (`en, fr, es, it, pt, de` pour `swsh7-215` : `fr: "Noctali VMAX"`). README : « A Multilanguage Pokémon TCG Database ». |
+| Non gradé, gradé | Pas de prix dans le dépôt ; l'API ajoute les prix relayés. |
+| Nature du prix | Sans objet. |
+| Profondeur | Catalogue français complet (c'est notre source). |
+| Historique | Sans objet. |
+| Accès | Fichiers publics ; API `api.tcgdex.net`. |
+| Conditions | README : « The Database is licensed under the MIT License » ; `LICENSE` : « MIT License / Copyright (c) 2021 TCGdex ». |
+| Contact | Dépôt GitHub. |
+| Verdict | **A** (déjà branché). Intérêt nouveau pour l'appariement : `variants_detailed[].thirdParty` donne par variante les identifiants Cardmarket et TCGplayer (`swsh7-215` : `{"cardmarket":574273,"tcgplayer":246723}`), et le prix TCGplayer y porte `productId` 246723, le même que dans TCGCSV. C'est la table de correspondance la plus complète trouvée ; aucun numéro PSA (« spec ») n'y figure. |
+| Essai | Fait sur `swsh7-215` (voir ci-dessus), 16 novembre 2026. |
+
+### 16. « TCG Price History » sur Hugging Face (`TCGapi/tcg-price-history`)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://huggingface.co/datasets/TCGapi/tcg-price-history`. Jeu de données publié par un vendeur d'API. |
+| Langue de la carte distinguée ? | Métadonnées : `"language":["en"]`. |
+| Non gradé, gradé | Annoncé : TCGplayer, eBay et PSA 10. |
+| Nature du prix | `nm_tcgplayer_market`, `nm_ebay_30d_avg`, `psa_10_ebay_30d` (USD). |
+| Profondeur | **Mesuré : 5 lignes.** Le dépôt ne contient que `README.md` et `data/sample.json` ; la première ligne a pour identifiant `"example-charizard-base"`. Les « 100K<n<1M » annoncés ne sont pas dans les fichiers. C'est une vitrine pour l'API payante. |
+| Historique | Une date (`2026-04-01`) dans l'échantillon. Dernière modification du dépôt : 10 avril 2026. |
+| Accès | Fichier public. |
+| Conditions | Métadonnées : `"license":"mit"`. |
+| Contact | Page du jeu de données. |
+| Verdict | **D** : pas de données réelles, pas de français. |
+| Essai | Sans objet (5 lignes d'exemple). |
+
+Autres jeux Hugging Face trouvés par l'API de recherche (`/api/datasets?search=pokemon`) : `tooni/pokemoncards` (MIT, modifié le 20 octobre 2024), `TheFusion21/PokemonCards` (CC BY-NC 4.0, 21 novembre 2022), `WyldKnyght/pokemon_tcg_data_cards` et `…_sets` (copie de pokemon-tcg-data, d'après le nom). Ce sont des catalogues et images anglais, sans prix d'après leur nom ; contenu non ouvert, non vérifié.
+
+### 17. Jeux de données Kaggle
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `kaggle.com/datasets/…`. Jeux déposés par des particuliers. |
+| Langue de la carte distinguée ? | Non vérifié. Selon l'extrait du moteur de recherche, `kanchana1990/e-commerce-pokmon-card-pricing-data` (542 lignes de ventes, prix convertis en USD) aurait une colonne de langue et de gradation. |
+| Non gradé, gradé | Idem, non vérifié. |
+| Nature du prix | D'après les titres et extraits : PriceCharting (`davidkim2003/pokemon-pricecharting-historic-data`, « historic data up to 10-2024 », annoncé MIT ; `zeynepcahan/pokemon-pricecharting`, mensuel 2021-2025), TCGplayer (`jasonlzp/…-chilling-reign-booster-box-sales-data`), une boutique britannique (`jacklacey/pokemon-trading-cards`, chaoscards.co.uk). |
+| Profondeur | Non vérifié. |
+| Historique | Voir ci-dessus, non vérifié. |
+| Accès | Téléchargement avec compte Kaggle. Les pages ne se lisent pas sans JavaScript (l'outil de lecture ne reçoit que le titre) et l'API publique `kaggle.com/api/v1/datasets/list` répond 404 sans authentification. Non insisté. |
+| Conditions | La licence affichée par le déposant (MIT pour l'un d'eux) ne vaut que pour son travail : des prix copiés de PriceCharting restent soumis à PriceCharting, dont la licence est « for internal use only ». |
+| Contact | Déposants, via Kaggle. |
+| Verdict | **D** : origine des données non licenciée (copies de PriceCharting ou de TCGplayer), anglais, figés. |
+| Essai | Impossible sans compte. |
+
+### 18. CardNexus (API de prix)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | Documentation `https://docs.cardnexus.com/pricing/`. Place de marché de cartes avec API ; pays non vérifié (`cardnexus.com` répond 403 à l'outil de lecture). |
+| Langue de la carte distinguée ? | Pour les annonces de sa propre place de marché : « broken down per condition and per language » (https://docs.cardnexus.com/pricing/). Pour les valeurs Cardmarket et TCGplayer relayées : non précisé. |
+| Non gradé, gradé | Gradé non mentionné. |
+| Nature du prix | « daily market values from Cardmarket (EUR) and TCGplayer (USD) » ; annonces CardNexus en cours. |
+| Profondeur | Non vérifié. |
+| Historique | « History starts on 6 November 2024. » (https://docs.cardnexus.com/pricing/history) |
+| Accès | Clé d'API ; les blocs de prix et l'historique « each need a data permission that CardNexus grants to an account or an application ». Tarif non publié. |
+| Conditions | Conditions non lues ; `robots.txt` de `cardnexus.com` et `docs.cardnexus.com` : non lisibles (rien de pertinent renvoyé). |
+| Contact | Non relevé. |
+| Verdict | **C** : permission accordée au cas par cas. Seul point intéressant : un historique quotidien des valeurs Cardmarket depuis novembre 2024, mais toutes langues (comme la source), donc rien de plus que ce que nous pouvons archiver nous-mêmes. Ses annonces par langue relèvent de la famille des places de marché. |
+| Essai | Non fait. |
+
+### 19. Projets libres voisins et leurs sources
+
+| Projet | Ce qu'il fait | Source de prix | Licence |
+| --- | --- | --- | --- |
+| GoupixDex (`github.com/leoglme/goupixdex`) | Outil français de revente : scan, prix, publication sur Vinted, eBay France, Leboncoin. README : « Price it from the Cardmarket price guide (TCGPlayer and eBay as extra references) » ; « eBay market — price research on active listings and recently completed sales on eBay France ». | Fichier de prix Cardmarket (toutes langues), eBay France via OAuth du vendeur. | Pas de `LICENSE` trouvé à la racine (404). |
+| CMScrape (`github.com/DrankRock/CMScrape`) | « Collectibles price tracker from Cardmarket links. » Archivé ; renvoie vers « AutoScrape » et son « cardmarket_parser ». | Lecture de pages Cardmarket. | Non relevé. À ne pas imiter : Cardmarket interdit la collecte sans accord. |
+| Gather (`github.com/hjacque/gather`) | Selon l'extrait de recherche : prix Cardmarket, prix eBay vendus, population PSA. | Non vérifié (README introuvable sur `main` et `master`). | Non vérifié. |
+
+Constat : aucun projet libre trouvé ne publie un prix propre aux cartes françaises ; tous reprennent le fichier Cardmarket toutes langues, comme nous.
+
+### 20. GemRate API (population des cartes gradées)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://docs.gemrate.com`. API de données gradées. |
+| Langue de la carte distinguée ? | Non vérifié. |
+| Non gradé, gradé | Gradé, plusieurs sociétés ; **population seulement, aucun prix** (index `https://docs.gemrate.com/llms.txt` : « certs, population, history, and catalogs »). |
+| Nature du prix | Sans objet. |
+| Profondeur | Non vérifié. |
+| Historique | Population quotidienne « begins on Jan 1, 2022 », mais « Historical data access not included in basic plans ». |
+| Accès | Clé d'API ; tarif non publié. |
+| Conditions | Non lues. `https://www.gemrate.com/robots.txt` renvoie une page de vérification Cloudflare. |
+| Contact | « Contact GemRate » (sans adresse relevée). |
+| Verdict | **D** pour le prix. Pourrait servir un jour à l'appariement des numéros de certificats entre sociétés ; non prioritaire. |
+| Essai | Sans objet. |
+
