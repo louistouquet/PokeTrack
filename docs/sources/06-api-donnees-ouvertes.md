@@ -28,3 +28,183 @@ Identifiants des cartes d'essai utilisés : Dracaufeu `base1-4` (Cardmarket `idP
 
 **Ce que TCGdex relaie déjà.** Comparaison faite sur Dracaufeu : `https://api.tcgdex.net/v2/fr/cards/base1-4` renvoie dans `pricing.cardmarket` exactement les mêmes quatorze champs et les mêmes valeurs (`avg 453.87 … avg30-holo 202.71`, `updated 2026-11-16T22:16:19Z`). Les fichiers de Cardmarket n'apportent donc **aucun champ** que TCGdex ne relaie pas. Leur seul intérêt propre : ne pas dépendre de TCGdex (instable par moments) et récupérer en une requête tout le jeu, y compris les produits que TCGdex n'apparie pas.
 
+### 2. Pokémon TCG API (pokemontcg.io)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://api.pokemontcg.io/v2/cards/{id}` ; docs `https://docs.pokemontcg.io/`. États-Unis (équipe devenue Scrydex). API JSON. |
+| Langue de la carte distinguée ? | **Non.** Catalogue anglais uniquement (noms anglais : « Charizard », « Umbreon VMAX »). Aucun champ de langue. |
+| Non gradé, gradé | Non gradé seulement. |
+| Nature du prix | Relais de TCGplayer (`low, mid, high, market, directLow` par finition) et de Cardmarket (`averageSellPrice, lowPrice, trendPrice, germanProLow, suggestedPrice, reverseHoloSell, reverseHoloLow, reverseHoloTrend, lowPriceExPlus, avg1, avg7, avg30, reverseHoloAvg1/7/30`). `lowPriceExPlus` (prix demandé le plus bas en état Excellent ou mieux) est le seul champ Cardmarket absent des fichiers publics et de TCGdex. |
+| Profondeur | Toutes les cartes anglaises ; aucune carte française en tant que telle. |
+| Historique | Aucun (instantané). |
+| Accès | API ouverte, sans clé : « If you aren't using an API key, you are rate limited to 1000 requests a day, and a maxium of 30 per minute » (https://docs.pokemontcg.io/getting-started/rate-limits). |
+| Conditions | Docs : « The Pokémon TCG API is deprecated. » / « New account registrations are no longer available. » / « Existing API keys will continue to function through March 1, 2027. » (https://docs.pokemontcg.io/). Conditions (https://dev.pokemontcg.io/terms) : « You may not place undue burden on the Pokémon TCG API through the use of automated means » ; « Price data is for informational purposes only. » Rien sur la réutilisation ou la redistribution. `robots.txt` (pokemontcg.io et api.pokemontcg.io) : uniquement le préambule Cloudflare sur les « content signals », aucune ligne `Disallow` ni `Content-Signal`. |
+| Contact | Non trouvé sur les pages lues (renvoi vers Scrydex). |
+| Verdict | **D** pour notre usage : pas de français, API déclarée obsolète, et surtout **données Cardmarket figées** (voir essai). Utile seulement comme table de correspondance anglaise (identifiants `base1-4`, `sv3pt5-205`, `swsh7-215`, liens TCGplayer et Cardmarket). |
+| Essai | Lu le 16 novembre 2026 à 22 h 54 UTC, sans clé. `base1-4` : TCGplayer `updatedAt 2026/10/15`, holofoil `low 499.99, mid 587.98, high 3499.1, market 954.65` (USD) ; Cardmarket `updatedAt 2026/07/01`, `averageSellPrice 1531.0, lowPrice 799.0, trendPrice 4184.6, lowPriceExPlus 1750.0, avg1 14950.0, avg7 3939.88, avg30 2427.79`. `sv3pt5-205` : TCGplayer 2026/10/15 `low 18.53, mid 28.16, market 25.04` ; Cardmarket **`updatedAt 2025/11/18`**, `averageSellPrice 16.82, lowPrice 8.95, trendPrice 16.63, avg30 16.88`. `swsh7-215` : TCGplayer 2026/10/15 `low 1699.99, market 2264.7` ; Cardmarket **2025/11/18**, `averageSellPrice 1609.94, trendPrice 1579.48, avg30 1538.35`. Constat : les prix Cardmarket de cette API ont un an de retard pour deux cartes sur trois, et pour Dracaufeu ils ne correspondent pas au produit 273699 de Cardmarket (453,87 € de moyenne ce jour) : l'API pointe probablement vers un autre produit (édition 1 ?), non vérifié. |
+
+### 3. Scrydex (successeur de pokemontcg.io)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://scrydex.com`, docs `https://scrydex.com/docs`. États-Unis. API commerciale. |
+| Langue de la carte distinguée ? | Partiellement : anglais et japonais (la page d'accueil liste « Latest Japanese Expansions » et propose la recherche `language:japanese`). Français : **aucune mention trouvée**. |
+| Non gradé, gradé | Les deux. Page d'accueil : « Track real-time market values, price history, and trends across raw and graded cards (PSA, BGS, CGC, TAG, ACE & more) ». |
+| Nature du prix | Non précisé dans les pages lues (« market » en dollars, par état NM/LP/MP/HP/DM). Marché américain. |
+| Profondeur | Non vérifié. |
+| Historique | Oui, point d'accès « price history » (3 crédits par requête selon la page des tarifs) ; profondeur non indiquée. |
+| Accès | API avec clé payante. |
+| Conditions | Tarifs (https://scrydex.com/pricing) : Starter 29 $/mois (5 000 crédits), Growth 99 $/mois, Professional 399 $/mois, Enterprise sur devis ; aucune offre gratuite affichée. Conditions (https://scrydex.com/terms) : interdit de « Resell, sublicense, redistribute, mirror, or commercially exploit the Services without prior written authorization » et de « Use the Services primarily as a substitute backend, proxy, or wholesale data source for a competing commercial product ». `robots.txt` : `User-agent: *` / `Allow: /`. |
+| Contact | « Contact Us » sur la page des tarifs (formulaire), non ouvert. |
+| Verdict | **D** : payant, pas de français. |
+| Essai | Non fait (payant). |
+
+### 4. PokemonPriceTracker API
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://www.pokemonpricetracker.com/api`, États-Unis. API commerciale avec offre gratuite. |
+| Langue de la carte distinguée ? | Anglais et japonais seulement : la page de l'API annonce « English & Japanese ». Français : aucune mention. |
+| Non gradé, gradé | Les deux. Gradé PSA, CGC, BGS ; la FAQ indique que les ventes PSA 8, 9 et 10 viennent des « eBay completed listings ». |
+| Nature du prix | Relais TCGplayer (prix de marché), ventes eBay terminées pour le gradé ; Cardmarket en euros « en bêta », réservé aux formules payantes. |
+| Profondeur | Non vérifié pour le français (aucune carte française). |
+| Historique | Gratuit : 3 jours ; formule à 9,99 $/mois : 6 mois ; Business 99 $/mois : « 12+ months ». |
+| Accès | API avec clé (compte gratuit : 100 crédits par jour). Non créé. |
+| Conditions | https://www.pokemonpricetracker.com/terms : usage gratuit limité aux fins « personal and non-commercial purposes » ; « Displaying card prices, trends, or market data within a commercial product or service » est un usage commercial qui « requires an active Business or Enterprise subscription » ; « No plan permits resale, sublicensing, syndication or redistribution of PokePriceTracker Data » ; « Scraping, data mining, or otherwise collecting data from the Service without our prior written consent » est interdit. `robots.txt` : `User-Agent: *` / `Allow: /` / `Disallow: /api/`. |
+| Contact | Non relevé. |
+| Verdict | **D** : pas de français ; l'affichage public des prix (même gratuit) frôle la redistribution interdite, la formule qui l'autorise coûte 99 $/mois. |
+| Essai | Non fait (clé obligatoire). |
+
+### 5. PokeTrace
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://poketrace.com`, API `https://api.poketrace.com/v2`. Pays non relevé. API commerciale avec offre gratuite. |
+| Langue de la carte distinguée ? | Anglais, japonais, chinois simplifié et quelques extensions indonésiennes/thaïes d'après le plan du site (`/sitemap/sets` : `30th-celebration-jp`, `…-simplified-chinese`, `30th-celebration-idth`). **Aucune extension française** dans ce plan (recherche `fr`, `french` : rien). |
+| Non gradé, gradé | Les deux. Page des tarifs : 15 sociétés, dont PSA, BGS, CGC, SGC, ACE et TAG, notes 1 à 10 ; gradé à partir de la formule Pro. |
+| Nature du prix | « US (eBay, TCGPlayer) » pour toutes les formules, « EU (Cardmarket) » à partir de Pro. |
+| Profondeur | Annonce « 60,000+ cards across 700+ sets ». Français : zéro (mesuré sur le plan des extensions). |
+| Historique | Gratuit : 7 jours ; formules supérieures : jusqu'à « all-time price history ». |
+| Accès | API avec clé (gratuit : 100 requêtes par jour, une requête toutes les deux secondes, non gradé, marché américain). |
+| Conditions | https://poketrace.com/pricing : Pro 19,99 $/mois, Growth 49,99 $, Scale 98 $, Business 399,99 $. https://poketrace.com/terms : « Paid plans (currently Pro, Growth, Scale and Business) permit commercial use only of PokeTrace's analytical pricing data » ; « You may display these statistics to free or paying users of your websites and applications » ; « This permission does not include reselling or sublicensing datasets, distributing bulk datasets ». `robots.txt` : `User-agent: *` / `Allow: /` / `Content-Signal: ai-train=no, search=yes, ai-input=yes`. |
+| Contact | Non relevé. |
+| Verdict | **D** : pas de français ; le gradé et l'Europe sont payants. |
+| Essai | Non fait (clé obligatoire). |
+
+### 6. JustTCG
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://justtcg.com`, États-Unis. API commerciale avec offre gratuite. |
+| Langue de la carte distinguée ? | Non documenté. La page des régions (https://justtcg.com/docs/api/cards-v2/regions) dit : « Right now `NA` is the only region with data » ; EU, UK et JP « switch on later as their data matures ». |
+| Non gradé, gradé | Les deux. Gradé : « One of PSA, BGS, CGC, BCCG, BVG, or SGC » (https://justtcg.com/docs/api/cards-v2/graded). |
+| Nature du prix | Gradé : ventes réalisées du boîtier exact (prix nul tant qu'aucune vente, expiré 90 jours après la dernière). Non gradé : « JustTCG prices come from our own market data » (https://justtcg.com/docs/attributions), source précise non dite. Marché nord-américain. |
+| Profondeur | Non vérifié ; aucune donnée européenne aujourd'hui. |
+| Historique | « historical trends » annoncés ; profondeur non indiquée. |
+| Accès | API avec clé. Gratuit : 1 000 requêtes par mois, 100 par jour, 10 par minute. Payant : 19 $, 49 $, 149 $ par mois. |
+| Conditions | https://justtcg.com/terms, section 6 : « the free tier is intended solely for personal, non-commercial use » ; section 7.2 : les données « may not be exported, published, sold, or otherwise made available to third parties as a dataset » ; l'affichage aux utilisateurs finaux (section 7.1) est réservé aux formules payantes. `robots.txt` : `User-Agent: *` / `Allow: /` / `Disallow: /api/`. |
+| Contact | Lien « Contact us » en pied de page, non ouvert. |
+| Verdict | **D** : pas de français, pas d'Europe, affichage public réservé aux formules payantes. |
+| Essai | Non fait (clé obligatoire). |
+
+### 7. TCG API (tcgapi.dev)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://tcgapi.dev`. Pays non relevé. API commerciale avec offre gratuite. |
+| Langue de la carte distinguée ? | Non documenté sur la page des tarifs. Les points d'accès (`/v1/bulk/resolve/tcgplayer`) indiquent un catalogue TCGplayer, donc anglais et japonais. |
+| Non gradé, gradé | Gradé à partir de Pro : « eBay sold prices, raw and graded (PSA/BGS/CGC) ». |
+| Nature du prix | Prix de marché (source non nommée, probablement TCGplayer) ; ventes eBay réalisées en formule Pro. |
+| Profondeur | Non vérifié. |
+| Historique | « Full price history (from March 2025) » en Pro ; 7 jours en gratuit. |
+| Accès | API avec clé. Gratuit : 100 requêtes par jour, usage non commercial. Hobby 9,99 $, Starter 19,99 $, Pro 49,99 $ (licence commerciale), Business 99,99 $ par mois (https://tcgapi.dev/pricing). |
+| Conditions | Conditions générales non lues (au-delà de la mention « non-commercial » de la page des tarifs). `robots.txt` : `User-agent: *` / `Allow: /` / `Disallow: /login …/dashboard` / `Content-Signal: ai-train=no, search=yes, ai-input=yes`. |
+| Contact | Non relevé. |
+| Verdict | **D** : pas de français, Europe absente, gradé payant. |
+| Essai | Non fait (clé obligatoire). |
+
+### 8. TCGAPIs (tcgapis.com)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://tcgapis.com`, facturé en livres sterling (Royaume-Uni probable, non vérifié). API commerciale. |
+| Langue de la carte distinguée ? | Oui dans les données : la page d'accueil décrit des enregistrements par « condition × printing × language » (formule Unlimited). |
+| Non gradé, gradé | Non gradé. La page d'accueil dit : « Graded-slab prices are not included. » Les recherches PSA et ACE renvoient des certificats, pas des prix. |
+| Nature du prix | TCGplayer (USD), « price guides » Cardmarket (EUR), annonces CardTrader ; « We do not convert between currencies. » |
+| Profondeur | Non vérifié. |
+| Historique | Prix de marché TCGplayer quotidiens depuis février 2024 ; ventes réalisées par tranches de 3 jours. |
+| Accès | Gratuit : « 100 evaluation credits » au total ; Hobby 99 £/mois, Business 199 £/mois (Cardmarket et CardTrader), Unlimited 499 £/mois (annonces et prix par langue). |
+| Conditions | Conditions (`/terms`) non lues. `robots.txt` : `User-Agent: *` / `Allow: /` / `Disallow: /api/ … /csv/`. |
+| Contact | Non relevé. |
+| Verdict | **D** : payant (le prix par langue n'est que dans la formule à 499 £/mois, et il ne ferait que reprendre CardTrader, que nous avons déjà en direct). |
+| Essai | Non fait. |
+
+### 9. TCGCSV (export quotidien de TCGplayer)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://tcgcsv.com`, projet personnel (mainteneur « CptSpaceToaster », code sur GitHub). Fichiers JSON et CSV. |
+| Langue de la carte distinguée ? | Par catégorie seulement : `3` « Pokemon » (anglais) et `85` « Pokemon Japan ». **Pas de français** (TCGplayer ne vend pas de cartes françaises). |
+| Non gradé, gradé | Non gradé. |
+| Nature du prix | Prix TCGplayer : `lowPrice`, `midPrice`, `highPrice` (demandés), `marketPrice` (ventes récentes), `directLowPrice`, par finition (`subTypeName`). USD. |
+| Profondeur | Tout le catalogue TCGplayer ; zéro carte française. |
+| Historique | Archives quotidiennes depuis le 8 février 2024 (`https://tcgcsv.com/archive/tcgplayer/prices-2024-02-08.ppmd.7z`), « earlier data doesn't exist » (FAQ). |
+| Accès | Fichiers ouverts sans clé : `https://tcgcsv.com/tcgplayer/{catégorie}/{groupe}/products` et `/prices`, `https://tcgcsv.com/last-updated.txt`. |
+| Conditions | FAQ (https://tcgcsv.com/faq) : les fichiers sont « sourced _directly_ from TCGplayer's API » ; pas de licence formelle. Docs (https://tcgcsv.com/docs) : « Don't make requests to TCGCSV directly from user-facing applications. » ; « Applications that make more than 10,000 requests in a 24 hour period may be banned. » ; « Applications that repeatedly download price archives day-after-day may be banned. » Au sujet des archives : « I want to share them freely, however they attract all sorts of trouble. » `robots.txt` : `User-agent: *` / `Allow: /`. |
+| Contact | Discord du projet et GitHub `CptSpaceToaster/tcgcsv` (issues), indiqués dans la FAQ. |
+| Verdict | **C** : accès technique ouvert, mais les données appartiennent à TCGplayer, dont l'API est fermée aux nouveaux venus, et aucune licence ne couvre la réutilisation. Sans objet pour le prix français (marché américain exclu par le fondateur) ; utile seulement comme alarme ou table de correspondance TCGplayer. |
+| Essai | Lu le 16 novembre 2026 (fichier `last-updated` : `2026-11-16T20:05:58+0000`), version anglaise des cartes. Charizard, Base Set, produit 42382, Holofoil : `lowPrice 499.99, midPrice 675.1, highPrice 3499.1, marketPrice 1001.05, directLowPrice 1131.03`. Mew ex 205/165, produit 517051 : `lowPrice 17.91, midPrice 26.8, highPrice 129.99, marketPrice 24.27, directLowPrice 23.7`. Umbreon VMAX (Alternate Art Secret), produit 246723 : `lowPrice 1804.98, midPrice 2300.0, highPrice 16721.3, marketPrice 2324.94, directLowPrice 1999.0`. Aucune version française. |
+
+### 10. PriceCharting API
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://www.pricecharting.com/api-documentation`, États-Unis. API et CSV payants. |
+| Langue de la carte distinguée ? | Par extension : anglais, japonais, chinois, coréen. Sur la page `https://www.pricecharting.com/category/pokemon-cards` (325 liens d'extensions relevés le 16 novembre), **aucune extension française** (mesuré : recherche de `french`, `fr-` dans les liens). |
+| Non gradé, gradé | Les deux. Champs : `loose-price` (« Ungraded card »), `graded-price` (« Graded 9 by a grading company »), `manual-only-price` (« Graded 10 by PSA grading service »), `bgs-10-price`, `condition-17-price` (« CGC 10 »). |
+| Nature du prix | Valeurs courantes ; la documentation ne nomme pas la source (ventes eBay selon la notoriété du site, non vérifié ici). |
+| Profondeur | Zéro carte française. |
+| Historique | « Historic prices and historic sales are not supported » par l'API. |
+| Accès | « API's are a premium tool. You must have a paid subscription to access the API » ; « CSV download feature is only available to Legendary subscribers. » Tarif non affiché sur la page lue. |
+| Conditions | « The API and CSV data are licensed for internal use only. » Toute mise à disposition de tiers demande une licence commerciale et un accord écrit. `robots.txt` : `User-agent: *` / `Disallow: /stripe-connect`, `/publish-offer`, `/buy`. |
+| Contact | Non relevé. |
+| Verdict | **D** : payant, usage interne seulement, pas de français. Le site lui-même relève de la famille des cotes. |
+| Essai | Non fait. |
+
+### 11. PSA Public API
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://api.psacard.com/publicapi/`, documentation `https://www.psacard.com/publicapi/documentation`. États-Unis. API officielle de la société de gradation. |
+| Langue de la carte distinguée ? | Non vérifié (le libellé du certificat porte souvent la langue, par exemple « FRENCH », mais je n'ai pas pu le lire). |
+| Non gradé, gradé | Gradé PSA seulement. |
+| Nature du prix | **Aucun prix** d'après ce qui est publiquement décrit : consultation de certificats (et population selon des tiers, non vérifié). Les prix réalisés de PSA (« Auction Prices Realized ») sont un site, pas cette API. |
+| Profondeur | Sans objet. |
+| Historique | Sans objet. |
+| Accès | API avec jeton lié à un compte PSA. D'après la documentation telle que citée par la recherche web : « There is a daily limit of 100 API calls for free accounts. » Non lu directement. |
+| Conditions | La documentation renvoie à un « PSA API End User Agreement » : **non lu**. `https://www.psacard.com/publicapi/documentation` a renvoyé **429 Too Many Requests** (`Retry-After: 28843`) ; `https://www.psacard.com/robots.txt` renvoie une page de vérification Cloudflare (« Just a moment... ») ; `https://api.psacard.com/publicapi/cert/GetByCertNumber/…` sans jeton : 429. Je n'ai pas insisté. |
+| Contact | Non relevé. |
+| Verdict | **D** pour le prix (aucun prix) ; pour la vérification de certificats, **C** (compte et contrat d'utilisateur à lire, non fait). |
+| Essai | Impossible (429 et protection Cloudflare). |
+
+### 12. API Cardmarket v2 (état réel)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | `https://api.cardmarket.com/ws/documentation`. Allemagne. API officielle. |
+| Langue de la carte distinguée ? | Les annonces (« articles ») de l'API portent une langue, d'après la documentation historique ; non vérifié aujourd'hui. Le point d'accès « Price Guide » (`API_2.0:PriceGuide`) répond désormais **410 Gone**. |
+| Non gradé, gradé | Non gradé. |
+| Nature du prix | Annonces et guide des prix (le même que le fichier public). |
+| Profondeur | Sans objet. |
+| Historique | Aucun. |
+| Accès | Fermé. Centre d'aide (https://help.cardmarket.com/en/cardmarket-api) : « Currently, we are not accepting applications for access to the Cardmarket API. » |
+| Conditions | Conditions générales article 9 (citées dans `CADRAGE.md`) : « The presentation of the trading cards and their respective prices require our prior written agreement ». |
+| Contact | Demande déjà envoyée le 16 novembre (`docs/demandes-sources.md`). |
+| Verdict | **C** : seule voie, l'accord écrit déjà demandé. |
+| Essai | Non fait. |
+
+### 13. eBay (rappel)
+
+Déjà étudié (`ROADMAP.md`, `CADRAGE.md`). API Browse avec clés de développeur ; la licence interdit de modéliser des prix sans accord écrit ; décision du fondateur : n'afficher que les annonces en cours avec un lien. Les ventes terminées passent par l'API « Marketplace Insights », à accès restreint (non revérifié dans cette mission). Verdict inchangé : **C** pour un prix, usage d'affichage d'annonces permis. Pas d'essai.
+
