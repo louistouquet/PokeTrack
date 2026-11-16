@@ -8,8 +8,8 @@ import { join } from "node:path";
 import { cacheLife } from "next/cache";
 import { eraOfSerie, type Era, type GradedObservations } from "./pricing/graded";
 import type { Quote } from "./pricing/raw";
-import { quoteFor, summarizeSet, type Market, type MarketHistory, type SetHistory, type SetSnapshot } from "./snapshot";
-import { fetchCard, fetchSerie, fetchSet, listSeries, searchCards, usdToEur, type Card, type CardBrief, type Serie } from "./tcgdex";
+import { DOUBT_CAP, quoteFor, summarizeSet, type Market, type MarketHistory, type SetHistory, type SetSnapshot } from "./snapshot";
+import { fetchCard, fetchSerie, fetchSet, listSeries, searchCards, type Card, type CardBrief, type Serie } from "./tcgdex";
 
 const DATA_URL = process.env.POKETRACK_DATA_URL ?? "https://raw.githubusercontent.com/louistouquet/PokeTrack/data";
 
@@ -46,7 +46,6 @@ export async function getSetSnapshot(id: string): Promise<SetSnapshot | null> {
   if (stored) return stored;
   const set = await fetchSet(id);
   if (!set) return null;
-  const fx = await usdToEur();
   const full: Card[] = [];
   // Par paquets de 12 pour ménager l'API.
   for (let i = 0; i < set.cards.length; i += 12) {
@@ -54,7 +53,7 @@ export async function getSetSnapshot(id: string): Promise<SetSnapshot | null> {
     for (const card of batch) if (card) full.push(card);
   }
   const { cards: _briefs, ...info } = set;
-  return { set: info, updated: new Date().toISOString(), cards: summarizeSet(full, fx) };
+  return { set: info, updated: new Date().toISOString(), cards: summarizeSet(full) };
 }
 
 export interface CardDetail {
@@ -65,6 +64,7 @@ export interface CardDetail {
   reverse: Quote | null;
   observations: GradedObservations; // annonces gradées relevées sur eBay, si disponibles
   shared: boolean; // prix partagé par plusieurs cartes dans la source
+  far: boolean; // prix sans commune mesure avec le marché américain
   history: { standard: Point[]; reverse: Point[] };
   neighbours: { prev: CardBrief | null; next: CardBrief | null };
 }
@@ -77,12 +77,12 @@ export async function getCardDetail(id: string): Promise<CardDetail | null> {
   cacheLife("hours");
   const card = await fetchCard(id);
   if (!card) return null;
-  const [snapshot, history, fx] = await Promise.all([getSetSnapshot(card.set.id), getSetHistory(card.set.id), usdToEur()]);
+  const [snapshot, history] = await Promise.all([getSetSnapshot(card.set.id), getSetHistory(card.set.id)]);
   const index = snapshot?.cards.findIndex((c) => c.id === id) ?? -1;
   const stored = snapshot?.cards[index];
   const serie = snapshot?.set.serie ?? { id: "", name: "" };
-  const standard = quoteFor(card, "standard", fx, stored?.ebay);
-  if (stored?.shared) standard.confidence = Math.min(standard.confidence, 25);
+  const standard = quoteFor(card, "standard", stored?.ebay);
+  if (stored?.shared || stored?.far) standard.confidence = Math.min(standard.confidence, DOUBT_CAP);
   const series = (key: string): Point[] =>
     (history?.prices[key] ?? []).flatMap((value, i) => (value === null ? [] : [{ day: history!.days[i], value }]));
   return {
@@ -90,9 +90,10 @@ export async function getCardDetail(id: string): Promise<CardDetail | null> {
     era: eraOfSerie(serie.id),
     serie,
     standard,
-    reverse: card.variants?.reverse ? quoteFor(card, "reverse", fx) : null,
+    reverse: card.variants?.reverse ? quoteFor(card, "reverse") : null,
     observations: stored?.ebay?.graded ?? {},
     shared: !!stored?.shared,
+    far: !!stored?.far,
     history: { standard: series(card.localId), reverse: series(`${card.localId}~r`) },
     neighbours: { prev: snapshot?.cards[index - 1] ?? null, next: snapshot?.cards[index + 1] ?? null },
   };

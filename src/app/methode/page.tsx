@@ -51,14 +51,15 @@ export default function MethodPage() {
           <a href="https://tcgdex.dev" className="font-semibold underline">
             TCGdex
           </a>
-          , une base ouverte tenue par des bénévoles. Elle fournit aussi, pour chaque carte, les indicateurs de prix de deux places de marché :
+          , une base ouverte tenue par des bénévoles. Elle fournit aussi, pour chaque carte, des indicateurs de prix :
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li>
             <strong>Cardmarket</strong>, le marché européen : tendance, moyennes des ventes sur 1, 7 et 30 jours, et annonce la moins chère.
           </li>
           <li>
-            <strong>TCGplayer</strong>, le marché américain : prix de marché, converti en euros au taux du jour de la Banque centrale européenne.
+            <strong>TCGplayer</strong>, le marché américain, n&apos;est <strong>pas utilisé</strong> : il cote des cartes anglaises vendues aux États-Unis, pas des cartes
+            françaises.
           </li>
           <li>
             <strong>eBay France</strong> : annonces en cours, relevées chaque jour pour les cartes les plus chères. Cette source demande des clés d&apos;accès à l&apos;API
@@ -77,7 +78,7 @@ export default function MethodPage() {
             résultat.
           </li>
           <li>
-            <strong>Un poids par source.</strong> Cardmarket sert de référence (poids 1), eBay compte jusqu&apos;à 0,6 selon le nombre d&apos;annonces, TCGplayer 0,3. Une source
+            <strong>Un poids par source.</strong> Cardmarket sert de référence (poids 1), eBay compte jusqu&apos;à 0,6 selon le nombre d&apos;annonces. Une source
             qui s&apos;écarte de plus du double de la référence voit son poids divisé par quatre, et les données anciennes pèsent moins que les récentes.
           </li>
           <li>
@@ -89,9 +90,9 @@ export default function MethodPage() {
 
       <Part id="indices" title="Liquidité, confiance, volatilité">
         <p>
-          <strong>La liquidité</strong> (0 à 100) dit si la carte se vend facilement à son prix. Elle additionne quatre signaux : des ventes récentes (moyennes 1, 7 et 30
-          jours renseignées), des moyennes stables d&apos;une période à l&apos;autre (un marché mince fait des bonds), une annonce la moins chère proche du prix juste, et une
-          présence sur plusieurs marchés. Quand eBay est connecté, le nombre d&apos;annonces en cours s&apos;y ajoute.
+          <strong>La liquidité</strong> (0 à 100) dit si la carte se vend facilement à son prix. Elle additionne trois signaux : des ventes récentes (moyennes 1, 7 et 30
+          jours renseignées), des moyennes stables d&apos;une période à l&apos;autre (un marché mince fait des bonds) et une annonce la moins chère proche du prix juste.
+          Quand eBay est connecté, le nombre d&apos;annonces en cours s&apos;y ajoute.
         </p>
         <p>
           <strong>La confiance</strong> (0 à 100) dit si le prix est solide : nombre de sources, accord entre elles, cohérence des indicateurs, fraîcheur des données. Les
@@ -162,14 +163,18 @@ export default function MethodPage() {
       <Part id="limites" title="Les limites connues">
         <ul className="list-disc space-y-2 pl-6">
           <li>
-            Cardmarket publie un prix par carte, toutes langues confondues. Pour les cartes où la version française se négocie différemment de l&apos;anglaise, l&apos;écart
-            n&apos;est pas visible ici.
+            <strong>Le prix n&apos;est pas encore propre à la version française.</strong> Cardmarket publie un prix par carte, toutes langues confondues. Pour les cartes où
+            la version française se négocie différemment des autres, l&apos;écart n&apos;est pas visible ici. Une source de prix par langue est en cours d&apos;étude.
           </li>
           <li>Le prix non gradé suppose une carte en très bon état. Une carte abîmée vaut moins, parfois beaucoup moins.</li>
           <li>La quantité en vente n&apos;est connue que pour eBay. Cardmarket ne la publie pas dans ses données ouvertes.</li>
           <li>
             Il arrive que la source rattache plusieurs cartes d&apos;une extension au même produit, surtout pour les promos. PokéTrack le détecte, plafonne la confiance et
             l&apos;indique sur la fiche.
+          </li>
+          <li>
+            Même traitement quand le prix européen d&apos;une carte d&apos;au moins 5 € est plus de dix fois au-dessus ou au-dessous de son prix aux États-Unis : c&apos;est le signe d&apos;une
+            carte rattachée au mauvais produit, d&apos;un côté ou de l&apos;autre. Le prix américain sert seulement d&apos;alarme ; il n&apos;entre jamais dans le calcul.
           </li>
           <li>Éditions 1, tampons et erreurs d&apos;impression ne sont pas distingués de la version courante.</li>
           <li>Les prix gradés sont des estimations tant que des ventes observées ne les confirment pas.</li>

@@ -12,8 +12,8 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
-import { summarizeSet, type CardSummary, type Market, type MarketCard, type MarketHistory, type SetHistory, type SetSnapshot } from "../src/lib/snapshot.ts";
-import { fetchCard, fetchSerie, fetchSet, listSeries, usdToEur } from "../src/lib/tcgdex.ts";
+import { runProblems, summarizeSet, type CardSummary, type Market, type MarketCard, type MarketHistory, type SetHistory, type SetSnapshot } from "../src/lib/snapshot.ts";
+import { fetchCard, fetchSerie, fetchSet, listSeries } from "../src/lib/tcgdex.ts";
 import { ebayClient } from "./ebay.ts";
 
 const { values: args } = parseArgs({ options: { out: { type: "string", default: ".data" }, sets: { type: "string" } } });
@@ -60,12 +60,13 @@ function setDay(days: string[], rows: Record<string, (number | null)[]>, values:
 
 await mkdir(join(out, "latest"), { recursive: true });
 await mkdir(join(out, "history"), { recursive: true });
-const fx = await usdToEur();
 const ebay = await ebayClient();
-console.log(`Relevé du ${today} — 1 USD = ${fx} EUR — eBay ${ebay ? "activé" : "désactivé (pas de clés)"}`);
+console.log(`Relevé du ${today} — eBay ${ebay ? "activé" : "désactivé (pas de clés)"}`);
 
+const previous = await readJson<Market>("market.json");
 const market: Market = { updated: new Date().toISOString(), cards: 0, priced: 0, series: [], top: [], up: [], down: [] };
 const all: MarketCard[] = [];
+let failed = 0; // cartes que TCGdex n'a pas su servir, même au second essai
 
 for (const brief of await listSeries()) {
   const serie = await fetchSerie(brief.id);
@@ -75,8 +76,16 @@ for (const brief of await listSeries()) {
     if (only && !only.includes(setBrief.id)) continue;
     const set = await fetchSet(setBrief.id);
     if (!set) continue;
-    const full = await pool(set.cards, (c) => fetchCard(c.id).catch(() => null));
-    const cards: CardSummary[] = summarizeSet(full.filter((c) => c !== null), fx);
+    // undefined = échec de lecture (null = la carte n'existe pas). Second essai, une à la fois.
+    const full = await pool(set.cards, (c) => fetchCard(c.id).catch(() => undefined));
+    for (const [i, c] of set.cards.entries()) if (full[i] === undefined) full[i] = await fetchCard(c.id).catch(() => undefined);
+    const fresh = new Map(summarizeSet(full.filter((c) => c != null)).map((c) => [c.id, c]));
+    // Une carte illisible aujourd'hui garde sa fiche de la veille (sans point d'historique)
+    // plutôt que de disparaître de l'extension.
+    const before = new Map((await readJson<SetSnapshot>(`latest/${setBrief.id}.json`))?.cards.map((c) => [c.id, c]));
+    const lost = new Set(set.cards.filter((_, i) => full[i] === undefined).map((c) => c.id));
+    failed += lost.size;
+    const cards: CardSummary[] = set.cards.flatMap((c) => fresh.get(c.id) ?? (lost.has(c.id) ? (before.get(c.id) ?? []) : []));
 
     const { cards: _briefs, ...setInfo } = set;
     const snapshot: SetSnapshot = { set: { ...setInfo, serie: { id: serie.id, name: serie.name } }, updated: market.updated, cards };
@@ -84,7 +93,7 @@ for (const brief of await listSeries()) {
 
     const history = (await readJson<SetHistory>(`history/${set.id}.json`)) ?? { days: [], prices: {} };
     const values: Record<string, number | null> = {};
-    for (const c of cards) {
+    for (const c of fresh.values()) {
       if (c.std) values[c.localId] = c.std.p;
       if (c.rev) values[`${c.localId}~r`] = c.rev.p;
     }
@@ -139,6 +148,13 @@ if (!only) {
   const liquid = trusted.filter((c) => c.std!.t !== null && c.std!.p >= 10 && c.std!.l >= 68);
   market.cards = market.series.reduce((s, x) => s + x.cards, 0);
   market.priced = all.length;
+  // Un relevé anormal n'est pas publié : le script s'arrête en erreur avant market.json,
+  // et le flux GitHub Actions ne pousse rien.
+  const problems = runProblems(previous, { cards: market.cards, priced: market.priced, failed });
+  if (problems.length) {
+    console.error(`Relevé refusé : ${problems.join(" ; ")}.`);
+    process.exit(1);
+  }
   market.top = await pick([...trusted].sort((a, b) => b.std!.p - a.std!.p), 60);
   market.up = await pick([...liquid].sort((a, b) => b.std!.t! - a.std!.t!), 24);
   market.down = await pick([...liquid].sort((a, b) => a.std!.t! - b.std!.t!), 24);
@@ -149,5 +165,5 @@ if (!only) {
   setDay(mh.days, rows, { ...Object.fromEntries(market.series.map((s) => [s.id, s.value])), total: market.series.reduce((s, x) => s + x.value, 0) });
   const { total, ...series } = rows;
   await writeJson("market-history.json", { days: mh.days, total, series });
-  console.log(`${market.cards} cartes, ${market.priced} avec un prix, ${market.top.filter((c) => c.image).length}/${market.top.length} illustrations vérifiées en tête de classement.`);
+  console.log(`${market.cards} cartes, ${market.priced} avec un prix, ${failed} illisibles, ${market.top.filter((c) => c.image).length}/${market.top.length} illustrations vérifiées en tête de classement.`);
 }

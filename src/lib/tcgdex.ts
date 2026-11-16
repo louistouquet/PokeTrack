@@ -1,4 +1,4 @@
-// Client minimal de l'API TCGdex (catalogue français + prix Cardmarket / TCGplayer).
+// Client minimal de l'API TCGdex (catalogue français + prix Cardmarket).
 // Sans dépendance à Next : utilisé par le site et par le script d'ingestion.
 
 import type { TcgdexPricing } from "./pricing/raw.ts";
@@ -77,13 +77,3 @@ export const searchCards = (name: string) =>
 export const cardImage = (image: string | undefined, quality: "low" | "high" = "low") =>
   image ? `${image}/${quality}.webp` : null;
 export const assetImage = (url: string | undefined) => (url ? `${url}.webp` : null);
-
-/** Taux USD → EUR (BCE). Repli sur une valeur fixe si le service est indisponible. */
-export async function usdToEur(): Promise<number> {
-  try {
-    const res = await fetch("https://api.frankfurter.dev/v1/latest?base=USD&symbols=EUR");
-    const rate = (await res.json())?.rates?.EUR;
-    if (typeof rate === "number" && rate > 0.5 && rate < 1.5) return rate;
-  } catch {}
-  return 0.9;
-}

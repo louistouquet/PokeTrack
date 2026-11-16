@@ -7,7 +7,7 @@ La cote des cartes Pokémon françaises : un prix juste pour chaque carte, non g
 ## Ce que fait le site
 
 - **Catalogue français complet** : les familles (Méga-Évolution, Écarlate et Violet, Épée et Bouclier… jusqu'au Set de Base), leurs extensions, et pour chaque carte son illustration, sa rareté, son numéro. Environ 20 000 cartes.
-- **Prix juste non gradé** : recoupé entre Cardmarket et TCGplayer (et eBay France si des clés sont configurées), avec une fourchette, une tendance, et trois indices : liquidité, confiance, volatilité.
+- **Prix juste non gradé** : calculé sur les indicateurs de vente de Cardmarket, le marché européen, avec une fourchette, une tendance, et trois indices : liquidité, confiance, volatilité.
 - **Prix gradés** : estimation par société (PSA, PCA, CGC, BGS, Collect Aura) et par note.
 - **Collection** : chaque carte s'ajoute non gradée ou gradée (société + note), en vue classeur, par séries ou en liste. Valeur totale, plus-value si le prix d'achat est renseigné, graphique de la valeur.
 - **Faut-il la faire grader ?** : pour une carte non gradée, compare les sociétés (frais, chances de gain, gain espéré) selon l'état de la carte.
@@ -42,7 +42,7 @@ npm test
 | Partie | Où | Rôle |
 | --- | --- | --- |
 | Moteur de prix | `src/lib/pricing/` | Prix juste (`raw.ts`), prix gradés (`graded.ts`), rentabilité de la gradation (`grading-roi.ts`). Fonctions pures, testées. |
-| Catalogue | `src/lib/tcgdex.ts` | Client de l'API [TCGdex](https://tcgdex.dev) (cartes françaises + prix Cardmarket / TCGplayer). |
+| Catalogue | `src/lib/tcgdex.ts` | Client de l'API [TCGdex](https://tcgdex.dev) (cartes françaises + prix Cardmarket). |
 | Relevé quotidien | `scripts/ingest.ts` | Parcourt le catalogue, écrit l'état du jour et ajoute un point à l'historique. |
 | eBay | `scripts/ebay.ts` | Annonces eBay France (optionnel, voir plus bas). |
 | Site | `src/app/`, `src/components/` | Next.js 16 (App Router), React 19, Tailwind 4. Aucune autre dépendance. |
@@ -58,6 +58,8 @@ history/<extension>.json     un prix par jour et par carte
 market.json                  classements et valeur par famille
 market-history.json          valeur totale par jour
 ```
+
+Un relevé anormal (trop de cartes illisibles, chute du nombre de cartes cotées) n'est pas publié, et un ticket prévient le propriétaire du dépôt. Une veille (`.github/workflows/veille.yml`) relance le relevé s'il manque.
 
 Le site lit ces fichiers depuis `raw.githubusercontent.com` (le dépôt doit donc être public). Pas de base de données, pas de serveur à maintenir, et l'historique des prix est lui-même une donnée ouverte.
 
@@ -75,6 +77,8 @@ En développement, `.env.development` fait lire le dossier local `.data/` à la 
 
 ### Activer eBay (facultatif)
 
+> **À ne pas activer en l'état.** La licence de l'API eBay interdit d'utiliser ses données pour modéliser des prix et de les conserver comme le fait l'adaptateur actuel. Voir `ROADMAP.md`.
+
 Les annonces eBay apportent la quantité en vente et des prix gradés observés. Il faut un compte développeur eBay (gratuit) :
 
 1. Créer une application sur [developer.ebay.com](https://developer.ebay.com) et récupérer ses identifiants de production.
@@ -86,7 +90,7 @@ Le relevé interroge alors eBay France pour les cartes les plus chères (4 000 p
 
 La liste complète des défauts connus et la direction du projet sont dans [ROADMAP.md](ROADMAP.md).
 
-- Le prix n'est pas encore propre à la carte française : Cardmarket mélange les langues et TCGplayer est le marché américain.
+- Le prix n'est pas encore propre à la carte française : Cardmarket mélange les langues. Le marché américain (TCGplayer) n'entre plus dans le calcul.
 - Environ 2 900 cartes n'ont pas d'illustration dans la source.
 - Les prix gradés sont un modèle (multiples du prix non gradé par époque et par société) tant qu'aucune annonce eBay ne les corrige. Les coefficients sont dans `src/lib/pricing/graded.ts` et méritent d'être affinés.
 - Cardmarket publie un prix par carte, toutes langues confondues.

@@ -21,6 +21,7 @@ on:
 
 permissions:
   contents: write
+  issues: write # alerte quand le relevé échoue
 
 concurrency:
   group: prices
@@ -61,3 +62,27 @@ jobs:
           git -c user.name="poketrack-bot" -c user.email="poketrack-bot@users.noreply.github.com" \
             commit --quiet -m "Relevé du $(date -u +%F)" || { echo "Rien à publier"; exit 0; }
           git push origin data
+
+      # Le relevé a réussi : les alertes ouvertes n'ont plus lieu d'être.
+      - name: Clore les alertes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --repo "$GITHUB_REPOSITORY" --label releve --state open --json number --jq '.[].number' |
+            xargs -r -n1 gh issue close --repo "$GITHUB_REPOSITORY" --comment "Relevé du $(date -u +%F) publié."
+
+      # Le relevé a échoué ou a été refusé (trop de cartes illisibles, chute anormale) :
+      # rien n'est publié, et un ticket assigné au propriétaire du dépôt le prévient par courriel.
+      - name: Alerter
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          msg="Le relevé du $(date -u +%F) a échoué et rien n'a été publié. Journal : $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          gh label create releve --repo "$GITHUB_REPOSITORY" --color B60205 --description "Relevé des prix en panne" --force
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --label releve --state open --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "$msg"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "Relevé des prix en panne" --label releve --assignee "$GITHUB_REPOSITORY_OWNER" --body "$msg"
+          fi

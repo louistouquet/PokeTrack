@@ -102,7 +102,7 @@ export default async function Home() {
         <div>
           <h1 className="text-[2.6rem] sm:text-6xl">La cote des cartes Pokémon françaises.</h1>
           <p className="mt-5 max-w-[52ch] text-lg text-ink-soft">
-            Un prix juste pour chaque carte, non gradée ou gradée, recoupé entre plusieurs places de marché, avec sa liquidité. Rangez votre
+            Un prix juste pour chaque carte, non gradée ou gradée, calculé sur les ventes du marché européen, avec sa liquidité. Rangez votre
             collection et suivez sa valeur. C&apos;est gratuit et le code est ouvert.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">

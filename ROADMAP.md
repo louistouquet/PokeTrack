@@ -5,8 +5,17 @@
 ## Où on en est
 
 - Première version fusionnée dans `main` le 15 novembre 2026 et mise en ligne sur Vercel par le fondateur.
-- Relevé des prix publié sur la branche `data` : deux jours d'historique (15 et 16 novembre).
-- 20 226 cartes françaises suivies, 19 759 avec un prix.
+- Relevé des prix publié sur la branche `data` : deux jours d'historique (15 et 16 novembre), aucun jour manquant. Les deux relevés ont été déclenchés par une fusion ou à la main : le déclenchement planifié de GitHub n'a encore jamais fonctionné.
+- 20 226 cartes françaises suivies.
+- Le document de cadrage (`CADRAGE.md`) est un brouillon soumis au fondateur. Rien de l'architecture d'agents n'est construit.
+
+### Corrigé le 16 novembre (branche `claude/zealous-mayer-ain5x3`, pas encore dans `main`)
+
+- **Le marché américain n'entre plus dans le prix.** Le prix juste repose sur Cardmarket seul. Mesuré sur un relevé complet : 12 366 prix changent de plus de 5 %, la valeur totale suivie passe de 295 849 € à 252 143 €, et 331 cartes qui n'étaient cotées qu'aux États-Unis n'ont plus de prix (19 428 cartes cotées). La courbe historique aura donc une marche le jour de la mise en ligne.
+- **Nouveau signal de prix douteux.** 202 cartes d'au moins 5 € dont le prix européen est plus de dix fois au-dessus ou au-dessous du prix américain sont signalées, plafonnées en confiance et exclues des classements. Le prix américain sert d'alarme, jamais de prix.
+- **Le relevé ne perd plus de cartes en silence.** Un essai local avait perdu 40 cartes sur des erreurs passagères de TCGdex. Désormais : second essai, la carte garde sa fiche de la veille si elle reste illisible, et le relevé refuse de publier s'il manque trop de cartes ou si le nombre de cartes cotées chute.
+- **Alerte.** Un relevé en échec ouvre un ticket assigné au propriétaire du dépôt. Une veille (`.github/workflows/veille.yml`) vérifie trois fois par jour que le relevé du jour existe, le relance sinon et ouvre le même ticket. Ces deux flux n'ont pas encore tourné : ils ne s'activent qu'une fois dans `main`.
+- L'indice de liquidité est ramené sur 100 sans le marché américain.
 
 ## Chantier 1 : fiabiliser l'existant
 
@@ -16,11 +25,11 @@ Priorité immédiate. Les chiffres viennent du relevé du 15 novembre.
 
 C'est le défaut le plus gênant aux yeux du fondateur.
 
-- **TCGplayer** est le marché américain, pour des cartes anglaises. Il entre aujourd'hui dans le prix juste avec un poids de 0,3 (`src/lib/pricing/raw.ts`). À retirer du calcul ou à réduire à un simple repère affiché.
+- **TCGplayer** est le marché américain, pour des cartes anglaises. Retiré du calcul le 16 novembre (voir plus haut).
 - **Cardmarket** publie un prix par carte toutes langues confondues. Ce n'est pas non plus un prix français.
-- Aucune source de prix propre à la version française n'est branchée. Pistes à vérifier, aucune n'est confirmée :
-  - CardTrader : TCGdex fournit un identifiant CardTrader par carte (`variants_detailed[].thirdParty.cardtrader`). Si son API donne les annonces par langue, ce serait un prix français et une quantité en vente.
-  - eBay France, en ne gardant que les annonces de cartes françaises (adaptateur écrit, jamais essayé, voir plus bas).
+- Aucune source de prix propre à la version française n'est branchée. État des pistes au 16 novembre :
+  - **CardTrader : confirmé par sa documentation.** `GET /marketplace/products?expansion_id=…&language=fr` renvoie les 25 annonces les moins chères par carte, avec état, quantité, pays du vendeur et mention « gradée ». Une requête par extension suffit (188 par jour). TCGdex fournit l'identifiant CardTrader des cartes (`variants_detailed[].thirdParty.cardtrader`), pas pour toutes. Il manque un jeton (compte du fondateur) et, d'après leurs conditions, une demande écrite pour l'usage « données de marché ». Ce sont des prix demandés, pas des ventes.
+  - **eBay France : bloqué par la licence de l'API** (voir « Prix gradés » plus bas).
   - Toute autre source française : à chercher.
 
 ### Prix douteux
@@ -28,7 +37,8 @@ C'est le défaut le plus gênant aux yeux du fondateur.
 - 1 169 cartes partagent leur produit Cardmarket avec une autre carte de la même extension (surtout des promos) : le prix affiché est probablement celui d'une autre carte. Elles sont signalées et exclues des classements, mais pas corrigées.
 - 2 263 cartes cotées ont une confiance inférieure à 60.
 - 467 cartes n'ont aucun prix.
-- Éditions 1, tampons et erreurs d'impression ne sont pas distingués.
+- Éditions 1, tampons et erreurs d'impression ne sont pas distingués. Piste : TCGdex expose `variants_detailed`, avec un prix Cardmarket par variante (édition 1, sans ombre, illimitée). Le site ne lit que le prix principal.
+- 202 cartes ont un prix sans commune mesure avec le marché américain (signalées depuis le 16 novembre). Exemple : Pikachu ☆ d'EX Fantômes Holon à 5,15 €. La correspondance de ces cartes est à corriger à la source.
 - Les cartes vintage ont des indicateurs très dispersés (états de conservation mélangés).
 
 Il n'existe aucun contrôle qui compare nos prix à une référence extérieure. Un jeu de cartes témoins vérifiées à la main serait le premier garde-fou.
@@ -42,13 +52,13 @@ Il n'existe aucun contrôle qui compare nos prix à une référence extérieure.
 ### Relevé quotidien
 
 - Le déclenchement planifié de GitHub Actions n'a pas eu lieu la première nuit (16 novembre, 4 h 17 UTC). Le relevé a été lancé à la main. Un second créneau à 13 h 47 UTC a été ajouté en rattrapage.
-- Rien n'alerte quand un jour manque. Il faut un contrôle (jour manquant, nombre de cartes cotées en chute) et un moyen d'être prévenu.
+- Contrôle et alerte écrits le 16 novembre (voir plus haut), à confirmer en conditions réelles après fusion. Limite : la veille dépend du même planificateur GitHub que le relevé. Une surveillance indépendante (tâche planifiée Claude) est proposée dans `CADRAGE.md`, question 6.
 - La branche `data` grossit chaque jour. À surveiller.
 
 ### Prix gradés
 
 - Ce sont un modèle (multiples du prix non gradé par époque et par société), pas des ventes observées. Les coefficients de `src/lib/pricing/graded.ts` et les probabilités de `grading-roi.ts` sont des ordres de grandeur non étalonnés.
-- L'adaptateur eBay (`scripts/ebay.ts`) n'a jamais tourné avec de vraies clés. La demande de clés est en cours côté fondateur. Avant de l'activer : lire les conditions d'utilisation de l'API eBay sur la publication de prix dérivés des annonces.
+- L'adaptateur eBay (`scripts/ebay.ts`) n'a jamais tourné avec de vraies clés. **Ne pas l'activer tel quel.** La licence de l'API, lue le 16 novembre, interdit d'utiliser le contenu eBay pour « suggest or model prices », de le conserver hors des usages permis, et impose que les annonces affichées aient moins de 6 heures. Mêler eBay au prix juste et à l'historique y contrevient. Usage conforme possible : afficher les annonces en cours avec un lien vers eBay, hors du prix et de l'historique. Décision attendue du fondateur (`CADRAGE.md`, question 8).
 
 ### Divers
 

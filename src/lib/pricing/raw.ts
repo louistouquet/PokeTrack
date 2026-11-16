@@ -2,13 +2,14 @@
 // Tout est en euros. La méthode est décrite pour les humains dans /methode.
 
 export type Finish = "standard" | "reverse";
-export type SourceId = "cardmarket" | "tcgplayer" | "ebay";
+export type SourceId = "cardmarket" | "ebay";
 
 type Num = number | null | undefined;
 
 export interface TcgdexPricing {
   cardmarket?: ({ updated?: string; low?: Num; trend?: Num; avg1?: Num; avg7?: Num; avg30?: Num } & Record<string, unknown>) | null;
-  tcgplayer?: ({ updated?: string } & Record<string, unknown>) | null;
+  // Marché américain, cartes anglaises : n'entre jamais dans le prix (voir usGap dans snapshot.ts).
+  tcgplayer?: Record<string, unknown> | null;
 }
 
 /** Annonces actives relevées sur eBay (optionnel : nécessite des clés API). */
@@ -105,30 +106,15 @@ function cardmarketEstimate(cm: NonNullable<TcgdexPricing["cardmarket"]>, finish
   };
 }
 
-const TCG_STANDARD = ["normal", "holofoil", "unlimited", "unlimited-holofoil", "1st-edition", "1st-edition-holofoil"];
-const TCG_REVERSE = ["reverse-holofoil", "reverse"];
-
-function tcgplayerEstimate(tp: NonNullable<TcgdexPricing["tcgplayer"]>, finish: Finish, usdToEur: number) {
-  for (const key of finish === "reverse" ? TCG_REVERSE : TCG_STANDARD) {
-    const v = tp[key] as Record<string, Num> | undefined;
-    if (!v) continue;
-    const market = pos(v.marketPrice);
-    const price = market ?? pos(v.midPrice) ?? pos(v.lowPrice);
-    if (price) return { price: price * usdToEur, low: pos(v.lowPrice), hasMarket: market !== null };
-  }
-  return null;
-}
-
 const ageDays = (iso: string | undefined, now: number) => (iso ? Math.max(0, (now - Date.parse(iso)) / 86_400_000) : 0);
 
 export function computeQuote(
   pricing: TcgdexPricing | null | undefined,
-  opts: { usdToEur: number; finish?: Finish; ebay?: EbayObservation | null; now?: number },
+  opts: { finish?: Finish; ebay?: EbayObservation | null; now?: number } = {},
 ): Quote {
   const finish = opts.finish ?? "standard";
   const now = opts.now ?? Date.now();
   const cm = pricing?.cardmarket ? cardmarketEstimate(pricing.cardmarket, finish) : null;
-  const tp = pricing?.tcgplayer ? tcgplayerEstimate(pricing.tcgplayer, finish, opts.usdToEur) : null;
   const ebayPrices = opts.ebay?.prices.filter((p) => p > 0) ?? [];
   // Les prix eBay sont des prix demandés : décote de 8 % pour approcher un prix de vente.
   const ebay = ebayPrices.length >= 3 ? { price: trimmedMedian(ebayPrices) * 0.92, n: ebayPrices.length } : null;
@@ -143,21 +129,9 @@ export function computeQuote(
       updated: pricing?.cardmarket?.updated,
     });
   }
-  // Référence pour juger les autres sources : Cardmarket (marché européen) s'il existe.
-  const anchor = cm?.price ?? ebay?.price ?? tp?.price ?? null;
+  // Référence pour juger eBay : Cardmarket (marché européen) s'il existe.
+  const anchor = cm?.price ?? ebay?.price ?? null;
   const agreement = (p: number) => (anchor ? Math.abs(Math.log(p / anchor)) : 0);
-  if (tp) {
-    // TCGplayer = marché américain, cartes anglaises : simple recoupement, fortement
-    // dévalué s'il s'écarte de plus de ×2 du marché européen.
-    const far = agreement(tp.price) > Math.LN2;
-    raw.push({
-      source: "tcgplayer",
-      price: tp.price,
-      weight: 0.3 * (far ? 0.25 : 1) * Math.exp(-ageDays(pricing?.tcgplayer?.updated, now) / 14),
-      low: tp.low ? tp.low * opts.usdToEur : undefined,
-      updated: pricing?.tcgplayer?.updated,
-    });
-  }
   if (ebay) {
     const far = agreement(ebay.price) > Math.LN2;
     raw.push({
@@ -180,14 +154,13 @@ export function computeQuote(
   const cross = raw.length > 1 ? Math.max(...raw.map((q) => Math.abs(Math.log(q.price / price)))) : 0;
 
   // Confiance : nombre de sources, accord entre elles, cohérence interne, fraîcheur.
-  let confidence = cm ? 50 : ebay ? 35 : 22;
+  let confidence = cm ? 50 : 35;
   if (cm) confidence += 20 * Math.max(0, 1 - cm.dispersion / 0.5) + (cm.fields - 1) * 3;
-  if (tp && cm) confidence += 12 * Math.max(0, 1 - agreement(tp.price) / Math.LN2);
   if (ebay && cm) confidence += 9 * Math.max(0, 1 - agreement(ebay.price) / Math.LN2);
-  confidence *= Math.exp(-ageDays(pricing?.cardmarket?.updated ?? pricing?.tcgplayer?.updated, now) / 30);
+  confidence *= Math.exp(-ageDays(pricing?.cardmarket?.updated, now) / 30);
 
   // Liquidité (indice) : activité récente, stabilité des moyennes, écart au prix plancher,
-  // présence sur plusieurs marchés.
+  // annonces en cours quand elles sont connues.
   let liquidity = 0;
   if (cm) {
     liquidity += (cm.avg1 ? 10 : 0) + (cm.avg7 ? 8 : 0) + (cm.avg30 ? 6 : 0);
@@ -196,9 +169,8 @@ export function computeQuote(
     liquidity += 20 * steady(cm.avg1, cm.avg7) + 16 * steady(cm.avg7, cm.avg30);
     if (cm.low) liquidity += 14 * clamp(cm.low / cm.price / 0.8, 0, 1);
   }
-  if (tp) liquidity += tp.hasMarket ? 10 : 4;
-  if (ebay) liquidity += 16 * Math.min(1, opts.ebay!.total / 25);
-  else if (cm && tp) liquidity += 4;
+  // Les signaux Cardmarket plafonnent à 74 : les annonces en cours complètent, sinon on ramène sur 100.
+  liquidity = ebay ? liquidity + 26 * Math.min(1, opts.ebay!.total / 25) : (liquidity * 100) / 74;
 
   const half = clamp(Math.max(dispersion, cross) * 0.6, 0.05, 0.45);
   const listings = sources.reduce<number | null>((s, q) => (q.listings == null ? s : (s ?? 0) + q.listings), null);

@@ -15,10 +15,9 @@ import { LcdChart } from "./lcd-chart";
 import { Meter } from "./meter";
 import { Slab } from "./slab";
 
-const SOURCE_NAMES: Record<SourceId, string> = { cardmarket: "Cardmarket", tcgplayer: "TCGplayer", ebay: "eBay France" };
+const SOURCE_NAMES: Record<SourceId, string> = { cardmarket: "Cardmarket", ebay: "eBay France" };
 const SOURCE_NOTES: Record<SourceId, string> = {
   cardmarket: "Europe, ventes réalisées",
-  tcgplayer: "États-Unis, converti en euros",
   ebay: "Annonces en cours",
 };
 
@@ -112,9 +111,17 @@ export function CardView({ detail }: { detail: CardDetail }) {
               </p>
             )}
 
+            {detail.far && (
+              <p className="mt-5 flex gap-2.5 rounded-xl bg-[#f6dfa6] px-4 py-3 text-sm">
+                <Icon name="info" size={18} className="mt-0.5 shrink-0" />
+                Ce prix est plus de dix fois au-dessus ou au-dessous de celui de la même carte aux États-Unis : elle est peut-être rattachée au mauvais produit dans les
+                données de la source. À vérifier avant toute décision.
+              </p>
+            )}
+
             <div className="mt-7 grid gap-x-8 gap-y-5 px-1.5 sm:grid-cols-3">
               <Meter label="Liquidité" score={quote.liquidity} hint={quote.listings !== null ? `${quote.listings} en vente sur eBay` : "Facilité à vendre au prix juste"} />
-              <Meter label="Confiance" score={quote.confidence} hint="Accord et fraîcheur des sources" />
+              <Meter label="Confiance" score={quote.confidence} hint="Cohérence et fraîcheur des indicateurs" />
               <Meter label="Volatilité" score={quote.volatility} invert hint="Écart entre les moyennes récentes" />
             </div>
 
