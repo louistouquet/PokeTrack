@@ -84,6 +84,10 @@ Le relevé interroge alors eBay France pour les cartes les plus chères (4 000 p
 
 ## Limites connues
 
+La liste complète des défauts connus et la direction du projet sont dans [ROADMAP.md](ROADMAP.md).
+
+- Le prix n'est pas encore propre à la carte française : Cardmarket mélange les langues et TCGplayer est le marché américain.
+- Environ 2 900 cartes n'ont pas d'illustration dans la source.
 - Les prix gradés sont un modèle (multiples du prix non gradé par époque et par société) tant qu'aucune annonce eBay ne les corrige. Les coefficients sont dans `src/lib/pricing/graded.ts` et méritent d'être affinés.
 - Cardmarket publie un prix par carte, toutes langues confondues.
 - La quantité en vente n'est connue que via eBay.

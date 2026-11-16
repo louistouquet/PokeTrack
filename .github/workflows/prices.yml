@@ -5,7 +5,10 @@ name: Relevé quotidien des prix
 
 on:
   schedule:
-    - cron: "17 4 * * *" # tous les jours à 4 h 17 UTC
+    # GitHub saute parfois un déclenchement planifié : deux créneaux par jour.
+    # Le relevé remplace la colonne du jour, un second passage ne crée pas de doublon.
+    - cron: "17 4 * * *" # 4 h 17 UTC
+    - cron: "47 13 * * *" # 13 h 47 UTC, rattrapage
   workflow_dispatch:
   push:
     branches: [main]
