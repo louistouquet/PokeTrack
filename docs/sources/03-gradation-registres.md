@@ -57,3 +57,67 @@ Note : le même accord couvre, selon son préambule, « New SGC LLC; Ladder Stud
 | Contact | `contact@collectaura.com` (publié dans les CGV, https://www.collectaura.com/policies/terms-of-sale, et les mentions légales, qui l'indiquent pour les demandes d'autorisation). |
 | Verdict | **C**. Techniquement la meilleure source de population de cartes françaises trouvée (langue en champ distinct, notes détaillées, interface JSON publique), mais l'extraction et la réutilisation de la base sont interdites sans accord écrit. Demande d'accord prioritaire à `contact@collectaura.com` (la même adresse sert aux demandes de lien). |
 | Essai | Lecture ponctuelle de caractérisation (5 requêtes), 16/11/2026 : **Dracaufeu 4/102 « Wizards Set de base », `fr`** : total 51 — A 16, AA 2, 1 : 6, 2 : 2, 3 : 4, 4 : 9, 5 : 6, 6 : 1, 7 : 3, 8 : 1, « NO HOLDER » 1. **Dracaufeu 1ère Éd. 4/102** : deux fiches, total 25 (dont 9.5 : 1, 9 : 2) et total 1. **Mew ex 205/165 « E&V 151 », `fr`** : total 329 (10 : 61, 9.5 : 183, 9 : 55). **Noctali VMAX 215/203 « E&B Évolution Céleste », `fr`** : total 86 (10 : 18, 9.5 : 35). Aucun prix (la source n'en publie pas). |
+
+### CGC Cards (Certified Guaranty Company)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://www.cgccards.com (États-Unis) et https://www.cgccards.uk (Royaume-Uni, même base) — société de gradation ; Population Report public, registre de collections (`/registry/trading-cards/`). |
+| Langue de la carte distinguée ? | **Oui, par extension** : la langue fait partie du nom de l'extension dans la population (« Base Set - 1st Edition - French », « Base Set - Unlimited - French », « Scarlet & Violet 151 - MEW FR - French », 16 extensions « French » dans la seule série Écarlate et Violet). Les noms de cartes restent en anglais (« Charizard »). |
+| Non gradé, gradé | Gradé CGC : Perfect 10, Pristine 10, Gem Mint 10, Mint+ 9.5, 9 à 1 par demi-points, AU, AA. |
+| Nature du prix | Aucun prix dans la population ; un lien « Shop Now! » par carte (eBay Partner Network : « Affiliate programs and affiliations include, but are not limited to, the eBay Partner Network »). |
+| Profondeur | Mesuré sur la page Pokémon le 16/11/2026 : « 13,244,923 graded » pour Pokémon (toutes langues) ; « Last Updated 16/11/2026 ». Extensions françaises : « Base Set - 1st Edition - French » 5 145 cartes notées, « Base Set - Unlimited - French » 448, « Scarlet & Violet 151 - MEW FR - French » 87. Les volumes français modernes sont faibles. |
+| Historique | Population cumulée, mise à jour quotidienne (date affichée). Pas d'historique. |
+| Accès | Pages HTML sans compte sur `cgccards.uk`. `cgccards.com` m'a bloqué (Cloudflare « Sorry, you have been blocked », Playwright et WebFetch, y compris `robots.txt`). Pas d'API publique trouvée. |
+| Conditions | `robots.txt` de https://www.cgccards.uk/robots.txt : `user-agent: * / Allow: /` (seul AhrefsBot est exclu). Conditions (https://www.cgccards.uk/legal/terms-of-use/) : « You may print off one copy, and may download extracts, of any page(s) from our sites for your personal use » ; « You must not use any part of the content on our sites for commercial purposes without obtaining a licence to do so from us or our licensors. » ; « If you wish to link to or make any use of content on our sites other than that set out above, please contact us by email at […] Service@CGCcards.uk ». Conditions de `cgccards.com` : non lues (bloqué). |
+| Contact | `Service@CGCcards.uk`, +44 (0) 20 3968 3848 (publiés dans les conditions ci-dessus). |
+| Verdict | **C**. La lecture de pages est permise par le `robots.txt` mais les conditions limitent l'usage au personnel et renvoient à une demande écrite pour tout autre usage. Accord à demander à `Service@CGCcards.uk`. |
+| Essai | Lecture ponctuelle de caractérisation, 16/11/2026, `cgccards.uk`. **Charizard 4/102, « Base Set - 1st Edition - French »** : total 135 — Pristine 10 : 3, Gem Mint 10 : 25, 9.5 : 6, 9 : 37, 8.5 : 20, 8 : 10, 7.5 : 8, 7 : 3, 6.5 : 5, 6 : 2, 5.5 : 1, 5 : 1, 4 : 3, 3.5 : 2, 3 : 1, 2 : 2, 1.5 : 1, 1 : 3, AA : 2. **Charizard 4/102, « Base Set - Unlimited - French »** : total 36 — 9 : 3, 8.5 : 1, 8 : 4, 7.5 : 2, 7 : 3, 6.5 : 2, 6 : 1, 5.5 : 6, 5 : 2, 4.5 : 3, 4 : 4, 3.5 : 2, 3 : 1, 2.5 : 1, AU : 1. **Mew ex 205/165, « Scarlet & Violet 151 - MEW FR - French »** : total 1. Noctali VMAX 215/203 : non cherché. Aucun prix. |
+
+### Beckett (BGS, groupe Collectors)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://www.beckett.com — États-Unis. Société de gradation BGS/BVG, population report (`/grading/pop-report`), guides de prix (abonnement, non examiné). Le « User Agreement » de Collectors (29/09/2026) compte « Beckett Collectibles, LLC » parmi les entités du groupe. |
+| Langue de la carte distinguée ? | Non vérifié (page bloquée). |
+| Non gradé, gradé | Gradé BGS (notes à demi-point, sous-notes) ; non vérifié sur pièce. |
+| Nature du prix | Non vérifié. |
+| Profondeur | Non vérifiée. |
+| Historique | Non vérifié. |
+| Accès | `https://beckett.com/grading/pop-report` : défi Cloudflare (« Vérification de sécurité en cours », statut 403) avec Playwright, le 16/11/2026. Pas d'API publique trouvée. |
+| Conditions | `robots.txt` (https://beckett.com/robots.txt, lu via navigateur) : une seule ligne `User-agent: *`, sans règle. Conditions : celles de Collectors citées dans la fiche PSA (usage « informational, personal and non-commercial », interdiction de « page-scrape », « robot », « spider »). |
+| Contact | Non vérifié sur le site de Beckett ; à défaut, `collectors-apis@collectors.com` (fiche PSA). |
+| Verdict | **D** (inaccessible : protection Cloudflare ; conditions du groupe Collectors restrictives). Une éventuelle demande passe par Collectors, avec celle de PSA. |
+| Essai | Non fait. |
+
+### SGC (Sportscard Guaranty, groupe Collectors)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://gosgc.com — États-Unis. Société de gradation, population report (`/pop-report`). Le « User Agreement » de Collectors compte « New SGC LLC » parmi les entités du groupe. |
+| Langue de la carte distinguée ? | Non vérifié (page bloquée). |
+| Non gradé, gradé | Gradé SGC ; non vérifié sur pièce. |
+| Nature du prix | Aucun prix connu sur le site ; non vérifié. |
+| Profondeur | Non vérifiée. |
+| Historique | Non vérifié. |
+| Accès | `https://gosgc.com/pop-report` : défi Cloudflare (statut 403) avec Playwright, le 16/11/2026. |
+| Conditions | `https://gosgc.com/robots.txt` renvoie la page HTML de l'application (pas de fichier `robots.txt`). Conditions : celles de Collectors (fiche PSA). |
+| Contact | Non vérifié ; voie Collectors (fiche PSA). |
+| Verdict | **D** (inaccessible : protection Cloudflare ; conditions du groupe Collectors). |
+| Essai | Non fait. |
+
+### TAG Grading (Technical Authentication & Grading)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://taggrading.com (boutique Shopify) et https://my.taggrading.com/pop-report (population) — États-Unis (Los Angeles). Société de gradation, notes 1-10 et « TAG Score » sur 1000. |
+| Langue de la carte distinguée ? | **Par extension** (« WOTC Pokémon French », « Pokémon Pikachu World Collection French »), comme pour le japonais (« P.M. Pokémon Japanese… »). |
+| Non gradé, gradé | Gradé TAG. |
+| Nature du prix | Aucun prix dans la population. |
+| Profondeur | Mesuré le 16/11/2026 sur `/pop-report/Pokemon` : « TOTALS 2,894 [extensions] 28,597 [cartes] 957,837 [notées] », toutes langues. Extensions françaises relevées : en 2000, une seule (« WOTC Pokémon French Fossil - 1st Edition ») ; **pas de Set de Base français** en 1999 ni 2000 ; aucune extension française trouvée en 2023 (seulement des japonaises). Couverture française estimée très faible (sur ces trois années lues). |
+| Historique | Population cumulée. |
+| Accès | Pages publiques sans compte. Pas d'API publique trouvée. |
+| Conditions | `robots.txt` de `my.taggrading.com` : `User-agent: * / Allow: /pop-report/` et `Allow: /card/`. Conditions (https://taggrading.com/pages/terms) : « We hereby permit you to use the Services for your personal non-commercial use only » ; interdiction de « (a) download, modify, copy, distribute, transmit, display, perform, reproduce, duplicate, publish […] any information contained on, or obtained from or through, the Services » et de « (j) use any robot, spider, crawlers, scraper, or other automatic device […] to monitor, extract, copy or collect information or data from or through the Services ». |
+| Contact | `info@taggrading.com` (section « 10.7 How to Contact Us » des conditions). |
+| Verdict | **C**, et peu utile : `robots.txt` ouvert mais conditions qui interdisent la collecte et la republication ; quasi pas de cartes françaises. |
+| Essai | Dracaufeu Set de Base français : absent (pas d'extension correspondante). Autres cartes : non cherchées. |

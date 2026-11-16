@@ -121,3 +121,84 @@ Réponse aux trois questions laissées ouvertes : (1) D'où viennent ses prix : 
 | Contact | contact@poketrace.com |
 | Verdict | **D** : les prix européens sont payants et rien n'est propre au français. |
 | Essai | Sans objet. |
+
+### 8. PkmCards.fr (communauté française, réseau tcgcards.fr)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://www.pkmcards.fr ; France ; site communautaire (catalogue, decks, collections, boutiques partenaires) du réseau tcgcards.fr |
+| Langue de la carte distinguée ? | **Oui.** Page de méthode (https://www.pkmcards.fr/guides/estimation-valeur-cartes) : « Langue : une même carte peut avoir un prix très différent selon qu'elle soit en français, anglais ou japonais. L'estimation s'adapte automatiquement à la langue de ta carte. » Chaque fiche porte « Langue FR » et les listes se filtrent par langue (« Liste des cartes françaises »). |
+| Non gradé, gradé | Non gradé seulement (état Mint/Near Mint par défaut). Aucun prix gradé vu. |
+| Nature du prix | Prix **demandé** : « sa valeur est automatiquement estimée à partir du prix le plus bas actuellement disponible sur Cardmarket » ; « calculée en priorité à partir des vendeurs francophones européens (France, Belgique, Suisse...) » ; « si une carte n'est pas en vente sur Cardmarket, son prix est momentanément considéré comme nul ». Les fiches parlent de « prix le plus bas sur Cardmarket et Cardnexus ». Rafraîchissement : « plusieurs fois par jour » pour les cartes chères, quotidien sinon. |
+| Profondeur | Séries récentes et anciennes avec filtre de langue (FR, EN, JP). Nombre exact de cartes françaises : non mesuré. La série « Set de Base » (Dracaufeu 4/102) est introuvable : aucune série « Base » ou « Wizards » dans la liste des séries ; trois adresses devinées renvoient une redirection vers `/cards`. |
+| Historique | « © 2023 - 2026 ». Courbe de prix sur 30 jours par fiche. |
+| Accès | Pages seulement. Pas d'API ni d'export vus. |
+| Conditions | Aucune page de conditions d'utilisation trouvée : seule « Politique des cookies » (https://www.pkmcards.fr/cookies) figure en pied de page ; `/cgu`, `/terms`, `/mentions-legales` renvoient 404. `robots.txt` (https://www.pkmcards.fr/robots.txt) : « User-agent: * / Disallow: /decks/print / Disallow: /decks/delete / Disallow: /wishlists/print / Disallow: /wishlists/delete / Disallow: /account / Allow: /account/profile » ; les fiches de cartes ne sont pas interdites. Absence de conditions ne vaut pas permission : droit de la base de données en France. |
+| Contact | Formulaire https://www.tcgcards.fr/support/contact?website=pkmcards ; formulaire « Devenir partenaire » ; aucune adresse e-mail trouvée. |
+| Verdict | **C** : c'est la source qui fait le plus proche de ce que nous voulons (prix Cardmarket filtré sur la langue française et les vendeurs francophones) mais c'est un prix demandé, tiré de Cardmarket, sans conditions écrites ; la réutilisation dans une cote publique demande un accord. Leur méthode est surtout un modèle à reproduire nous-mêmes. |
+| Essai | Lecture de trois fiches le 16 novembre 2026 (page ouverte sans connexion), prix affiché par la page, nature : prix le plus bas Cardmarket/Cardnexus, vendeurs francophones en priorité. 1. Dracaufeu Set de Base 4/102 FR : **non trouvé** (série absente). 2. Mew ex 205/165, série MEW, langue FR : **24,00 €** (https://www.pkmcards.fr/cards/mew-fr-205-ecarlate-et-violet-151-mew-ex). 3. Noctali VMAX 215/203, série EVS, langue FR : **1 199,00 €** (https://www.pkmcards.fr/cards/evs-fr-215-epee-et-bouclier-evolution-celeste-noctali-vmax). Les deux valeurs n'ont pas été recoupées avec Cardmarket dans cette mission. |
+
+### 9. ZebraDex
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://zebradex.fr ; France (éditeur ZEBRADEX SAS, Paris, d'après `/mentions.php`) ; application et site de collection (« plus de 55 000 collectionneurs », page d'accueil, déclaratif) |
+| Langue de la carte distinguée ? | Annoncé : « Prix FR mis à jour chaque jour » et « Prix mis à jour chaque jour sur les cartes et les produits scellés en France » (accueil). Le détail par langue n'est pas écrit dans la méthode : non vérifié. |
+| Non gradé, gradé | Non gradé seulement d'après la méthode (« cartes en très bon état »). |
+| Nature du prix | https://zebradex.fr/methodologie-prix (mise à jour le 2026-11-16) : « Nous nous basons en priorité sur les ventes réellement conclues, plutôt que sur des prix affichés non conclusifs » ; « vendeurs de confiance (bonnes évaluations) et des cartes en très bon état » ; « nous préférons ne pas estimer de prix plutôt que d'afficher une valeur approximative ». **La ou les places de marché ne sont pas nommées** (« sources sérieuses »). |
+| Profondeur | Non vérifié. |
+| Historique | « © 2025-2026 » ; page de méthode publiée le 2025-09-18. |
+| Accès | Pages, application ; pas d'API. |
+| Conditions | CGU (https://zebradex.fr/cgu.php) : « L'utilisateur s'engage à ne pas utiliser de moyens automatisés pour interroger ou extraire les données du site sans autorisation explicite. » `robots.txt` : `Disallow` sur `/collection`, `/mentions`, `/cgu`, `/admin/`, etc. ; la méthode de prix et les pages de cartes ne sont pas interdites. |
+| Contact | contact@zebradex.fr (mentions légales). |
+| Verdict | **C** : collecte automatisée interdite sans autorisation ; source amont non déclarée. |
+| Essai | Non fait. |
+
+### 10. ValoTCG et Valo.Data (valotcg.com)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://valotcg.com ; France (Entreprise Individuelle, RCS Lyon, CGU) ; application de scan, site de prix, **API Valo.Data**, assistant Valo.IA |
+| Langue de la carte distinguée ? | **Oui, dans l'API.** Les réponses d'exemple de https://valotcg.com/fr/developers portent `card_language: "fr"` et `market_language` (« global », « en », « fr ») : prix Cardmarket « trend » et « low » par marché linguistique, et `sold_median_raw` eBay avec `market_language: "fr"` (« 30 jours, 5 ventes », observé le 2026-10-12, Dracaufeu-ex 199/165 de 151). Sur le site grand public, l'assistant cite « eBay · 30 j · 5 ventes 274,64 € ». |
+| Non gradé, gradé | Les deux : « cartes gradées, populations PSA, PCA et CCC » ; cotes gradées non disponibles en Sandbox. |
+| Nature du prix | Cardmarket (tendance, bas, offres FR), marché US (TCGplayer), ventes eBay conclues « best effort » (« Les données eBay sont collectées au mieux », CGU de l'API). « 7 sources suivies : 3 de prix, 4 pour le gradé et les populations ». |
+| Profondeur | Catalogue : « 375 k 608 k références cartes, langues et variantes » (compteur d'animation, illisible) ; page de couverture (https://valotcg.com/fr/developers/coverage, 16 nov. 2026) : « 184 801 cartes avec un prix du jour Cardmarket, marché US ou eBay (79 % du catalogue) » tous jeux ; Pokémon : 147 121 cartes pour le scanner. Cartes françaises : non isolé. |
+| Historique | Historique de prix 30 jours en Sandbox, 90 jours en Starter, 365 jours en Growth/Scale. |
+| Accès | API REST JSON. Forfaits (CGU de l'API, https://valotcg.com/fr/developers/terms) : Sandbox gratuit « usage non commercial », 500 crédits/mois, 250 cartes distinctes/mois, « sans lien entre les versions linguistiques d'une carte » ; Starter 19 €/mois ; Growth 49 €/mois ; Scale 99 €/mois (usage commercial). |
+| Conditions | Même page : « Sandbox et Essai : usage limité au développement, aux tests et aux prototypes, sans exploitation commerciale. » Interdits : « Exposer les Données brutes à des tiers sous une forme exploitable automatiquement (API publique, flux, téléchargement massif) » ; « Revendre, louer ou redistribuer les Données en flux ou en masse, y compris sous forme de fichiers, d'exports ou de jeux de données » ; attribution obligatoire « Données : ValoTCG ». CGU grand public (https://valotcg.com/terms, 6.1) : « Le Service est destiné à un usage strictement personnel et non commercial » ; interdit « Extraire massivement les données (scraping, crawling automatisé) ». `robots.txt` : `Allow: /` avec exclusions des espaces de compte. |
+| Contact | contact@valotcg.com (CGU). |
+| Verdict | **D** : l'usage public exige un forfait payant (dès 19 €/mois) et notre branche `data` publique contreviendrait à l'interdiction d'exposer les données brutes ; le Sandbox gratuit est limité au prototypage. À retenir : c'est la seule API trouvée qui ventile Cardmarket et eBay par langue de carte, et un exemple de ce que le marché sait faire. Un accord écrit pour un usage gratuit et libre pourrait être demandé (contact@valotcg.com), mais je ne le classe pas C car le modèle économique de l'éditeur est la licence. |
+| Essai | Non fait (D). |
+
+### 11. TCG Crew (tcgcrew.com)
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://tcgcrew.com ; France (NUMYXTCG SASU, Vincennes, mentions légales) ; application de collection et outils pour revendeurs (« à partir de 4,99 €/mois » selon un comparatif tiers, non vérifié sur le site) |
+| Langue de la carte distinguée ? | **Oui, pour les cartes françaises de 10 € et plus** : méthode publiée (https://tcgcrew.com/methodologie, mise à jour le 5 octobre 2026) : « Pour les cartes françaises de 10 € et plus, TCG Crew relève le premier prix Near Mint de la version française. En dessous, et pour les cartes allemandes, espagnoles et italiennes, la cote est la tendance Cardmarket du produit, commune aux langues d'une même extension. » |
+| Non gradé, gradé | Les deux. Gradé : « Une carte gradée est cotée pour sa note exacte (par exemple PSA 10, CCC 9,5), jamais à partir du prix de la carte non gradée », sur « des ventes récentes de la même carte à la même note ». Mêmes principes que ceux du projet. |
+| Nature du prix | Cardmarket : premier prix Near Mint de la version française (demandé), relevé « environ tous les deux jours », sinon tendance Cardmarket « protégée » (comparée aux moyennes 7 et 30 jours et à la médiane trois mois) ; guide de prix Cardmarket « importé quotidiennement ». Anglais, japonais : « valeur de référence de la version exacte » dont la source n'est pas nommée. Ventes conclues eBay abandonnées : « Depuis le 19 août 2026, eBay bloque l'accès aux ventes conclues » (déclaration du site, non recoupée). |
+| Profondeur | « Les pages publiques des extensions dont les cotes sont vérifiées (la plupart de celles parues depuis 2013) » publient la cote de chaque carte avec sa source. Nombre de cartes : non mesuré. |
+| Historique | « l'historique commence au premier relevé réel : aucune courbe n'est reconstituée ». |
+| Accès | Pages publiques (`/sets`, `/comparatifs`, `/blog`, autorisées par `robots.txt`) ; application ; pas d'API vue. |
+| Conditions | Mentions légales (https://tcgcrew.com/legal) : « Toute reproduction, distribution, modification, adaptation, retransmission ou publication de ces éléments est strictement interdite sans l'accord écrit de NUMYXTCG. » `robots.txt` (https://tcgcrew.com/robots.txt) : `Allow: /landing /pricing /blog /sets /comparatifs /outils`, `Disallow: /login /register ...`. |
+| Contact | contact@tcgcrew.com (mentions légales). |
+| Verdict | **C** : la seule méthode publique française qui sépare le prix de la carte française et qui distingue le gradé par note exacte ; reprise de leurs cotes interdite sans accord écrit. Utile comme point de comparaison et pour confirmer notre propre méthode. |
+| Essai | Non fait (C). |
+
+Note : TCG Crew, qui est concurrent et publie des pages comparatives, signale que « Base Set 2, Gym Heroes, Gym Challenge, Legendary Collection et Skyridge ne sont jamais parues en France : les offres "françaises" de ces extensions sur Cardmarket sont des erreurs d'étiquetage ». Déclaration non recoupée, mais utile à vérifier pour notre propre filtre de langue.
+
+### 12. Pokoya
+
+| Champ | Contenu |
+| --- | --- |
+| Adresse, pays, type | https://pokoya.app ; non vérifié ; application de collection (Android, navigateur) |
+| Langue de la carte distinguée ? | Non établi. |
+| Non gradé, gradé | Non vérifié. |
+| Nature du prix | FAQ (https://pokoya.app/faq) : « Nos prix proviennent de Cardmarket, la plus grande place de marché européenne pour les cartes Pokémon. Ils sont mis à jour quotidiennement à partir des ventes réelles, pas des annonces. » (formulation du site ; Cardmarket publie des tendances calculées, pas des ventes individuelles : à ne pas prendre au mot). |
+| Profondeur, historique | Non vérifié. |
+| Accès | Application, pas d'API vue. |
+| Conditions | Non lues. `robots.txt` : `Allow: /`, `/faq`, `/legal/` ; `Disallow` sur les espaces de compte. |
+| Contact | Non vérifié. |
+| Verdict | **D** : aucune plus-value de prix (c'est Cardmarket), conditions non lues. |
+| Essai | Sans objet. |
