@@ -1,4 +1,4 @@
-// Client minimal de l'API TCGdex (catalogue français + prix Cardmarket / TCGplayer).
+// Client minimal de l'API TCGdex (catalogue français + prix Cardmarket).
 // Sans dépendance à Next : utilisé par le site et par le script d'ingestion.
 
 import type { TcgdexPricing } from "./pricing/raw.ts";
@@ -19,6 +19,7 @@ export interface SetBrief {
   logo?: string;
   symbol?: string;
   cardCount: { total: number; official: number };
+  abbreviation?: { official?: string };
 }
 export interface Serie extends SerieBrief {
   releaseDate?: string;
@@ -48,7 +49,15 @@ export interface Card extends CardBrief {
   pricing?: TcgdexPricing | null;
 }
 
-async function get<T>(path: string, tries = 4): Promise<T | null> {
+/**
+ * Nombre d'essais par requête. Le site reste vif (4). Le relevé (voir ingest.ts) et la
+ * construction du site patientent : TCGdex a des indisponibilités de quelques secondes, et
+ * une construction qui échoue là-dessus bloque un déploiement.
+ */
+export const retry = { tries: process.env.NEXT_PHASE === "phase-production-build" ? 7 : 4 };
+
+async function get<T>(path: string): Promise<T | null> {
+  const { tries } = retry;
   for (let i = 0; ; i++) {
     try {
       const res = await fetch(`${API}/${path}`);
@@ -67,6 +76,8 @@ export async function listSeries(): Promise<SerieBrief[]> {
 }
 export const fetchSerie = (id: string) => (EXCLUDED_SERIES.has(id) ? null : get<Serie>(`series/${encodeURIComponent(id)}`));
 export const fetchSet = (id: string) => get<SetDetail>(`sets/${encodeURIComponent(id)}`);
+/** La même extension en anglais : sert à recouper les cartes avec des sources qui les nomment en anglais. */
+export const fetchSetEn = (id: string) => get<SetDetail>(`../en/sets/${encodeURIComponent(id)}`);
 export const fetchCard = (id: string) => get<Card>(`cards/${encodeURIComponent(id)}`);
 // Les extensions Pocket s'appellent P-A, A1, A2b, B1a…
 const POCKET_CARD = /^(P-A|[AB]\d+[a-z]?)-/;
@@ -77,13 +88,3 @@ export const searchCards = (name: string) =>
 export const cardImage = (image: string | undefined, quality: "low" | "high" = "low") =>
   image ? `${image}/${quality}.webp` : null;
 export const assetImage = (url: string | undefined) => (url ? `${url}.webp` : null);
-
-/** Taux USD → EUR (BCE). Repli sur une valeur fixe si le service est indisponible. */
-export async function usdToEur(): Promise<number> {
-  try {
-    const res = await fetch("https://api.frankfurter.dev/v1/latest?base=USD&symbols=EUR");
-    const rate = (await res.json())?.rates?.EUR;
-    if (typeof rate === "number" && rate > 0.5 && rate < 1.5) return rate;
-  } catch {}
-  return 0.9;
-}

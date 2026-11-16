@@ -4,7 +4,7 @@ import type { Mini } from "@/lib/snapshot";
 import { cardImage } from "@/lib/tcgdex";
 import { money, percent } from "@/lib/ui";
 
-export function CardArt({ image, name, quality = "low", eager = false }: { image?: string; name: string; quality?: "low" | "high"; eager?: boolean }) {
+export function CardArt({ image, name, quality = "low", eager = false, priority = eager }: { image?: string; name: string; quality?: "low" | "high"; eager?: boolean; priority?: boolean }) {
   const src = cardImage(image, quality);
   return (
     <div className="card-art relative">
@@ -13,7 +13,7 @@ export function CardArt({ image, name, quality = "low", eager = false }: { image
       {src && (
         // Images servies telles quelles par TCGdex (déjà en WebP, à la bonne taille).
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} alt="" width={245} height={342} loading={eager ? "eager" : "lazy"} decoding="async" className="relative" />
+        <img src={src} alt="" width={245} height={342} loading={eager ? "eager" : "lazy"} fetchPriority={priority ? "auto" : "low"} decoding="async" className="relative" />
       )}
     </div>
   );
@@ -39,11 +39,12 @@ export interface TileCard {
   rarity?: string;
 }
 
-export function CardTile({ card, price, caption, index = 0 }: { card: TileCard; price?: Mini; caption?: string; index?: number }) {
+export function CardTile({ card, price, caption, index = 0, eager = false }: { card: TileCard; price?: Mini; caption?: string; index?: number; eager?: boolean }) {
   return (
     <Link href={`/cartes/${card.id}`} className="tile rise" style={{ "--i": Math.min(index, 14) } as React.CSSProperties}>
       <ViewTransition name={`card-${card.id}`} share="card-morph" default="none">
-        <CardArt image={card.image} name={card.name} eager={index < 6} />
+        {/* eager : toute la grille se charge d'emblée, les premières rangées en priorité. */}
+        <CardArt image={card.image} name={card.name} eager={eager || index < 6} priority={index < 12} />
       </ViewTransition>
       <div className="mt-2.5 flex items-baseline justify-between gap-2">
         <span className="truncate font-semibold leading-tight">{card.name}</span>

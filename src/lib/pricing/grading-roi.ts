@@ -1,6 +1,8 @@
 // « Est-ce que ça vaut le coup de faire grader cette carte ? »
 // Espérance de valeur gradée (pondérée par les chances d'obtenir chaque note)
 // moins la valeur actuelle et le coût complet du service.
+// Les valeurs gradées sont des prix OBSERVÉS : s'il en manque une pour une note
+// atteignable, le calcul n'est pas rendu (null) plutôt qu'estimé.
 
 import { COMPANIES, gradedPrice, type CompanyId, type Era, type GradedObservations } from "./graded.ts";
 
@@ -93,8 +95,10 @@ export function gradingVerdict(
     value: Math.round(value * 100) / 100,
     net: Math.round((value - raw - cost) * 100) / 100,
   });
+  const values = company.grades.map((g) => gradedPrice(observations[`${company.id}:${g}`]));
+  if (values.some((v, i) => v === null && odds[i] > 0)) return null;
   const outcomes = [
-    ...company.grades.map((g, i) => outcome(g.grade, odds[i], gradedPrice(raw, era, company.id, g.grade, observations[`${company.id}:${g.grade}`])!.price)),
+    ...company.grades.map((g, i) => outcome(g, odds[i], values[i] ?? 0)),
     outcome("inférieure", odds[4], raw * BELOW_VALUE),
   ];
   const expectedValue = outcomes.reduce((s, o) => s + o.probability * o.value, 0);

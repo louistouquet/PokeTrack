@@ -13,12 +13,13 @@ import { HoloCard } from "./holo-card";
 import { Icon } from "./icon";
 import { LcdChart } from "./lcd-chart";
 import { Meter } from "./meter";
+import { Select } from "./select";
 import { Slab } from "./slab";
 
-const SOURCE_NAMES: Record<SourceId, string> = { cardmarket: "Cardmarket", tcgplayer: "TCGplayer", ebay: "eBay France" };
+const SOURCE_NAMES: Record<SourceId, string> = { cardmarket: "Cardmarket", cardtrader: "CardTrader", ebay: "eBay France" };
 const SOURCE_NOTES: Record<SourceId, string> = {
-  cardmarket: "Europe, ventes réalisées",
-  tcgplayer: "États-Unis, converti en euros",
+  cardmarket: "Europe, ventes réalisées, toutes langues",
+  cardtrader: "Cartes françaises, annonces en cours",
   ebay: "Annonces en cours",
 };
 
@@ -29,15 +30,18 @@ export function CardView({ detail }: { detail: CardDetail }) {
   const [finish, setFinish] = useState<Finish>("standard");
   const [grade, setGrade] = useState<Grade>(null);
   const quote = finish === "reverse" && detail.reverse ? detail.reverse : detail.standard;
-  const graded = quote.price ? gradedTable(quote.price, era, finish === "standard" ? detail.observations : {}) : [];
-  const selected = grade && graded.find((g) => g.company === grade.company && g.grade === grade.grade);
+  // Prix gradés : uniquement des annonces observées (relevées pour la finition standard).
+  const graded = gradedTable(finish === "standard" ? detail.observations : {});
+  const observed = graded.some((g) => g.price !== null);
+  const picked = grade && graded.find((g) => g.company === grade.company && g.grade === grade.grade);
+  const selected = picked && picked.price !== null ? { ...picked, price: picked.price } : null;
   const company = grade && COMPANIES.find((c) => c.id === grade.company)!;
   const history = detail.history[finish];
 
   // Meilleure option de gradation pour une carte en très bon état.
   const best = quote.price
-    ? SERVICES.map((s) => gradingVerdict(quote.price!, era, "nearMint", s, detail.observations)!).sort((a, b) => b.expectedGain - a.expectedGain)[0]
-    : null;
+    ? SERVICES.flatMap((s) => gradingVerdict(quote.price!, era, "nearMint", s, detail.observations) ?? []).sort((a, b) => b.expectedGain - a.expectedGain)[0]
+    : undefined;
 
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,23rem)_minmax(0,1fr)] lg:gap-14">
@@ -81,7 +85,7 @@ export function CardView({ detail }: { detail: CardDetail }) {
           <>
             <div className="lcd px-5 py-4" aria-live="polite">
               <p className="text-sm font-semibold text-lcd-dim">
-                {selected ? `${company!.name} ${selected.grade} · ${selected.method === "modèle" ? "estimation par modèle" : selected.method === "mixte" ? "modèle + annonces" : "prix observé"}` : "Prix juste · non gradée"}
+                {selected ? `${company!.name} ${selected.grade} · prix observé sur ${selected.listings} annonces` : "Prix juste · non gradée"}
               </p>
               <p className="pixel text-5xl leading-none sm:text-6xl">{money(selected ? selected.price : quote.price)}</p>
               <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
@@ -93,6 +97,14 @@ export function CardView({ detail }: { detail: CardDetail }) {
                   <>
                     <span>
                       Fourchette {money(quote.range![0])} – {money(quote.range![1])}
+                    </span>
+                    {/* Dire sur quoi repose le prix : des cartes françaises, ou le marché européen toutes langues. */}
+                    <span className="text-lcd-dim">
+                      {quote.french >= 3
+                        ? `Prix français : ${quote.french} annonces de cartes françaises`
+                        : quote.french
+                          ? `Prix européen, ${quote.french} annonce${quote.french > 1 ? "s" : ""} française${quote.french > 1 ? "s" : ""} seulement`
+                          : "Prix européen, toutes langues"}
                     </span>
                     {quote.trend !== null && (
                       <span className="flex items-center gap-1.5">
@@ -112,9 +124,17 @@ export function CardView({ detail }: { detail: CardDetail }) {
               </p>
             )}
 
+            {detail.far && (
+              <p className="mt-5 flex gap-2.5 rounded-xl bg-[#f6dfa6] px-4 py-3 text-sm">
+                <Icon name="info" size={18} className="mt-0.5 shrink-0" />
+                Ce prix est plus de dix fois au-dessus ou au-dessous de celui de la même carte aux États-Unis : elle est peut-être rattachée au mauvais produit dans les
+                données de la source. À vérifier avant toute décision.
+              </p>
+            )}
+
             <div className="mt-7 grid gap-x-8 gap-y-5 px-1.5 sm:grid-cols-3">
-              <Meter label="Liquidité" score={quote.liquidity} hint={quote.listings !== null ? `${quote.listings} en vente sur eBay` : "Facilité à vendre au prix juste"} />
-              <Meter label="Confiance" score={quote.confidence} hint="Accord et fraîcheur des sources" />
+              <Meter label="Liquidité" score={quote.liquidity} hint={quote.listings !== null ? `${quote.listings} exemplaire${quote.listings > 1 ? "s" : ""} en vente dans les annonces relevées` : "Facilité à vendre au prix juste"} />
+              <Meter label="Confiance" score={quote.confidence} hint="Cohérence et fraîcheur des indicateurs" />
               <Meter label="Volatilité" score={quote.volatility} invert hint="Écart entre les moyennes récentes" />
             </div>
 
@@ -165,46 +185,55 @@ export function CardView({ detail }: { detail: CardDetail }) {
 
             <section className="mt-12">
               <h2 className="text-2xl">Si elle était gradée</h2>
-              <p className="mt-2 max-w-[62ch] text-ink-soft">
-                Choisissez une note pour voir la carte en boîtier et son prix estimé.{" "}
-                {graded.some((g) => g.method !== "modèle") ? "Les cases marquées d'un point s'appuient sur des annonces eBay." : "Ces prix viennent d'un modèle, pas de ventes observées."}{" "}
-                <Link href="/methode#grade" className="underline">
-                  Comprendre le calcul
-                </Link>
-              </p>
-              <div className="mt-4 space-y-2.5">
-                {COMPANIES.map((c) => (
-                  <div key={c.id} className="panel grid grid-cols-[5.5rem_1fr] items-center gap-2 p-2 sm:grid-cols-[9rem_1fr]">
-                    <div className="pl-2">
-                      <span className="block font-bold leading-tight">{c.name}</span>
-                      <span className="hidden text-sm text-ink-soft sm:block">{c.country}</span>
-                    </div>
-                    <div className="grid grid-cols-4 gap-1.5">
-                      {graded
-                        .filter((g) => g.company === c.id)
-                        .map((g) => {
-                          const on = grade?.company === g.company && grade.grade === g.grade;
-                          return (
-                            <button
-                              key={g.grade}
-                              type="button"
-                              aria-pressed={on}
-                              onClick={() => setGrade(on ? null : { company: g.company, grade: g.grade })}
-                              className="grade-cell"
-                              title={`${c.name} ${g.grade} : ${g.method}${g.listings ? `, ${g.listings} annonces` : ""}`}
-                            >
-                              <span className="pixel text-lg leading-none">
-                                {g.grade}
-                                {g.method !== "modèle" && <i aria-hidden className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-current align-middle" />}
-                              </span>
-                              <span className="text-[0.8125rem] font-semibold sm:text-sm">{money(g.price)}</span>
-                            </button>
-                          );
-                        })}
-                    </div>
+              {observed ? (
+                <>
+                  <p className="mt-2 max-w-[62ch] text-ink-soft">
+                    Prix observés sur des annonces de cette carte gradée. Une case vide veut dire qu&apos;il n&apos;y a pas assez d&apos;annonces pour cette note.{" "}
+                    <Link href="/methode#grade" className="underline">
+                      Comprendre le calcul
+                    </Link>
+                  </p>
+                  <div className="mt-4 space-y-2.5">
+                    {COMPANIES.map((c) => (
+                      <div key={c.id} className="panel grid grid-cols-[5.5rem_1fr] items-center gap-2 p-2 sm:grid-cols-[9rem_1fr]">
+                        <div className="pl-2">
+                          <span className="block font-bold leading-tight">{c.name}</span>
+                          <span className="hidden text-sm text-ink-soft sm:block">{c.country}</span>
+                        </div>
+                        <div className="grid grid-cols-4 gap-1.5">
+                          {graded
+                            .filter((g) => g.company === c.id)
+                            .map((g) => {
+                              const on = grade?.company === g.company && grade.grade === g.grade;
+                              return (
+                                <button
+                                  key={g.grade}
+                                  type="button"
+                                  aria-pressed={on}
+                                  disabled={g.price === null}
+                                  onClick={() => setGrade(on ? null : { company: g.company, grade: g.grade })}
+                                  className="grade-cell"
+                                  title={g.price === null ? `${c.name} ${g.grade} : pas assez d'annonces` : `${c.name} ${g.grade} : ${g.listings} annonces`}
+                                >
+                                  <span className="pixel text-lg leading-none">{g.grade}</span>
+                                  <span className="text-[0.8125rem] font-semibold sm:text-sm">{money(g.price)}</span>
+                                </button>
+                              );
+                            })}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+              ) : (
+                <p className="panel mt-4 max-w-[62ch] px-5 py-5 text-ink-soft">
+                  <strong className="text-ink">Pas encore de vente gradée observée pour cette carte.</strong> Un prix gradé n&apos;est affiché que s&apos;il vient d&apos;annonces
+                  réelles : il n&apos;est jamais calculé à partir du prix de la carte non gradée.{" "}
+                  <Link href="/methode#grade" className="underline">
+                    En savoir plus
+                  </Link>
+                </p>
+              )}
 
               {best && (
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-xl bg-shell-lo px-5 py-4">
@@ -299,21 +328,16 @@ function AddToCollection({ detail, finish, grade, onGrade }: { detail: CardDetai
         <div className="grid grid-cols-2 gap-3">
           <label className="block text-sm font-semibold">
             Société
-            <select className="field mt-1" value={grade.company} onChange={(e) => onGrade({ company: e.target.value as CompanyId, grade: COMPANIES.find((c) => c.id === e.target.value)!.grades[0].grade })}>
-              {COMPANIES.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
+<Select
+              className="mt-1"
+              value={grade.company}
+              onChange={(id) => onGrade({ company: id, grade: COMPANIES.find((c) => c.id === id)!.grades[0] })}
+              options={COMPANIES.map((c) => ({ value: c.id, label: c.name }))}
+            />
           </label>
           <label className="block text-sm font-semibold">
             Note
-            <select className="field mt-1" value={grade.grade} onChange={(e) => onGrade({ company: grade.company, grade: e.target.value })}>
-              {company.grades.map((g) => (
-                <option key={g.grade}>{g.grade}</option>
-              ))}
-            </select>
+<Select className="mt-1" value={grade.grade} onChange={(g) => onGrade({ company: grade.company, grade: g })} options={company.grades.map((g) => ({ value: g, label: g }))} />
           </label>
         </div>
       )}

@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { loadHistory, rawValue, removeItem, updateItem, type Item } from "@/lib/collection";
-import { COMPANIES, eraOfSerie, type CompanyId } from "@/lib/pricing/graded";
+import { COMPANIES, eraOfSerie } from "@/lib/pricing/graded";
 import type { CardSummary } from "@/lib/snapshot";
 import { money } from "@/lib/ui";
 import { CardArt } from "./card-tile";
 import { GradingAdvisor } from "./grading-advisor";
 import { Icon } from "./icon";
 import { LcdChart, type Point } from "./lcd-chart";
+import { Select } from "./select";
 
 export const stateLabel = (item: Pick<Item, "grade" | "finish">) =>
   `${item.grade ? `${COMPANIES.find((c) => c.id === item.grade!.company)!.name} ${item.grade.grade}` : "Non gradée"}${item.finish === "reverse" ? " · reverse" : ""}`;
@@ -84,25 +85,21 @@ export function ItemPanel({ item, card, unit, onClose }: { item: Item; card?: Ca
           <>
             <label className="block text-sm font-semibold">
               Société
-              <select
-                className="field mt-1"
+<Select
+                className="mt-1"
                 value={item.grade.company}
-                onChange={(e) => updateItem(item.key, { grade: { company: e.target.value as CompanyId, grade: COMPANIES.find((c) => c.id === e.target.value)!.grades[0].grade } })}
-              >
-                {COMPANIES.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
+                onChange={(id) => updateItem(item.key, { grade: { company: id, grade: COMPANIES.find((c) => c.id === id)!.grades[0] } })}
+                options={COMPANIES.map((c) => ({ value: c.id, label: c.name }))}
+              />
             </label>
             <label className="block text-sm font-semibold">
               Note
-              <select className="field mt-1" value={item.grade.grade} onChange={(e) => updateItem(item.key, { grade: { company: item.grade!.company, grade: e.target.value } })}>
-                {company.grades.map((g) => (
-                  <option key={g.grade}>{g.grade}</option>
-                ))}
-              </select>
+<Select
+                className="mt-1"
+                value={item.grade.grade}
+                onChange={(grade) => updateItem(item.key, { grade: { company: item.grade!.company, grade } })}
+                options={company.grades.map((g) => ({ value: g, label: g }))}
+              />
             </label>
           </>
         )}

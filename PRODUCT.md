@@ -12,7 +12,7 @@ Collectionneurs et investisseurs de cartes Pokémon en France. Ils consultent su
 - Ranger sa collection et suivre sa valeur dans le temps.
 - Décider si faire grader une carte vaut le coût.
 
-Ce qui le distingue : un prix recoupé entre plusieurs places de marché avec ses indices, une méthode publiée, un code ouvert, aucun compte.
+Ce qui le distingue : un prix expliqué, avec ses indices, une méthode publiée, un code ouvert, aucun compte.
 
 ## Contraintes durables
 

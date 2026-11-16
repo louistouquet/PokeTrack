@@ -1,0 +1,44 @@
+name: Veille du relevé
+
+# Vérifie que le relevé du jour est bien sur la branche `data`. S'il manque, le relance
+# et ouvre un ticket assigné au propriétaire du dépôt, qui le prévient par courriel.
+# Le ticket se ferme tout seul au prochain relevé réussi (voir prices.yml).
+#
+# Limite connue : cette veille dépend du même planificateur GitHub que le relevé.
+# Si GitHub ne déclenche rien du tout ce jour-là, elle ne tourne pas non plus.
+
+on:
+  schedule:
+    - cron: "23 8 * * *"
+    - cron: "23 17 * * *"
+    - cron: "23 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write # relancer le relevé
+  issues: write
+
+jobs:
+  veille:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Le relevé du jour est-il publié ?
+        run: |
+          today=$(date -u +%F)
+          last=$(gh api -H "Accept: application/vnd.github.raw" "repos/$GITHUB_REPOSITORY/contents/market-history.json?ref=data" --jq '.days[-1]' || echo "illisible")
+          echo "Dernier relevé publié : $last (aujourd'hui : $today)"
+          [ "$last" = "$today" ] && exit 0
+
+          gh workflow run prices.yml --repo "$GITHUB_REPOSITORY" --ref main
+          msg="À $(date -u +%H:%M) UTC, le relevé du $today n'était pas publié (dernier relevé : $last). Il vient d'être relancé."
+          gh label create releve --repo "$GITHUB_REPOSITORY" --color B60205 --description "Relevé des prix en panne" --force
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --label releve --state open --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "$msg"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "Relevé des prix en panne" --label releve --assignee "$GITHUB_REPOSITORY_OWNER" --body "$msg"
+          fi
