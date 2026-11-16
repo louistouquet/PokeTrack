@@ -1,6 +1,6 @@
 # Travailler sur ce dépôt
 
-Lire d'abord `ROADMAP.md` (état, défauts connus, direction), puis `PRODUCT.md` et `DESIGN.md`. `CADRAGE.md` est la proposition de cadrage du projet : tant que le fondateur ne l'a pas validée, ne rien construire de l'architecture d'agents qu'elle décrit.
+Lire d'abord `ROADMAP.md` (état, défauts connus, direction), puis `PRODUCT.md` et `DESIGN.md`. Le chantier en cours est décrit dans `docs/chantier-prix-fiables.md`. `CADRAGE.md` est la proposition de cadrage du projet : tant que le fondateur ne l'a pas validée, ne rien construire de l'architecture d'agents qu'elle décrit.
 
 ## Commandes
 
@@ -35,11 +35,17 @@ Lire d'abord `ROADMAP.md` (état, défauts connus, direction), puis `PRODUCT.md`
 - Marques : TMview ne répond qu'à un vrai navigateur (Playwright), pas à `curl`.
 - Domaines : `https://rdap.org/domain/<nom>` (404 = pas d'enregistrement) recoupé par une requête DNS. Cela ne dit ni le prix ni si le domaine est « premium ».
 - Comptes GitHub d'autrui : `curl` est refusé par le proxy, passer par l'outil de lecture de pages web.
-- Vercel : le connecteur est sur le bon compte mais doit être autorisé pour l'espace « clip-studio » (lien à usage unique, valable 10 minutes, à demander à l'assistant).
+- Vercel : l'accès à l'espace « clip-studio » est autorisé depuis le 16 novembre (équipe `team_Ap6mm9JBP83IUSj2fEJVkF6O`, projet `prj_piksw6fS1egtJ7pAwinYyou0JCcS`). S'il est refusé à nouveau, générer un lien d'autorisation à usage unique et le donner au fondateur.
+- Vercel ne doit pas construire la branche `data` : c'est un réglage du projet (« Ignored Build Step »), pas un fichier du dépôt.
+- Production : `https://poke-track-tau.vercel.app`.
+- Gmail : boîte du fondateur. N'envoyer qu'en son nom, pour ce projet, à des adresses publiées par le destinataire et vérifiées. Ne lire que les fils liés aux demandes du projet.
+- Firecrawl : recherche et lecture de pages, payant en crédits du fondateur. Lire les conditions d'utilisation et le `robots.txt` d'un site avant d'y collecter quoi que ce soit ; un outil de collecte ne rend pas une collecte permise.
 
 ## Façon de faire
 
+- Méthode : skills `superpowers` (installés sur le compte du fondateur) pour cadrer, planifier et vérifier. Les sous-agents ne se lancent que si le fondateur le demande dans son message.
 - Design : skills `impeccable`, `emil-design-eng` et `design-taste-frontend` (dans `.claude/skills/`). Code : skill `ponytail`, la plus petite modification qui règle tout le problème, pas de dépendance pour quelques lignes.
+- Fusion : le fondateur a autorisé la fusion dans `main` le 16 novembre. Une demande de fusion par lot cohérent, contrôles et vérification navigateur faits avant.
 - Le fondateur délègue les décisions techniques. Lui demander seulement ce que lui seul peut faire ou trancher : accès, comptes, argent, engagements, orientation.
 - Interface et documentation en français.
 

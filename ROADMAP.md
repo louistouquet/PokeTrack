@@ -4,38 +4,39 @@
 
 ## Où on en est
 
-- Première version fusionnée dans `main` le 15 novembre 2026 et mise en ligne sur Vercel par le fondateur.
-- Relevé des prix publié sur la branche `data` : deux jours d'historique (15 et 16 novembre), aucun jour manquant. Les deux relevés ont été déclenchés par une fusion ou à la main : le déclenchement planifié de GitHub n'a encore jamais fonctionné.
-- 20 226 cartes françaises suivies.
-- Le document de cadrage (`CADRAGE.md`) est un brouillon soumis au fondateur. Rien de l'architecture d'agents n'est construit.
+État au soir du 16 novembre 2026.
 
-### Corrigé le 16 novembre (branche `claude/zealous-mayer-ain5x3`, pas encore dans `main`)
+- **En ligne** : `https://poke-track-tau.vercel.app`, à jour avec `main`. Vérifié dans un navigateur le 16 novembre après la fusion de la demande n° 3 : huit pages, deux largeurs, console sans erreur.
+- **Relevé** : publié sur la branche `data` pour le 15 et le 16 novembre, aucun jour manquant. Le relevé du 16 novembre au soir a tourné sur GitHub avec CardTrader : 20 226 cartes, aucune perdue, 19 443 cotées. Le déclenchement planifié de GitHub fonctionne mais avec retard (celui de 4 h 17 UTC est parti à 12 h 41).
+- **Prochain chantier** : la recherche de sources et le modèle de prix, décrits dans `docs/chantier-prix-fiables.md`. À démarrer dans une nouvelle session.
+- **Cadrage** : `CADRAGE.md` porte les décisions du fondateur. L'architecture d'agents qu'il propose n'est ni validée ni construite.
 
-- **Le marché américain n'entre plus dans le prix.** Le prix juste repose sur Cardmarket seul. Mesuré sur un relevé complet : 12 366 prix changent de plus de 5 %, la valeur totale suivie passe de 295 849 € à 252 143 €, et 331 cartes qui n'étaient cotées qu'aux États-Unis n'ont plus de prix (19 428 cartes cotées). La courbe historique aura donc une marche le jour de la mise en ligne.
-- **Nouveau signal de prix douteux.** 202 cartes d'au moins 5 € dont le prix européen est plus de dix fois au-dessus ou au-dessous du prix américain sont signalées, plafonnées en confiance et exclues des classements. Le prix américain sert d'alarme, jamais de prix.
-- **Le relevé ne perd plus de cartes en silence.** Un essai local avait perdu 40 cartes sur des erreurs passagères de TCGdex. Désormais : second essai, la carte garde sa fiche de la veille si elle reste illisible, et le relevé refuse de publier s'il manque trop de cartes ou si le nombre de cartes cotées chute.
-- **Alerte.** Un relevé en échec ouvre un ticket assigné au propriétaire du dépôt. Une veille (`.github/workflows/veille.yml`) vérifie trois fois par jour que le relevé du jour existe, le relance sinon et ouvre le même ticket. Ces deux flux n'ont pas encore tourné : ils ne s'activent qu'une fois dans `main`.
-- L'indice de liquidité est ramené sur 100 sans le marché américain.
+### Ce que le site fait aujourd'hui, et ses limites
 
-### Fait le 16 novembre, deuxième passage (même branche, pas encore dans `main`)
+| Sujet | État |
+| --- | --- |
+| Prix non gradé | Cardmarket (Europe, toutes langues), plus les annonces de cartes françaises de CardTrader quand il y en a. Le marché américain n'entre plus dans le calcul. |
+| Prix réellement français | 970 cartes sur 20 226 ont trois annonces françaises ou plus ; 4 632 en ont au moins une. Presque toutes sont récentes. Chaque fiche dit si son prix est français ou européen. |
+| Prix douteux | 204 cartes signalées pour un écart de plus de dix fois avec le prix américain, 1 172 pour un produit partagé avec une autre carte. Affichées, plafonnées en confiance, hors classements. |
+| Prix gradés | Aucun. Ils ne sont affichés que s'ils sont observés, et aucune source d'annonces gradées n'est branchée. Une carte gradée d'une collection n'a pas de valeur. |
+| Illustrations | 2 941 cartes sans illustration française, dont 1 402 ont une illustration anglaise chez TCGdex. Rien de fait. |
+| Relevé | Second essai des cartes illisibles, refus de publier un relevé anormal, ticket assigné au propriétaire en cas d'échec, veille trois fois par jour. L'alerte et la veille n'ont encore jamais eu à se déclencher : non éprouvées. |
+| Dépendance à TCGdex | L'accueil, les familles et la construction du site lisent notre propre catalogue (`catalog.json`). La fiche d'une carte et la recherche interrogent encore TCGdex en direct ; une page d'erreur propose de réessayer. |
+| Interface | Extensions affichées en entier, tri et filtre par rareté, listes déroulantes dessinées par le site. Non essayées dans Opera lui-même. |
 
-Suite aux décisions du fondateur (voir `CADRAGE.md`, « Décisions du fondateur »).
+### Déploiement : ce qui clochait
 
-- **Annonces de cartes françaises (CardTrader) branchées**, premier passage contrôlé avec le jeton du fondateur. Mesuré sur un relevé complet : 157 extensions reliées sur 188, 4 649 cartes avec au moins une annonce française en très bon état, dont 2 367 avec une seule, 1 001 avec trois ou plus et 137 avec cinq ou plus. Presque tout est dans Écarlate et Violet, Méga-Évolution et Épée et Bouclier ; les séries anciennes n'ont quasiment rien. 685 annonces ont été écartées parce que le nom de la carte ne correspondait pas.
-- **Chaque fiche dit sur quoi repose son prix** : « prix français » à partir de trois annonces de cartes françaises, sinon « prix européen, toutes langues ». Le prix n'est donc réellement français que pour 5 % des cartes aujourd'hui.
-- **Prix gradés : plus aucun multiplicateur.** Un prix gradé n'est affiché que s'il vient d'au moins trois annonces observées. Aucune source d'annonces gradées n'étant branchée (CardTrader n'en a que 20 en français, tous jeux Pokémon confondus), les prix gradés sont vides sur tout le site, une carte gradée d'une collection n'a pas de valeur, et le calcul « faut-il la faire grader » n'affiche que les frais.
-- **Interface** : extensions affichées en entier, sans bouton « afficher plus », illustrations chargées d'emblée ; tri et filtre par rareté ; listes déroulantes dessinées par le site (la liste native s'affichait sans style sous Opera).
-- **Relevé** : il patiente jusqu'à 25 secondes par requête quand TCGdex répond 503 (un essai avait échoué là-dessus), et continue sans les annonces françaises si CardTrader est en panne.
-- **Activation en production** : le relevé GitHub n'utilisera CardTrader qu'une fois le secret `CARDTRADER_TOKEN` ajouté au dépôt par le fondateur. Les demandes d'accord écrit à CardTrader et à eBay sont rédigées dans `docs/demandes-sources.md`.
+Deux causes, lues dans les journaux Vercel le 16 novembre.
 
-### Ce qui reste ouvert après ce passage
+1. **Vercel construisait la branche `data`** à chaque relevé. Elle ne contient que des fichiers de prix : erreur à chaque fois. Corrigé par un réglage du projet Vercel (« Ignored Build Step » : `[ "$VERCEL_GIT_COMMIT_REF" = "data" ]`). À confirmer au prochain relevé : le déploiement de `data` doit apparaître comme ignoré, plus comme en erreur.
+2. **La construction appelait TCGdex**, qui répondait 503 par moments, et une seule erreur faisait tout échouer. Corrigé : le site lit `catalog.json` dans nos relevés.
 
-- **Le prix français des cartes chères et anciennes.** Aucune source autorisée ne le donne. Pistes : accord écrit d'eBay, accord de Cardmarket, déclarations de la communauté.
-- **Les prix gradés** : même constat, il faut au moins l'accord d'eBay.
-- **Illustrations** : rien de changé. PokéCardex interdit la reprise de ses images. Le repli sur l'illustration anglaise (1 402 cartes) reste à faire.
-- **Déploiement en production** : le fondateur signale un problème depuis la dernière mise à jour. Les journaux Vercel n'ont pas pu être lus (pas d'accès à l'espace « clip-studio »). Cause très probable, reproduite ici : la construction du site appelait TCGdex, qui répondait 503 par moments le 16 novembre, et une seule erreur faisait échouer toute la construction. Corrigé sur cette branche : le relevé publie le catalogue (`catalog.json`) et le site le lit dans nos relevés ; la construction patiente davantage tant que ce fichier n'existe pas. À confirmer dans les journaux Vercel.
-- **Dépendance restante à TCGdex en direct** : la fiche d'une carte et la recherche l'interrogent encore à chaque visite. Quand il ne répond pas, une page d'erreur propose de réessayer (ajoutée le 16 novembre). Pour un site vraiment robuste, il faut publier aussi un index de recherche et le détail des cartes dans nos relevés.
-- **Données publiées** : le relevé en ligne du 16 novembre a perdu 94 cartes (20 132 sur 20 226), à cause du défaut corrigé sur cette branche.
+### En attente du fondateur
+
+- **CardTrader** : soumettre la demande d'accord par leur formulaire (texte dans `docs/demandes-sources.md`). Il est réservé aux comptes connectés.
+- **eBay** : à l'arrivée des clés, soumettre la demande d'accord par l'espace développeur (même fichier).
+- **Réponses attendues** dans sa boîte : Cardmarket et PokéCardex, écrits le 16 novembre.
+- **Prix gradés** : accepte-t-il un modèle appris sur des ventes gradées observées, affiché comme estimation ? Question posée dans `docs/chantier-prix-fiables.md`.
 
 ## Chantier 1 : fiabiliser l'existant
 
@@ -45,11 +46,11 @@ Priorité immédiate. Les chiffres viennent du relevé du 15 novembre.
 
 C'est le défaut le plus gênant aux yeux du fondateur.
 
-- **TCGplayer** est le marché américain, pour des cartes anglaises. Retiré du calcul le 16 novembre (voir plus haut).
+- **TCGplayer** est le marché américain, pour des cartes anglaises. Retiré du calcul le 16 novembre.
 - **Cardmarket** publie un prix par carte toutes langues confondues. Ce n'est pas non plus un prix français.
 - Aucune source de prix propre à la version française n'est branchée. État des pistes au 16 novembre :
   - **CardTrader : confirmé par sa documentation.** `GET /marketplace/products?expansion_id=…&language=fr` renvoie les 25 annonces les moins chères par carte, avec état, quantité, pays du vendeur et mention « gradée ». Une requête par extension suffit (188 par jour). TCGdex fournit l'identifiant CardTrader des cartes (`variants_detailed[].thirdParty.cardtrader`), pas pour toutes. Il manque un jeton (compte du fondateur) et, d'après leurs conditions, une demande écrite pour l'usage « données de marché ». Ce sont des prix demandés, pas des ventes.
-  - **eBay France : bloqué par la licence de l'API** (voir « Prix gradés » plus bas).
+  - **eBay France : bloqué par la licence de l'API** tant qu'il n'y a pas d'accord écrit (voir « Prix gradés » plus bas).
   - Toute autre source française : à chercher.
 
 ### Prix douteux
@@ -74,7 +75,7 @@ Il n'existe aucun contrôle qui compare nos prix à une référence extérieure.
 ### Relevé quotidien
 
 - Le déclenchement planifié de GitHub Actions n'a pas eu lieu la première nuit (16 novembre, 4 h 17 UTC). Le relevé a été lancé à la main. Un second créneau à 13 h 47 UTC a été ajouté en rattrapage.
-- Contrôle et alerte écrits le 16 novembre (voir plus haut), à confirmer en conditions réelles après fusion. Limite : la veille dépend du même planificateur GitHub que le relevé. Une surveillance indépendante (tâche planifiée Claude) est proposée dans `CADRAGE.md`, question 6.
+- Contrôle et alerte en place depuis le 16 novembre. Limite : la veille dépend du même planificateur GitHub que le relevé. Le fondateur a refusé une surveillance par tâche planifiée Claude : le relevé doit être fiable par lui-même.
 - La branche `data` grossit chaque jour. À surveiller.
 
 ### Prix gradés

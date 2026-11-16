@@ -1,8 +1,22 @@
 # Demandes d'accord aux sources de prix
 
-Brouillons rédigés par l'assistant, à envoyer par le fondateur, en son nom. Tant qu'une réponse écrite n'est pas arrivée, l'usage correspondant reste limité à ce que les conditions publiques permettent.
+Tant qu'une réponse écrite n'est pas arrivée, l'usage correspondant reste limité à ce que les conditions publiques permettent.
 
-Les deux sont en anglais : ce sont les langues de travail des équipes concernées. Remplacer `[adresse du site]` et `[votre nom]`.
+## Suivi
+
+| Destinataire | Objet | Voie | État au 16 novembre 2026 |
+| --- | --- | --- | --- |
+| Cardmarket | Confirmation de l'usage des prix publics, prix par langue, affiliation | Courriel à `contact@cardmarket.com` | Envoyé depuis la boîte du fondateur. Pas de réponse. |
+| PokéCardex | Autorisation d'afficher leurs scans français pour les cartes sans illustration | Courriel à `contact@pokecardex.com` | Envoyé depuis la boîte du fondateur. Pas de réponse. |
+| CardTrader | Accord pour publier un prix tiré de leurs annonces françaises | Formulaire réservé aux comptes connectés : `https://www.cardtrader.com/en-US/issues/new` | **À soumettre par le fondateur.** Texte ci-dessous. |
+| eBay | Accord pour dériver des prix des annonces | Espace développeur, après validation du compte | **À soumettre par le fondateur** quand les clés arrivent. Texte ci-dessous. |
+| TCGdex | Charge de notre relevé, contribution d'illustrations | Pas d'adresse publiée trouvée ; passer par leur dépôt GitHub ou leur Discord | À faire. |
+
+Les textes envoyés à Cardmarket et à PokéCardex sont dans la boîte d'envoi du fondateur.
+
+## Brouillons
+
+Les deux sont en anglais. Adresse du site : `https://poke-track-tau.vercel.app`. Signer du nom du fondateur.
 
 ## 1. CardTrader
 
@@ -14,7 +28,7 @@ Pourquoi : leurs conditions disent « We can provide market APIs upon request…
 >
 > Hello,
 >
-> I run a small, free and open-source price guide for French-language Pokémon cards ([adresse du site], code at github.com/louistouquet/PokeTrack). It is a community project with no paid plan.
+> I run a small, free and open-source price guide for French-language Pokémon cards (https://poke-track-tau.vercel.app, code at github.com/louistouquet/PokeTrack). It is a community project with no paid plan.
 >
 > Your terms say market data is available on request, so I am asking before going further. Here is exactly what I would like to do:
 >
@@ -27,7 +41,7 @@ Pourquoi : leurs conditions disent « We can provide market APIs upon request…
 > Could you confirm whether this use is acceptable, and whether you would like the attribution or the link done in a particular way? I am happy to adjust.
 >
 > Thank you,
-> [votre nom]
+> Louis Touquet
 
 ## 2. eBay
 
@@ -39,7 +53,7 @@ Pourquoi : la licence de l'API interdit, sans accord écrit, d'utiliser le conte
 >
 > Hello,
 >
-> I am a registered developer (application: [nom de l'application]). I run a free, open-source price guide for French-language Pokémon cards ([adresse du site]). Every price shown links to its sources, and I would like eBay France to be one of them.
+> I am a registered developer (application: [nom de l'application]). I run a free, open-source price guide for French-language Pokémon cards (https://poke-track-tau.vercel.app). Every price shown links to its sources, and I would like eBay France to be one of them.
 >
 > I have read the API License Agreement, in particular the restrictions on using eBay Content to suggest or model prices and on deriving average selling prices. I am therefore asking for written permission before doing anything of the kind.
 >
@@ -53,12 +67,12 @@ Pourquoi : la licence de l'API interdit, sans accord écrit, d'utiliser le conte
 > Could you tell me whether point 2 can be authorised, and under which conditions?
 >
 > Thank you,
-> [votre nom]
+> Louis Touquet
 
-## 3. Cardmarket (plus tard)
+## 3. Cardmarket
 
-Leurs conditions prévoient un accord écrit pour présenter cartes et prix issus de l'API, alors que leur billet de 2024 encourage l'usage des fichiers de prix publics. Nous passons par TCGdex, qui relaie ces fichiers. Une demande de confirmation sera utile avant toute forme de revenu ; elle n'est pas urgente pour un site gratuit.
+Envoyé le 16 novembre. Le courriel demande trois choses : la confirmation que l'usage actuel (prix tirés de leurs fichiers publics, via TCGdex, avec mention de la source) leur convient, un accès aux prix par langue, et la bonne façon de faire un lien d'affiliation. Leurs conditions prévoient un accord écrit pour présenter cartes et prix issus de l'API, alors que leur billet de 2024 encourage l'usage des fichiers publics.
 
-## 4. PokéCardex (illustrations)
+## 4. PokéCardex
 
-Leurs mentions légales interdisent toute reprise de leurs images sans autorisation, et leurs scans sont leur propre travail. Si vous voulez leurs illustrations françaises, la seule voie est de leur demander. Ils n'y ont pas d'intérêt évident : c'est leur principal avantage. L'autre voie, ouverte, est de faire contribuer les illustrations manquantes à TCGdex par la communauté.
+Envoyé le 16 novembre. Leurs mentions légales interdisent toute reprise de leurs images sans autorisation. Le courriel demande l'autorisation d'afficher leurs scans pour les cartes sans illustration, avec mention et lien, et accepte d'avance un refus. Ils n'ont pas d'intérêt évident à dire oui : les scans français sont leur principal avantage. L'autre voie, ouverte, est de faire contribuer les illustrations manquantes à TCGdex par la communauté.
