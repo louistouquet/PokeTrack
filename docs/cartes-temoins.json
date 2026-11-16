@@ -1,0 +1,3046 @@
+{
+ "seed": "temoins-2026-11-16",
+ "snapshot": "2026-11-16",
+ "cards": [
+  {
+   "id": "neo4-90",
+   "set": "Neo Destiny",
+   "name": "Mimitoss",
+   "localId": "90",
+   "rarity": "Commune",
+   "era": "wizards",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.6,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "neo2-41",
+   "set": "Neo Discovery",
+   "name": "Coconfort",
+   "localId": "41",
+   "rarity": "Peu Commune",
+   "era": "wizards",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.92,
+    "confidence": 73,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "ecard1-156",
+   "set": "Expedition",
+   "name": "Potion",
+   "localId": "156",
+   "rarity": "Commune",
+   "era": "wizards",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.17,
+    "confidence": 65,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ecard2-109",
+   "set": "Aquapolis",
+   "name": "Queulorior",
+   "localId": "109",
+   "rarity": "Commune",
+   "era": "wizards",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 2.87,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "neo3-28",
+   "set": "Neo Revelation",
+   "name": "Lainergie",
+   "localId": "28",
+   "rarity": "Peu Commune",
+   "era": "wizards",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.16,
+    "confidence": 68,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "neo1-105",
+   "set": "Neo Genesis",
+   "name": "Énergie recyclable",
+   "localId": "105",
+   "rarity": "Rare",
+   "era": "wizards",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 3.55,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "neo4-36",
+   "set": "Neo Destiny",
+   "name": "Spectrum obscur",
+   "localId": "36",
+   "rarity": "Peu Commune",
+   "era": "wizards",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 14.84,
+    "confidence": 69,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "base5-29",
+   "set": "Team Rocket",
+   "name": "Flagadoss obscur",
+   "localId": "29",
+   "rarity": "Rare",
+   "era": "wizards",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 10.57,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ecard2-79",
+   "set": "Aquapolis",
+   "name": "Tadmorv",
+   "localId": "79",
+   "rarity": "Commune",
+   "era": "wizards",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 6.99,
+    "confidence": 70,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ecard2-42",
+   "set": "Aquapolis",
+   "name": "Empiflor",
+   "localId": "42",
+   "rarity": "Rare",
+   "era": "wizards",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 55.71,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "basep-26",
+   "set": "Wizards Black Star Promos",
+   "name": "Pikachu",
+   "localId": "26",
+   "rarity": "Commune",
+   "era": "wizards",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 60.85,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "neo4-48",
+   "set": "Neo Destiny",
+   "name": "Voltali lumineux",
+   "localId": "48",
+   "rarity": "Peu Commune",
+   "era": "wizards",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 27.37,
+    "confidence": 69,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "base1-2",
+   "set": "Set de Base",
+   "name": "Tortank",
+   "localId": "2",
+   "rarity": "Rare",
+   "era": "wizards",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 115.89,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "basep-20",
+   "set": "Wizards Black Star Promos",
+   "name": "Psykokwak",
+   "localId": "20",
+   "rarity": "Commune",
+   "era": "wizards",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 112.71,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ecard1-20",
+   "set": "Expedition",
+   "name": "Mewtwo",
+   "localId": "20",
+   "rarity": "Holo Rare",
+   "era": "wizards",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 499,
+    "confidence": 63,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "neo4-107",
+   "set": "Neo Destiny",
+   "name": "Dracaufeu brillant",
+   "localId": "107",
+   "rarity": "Rare",
+   "era": "wizards",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 1220.3,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "neo3-65",
+   "set": "Neo Revelation",
+   "name": "Léviator Brillant",
+   "localId": "65",
+   "rarity": "Rare",
+   "era": "wizards",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 885.25,
+    "confidence": 60,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ecard2-41",
+   "set": "Aquapolis",
+   "name": "Noctali",
+   "localId": "41",
+   "rarity": "Rare",
+   "era": "wizards",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 976.72,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex16-26",
+   "set": "EX Gardiens du Pouvoir",
+   "name": "Anorith",
+   "localId": "26",
+   "rarity": "Peu Commune",
+   "era": "ex",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.42,
+    "confidence": 65,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex5-79",
+   "set": "EX Légendes Oubliées",
+   "name": "Kaiminus",
+   "localId": "79",
+   "rarity": "Commune",
+   "era": "ex",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.73,
+    "confidence": 62,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex3-13",
+   "set": "EX Dragon",
+   "name": "Colhomard",
+   "localId": "13",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.73,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex11-96",
+   "set": "EX Espèces Delta",
+   "name": "Ruines Holon",
+   "localId": "96",
+   "rarity": "Peu Commune",
+   "era": "ex",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.33,
+    "confidence": 64,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex6-24",
+   "set": "EX Rouge Feu & Vert Feuille",
+   "name": "Rapasdepic",
+   "localId": "24",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.51,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "pop3-15",
+   "set": "POP Série 3",
+   "name": "Flobio",
+   "localId": "15",
+   "rarity": "Commune",
+   "era": "ex",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 2.12,
+    "confidence": 70,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex9-15",
+   "set": "EX Émeraude",
+   "name": "Kyogre",
+   "localId": "15",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 7.12,
+    "confidence": 67,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex1-14",
+   "set": "EX Rubis & Saphir",
+   "name": "Wailord",
+   "localId": "14",
+   "rarity": "Holo Rare",
+   "era": "ex",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 12.5,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex13-41",
+   "set": "EX Fantômes Holon",
+   "name": "Noadkoko δ",
+   "localId": "41",
+   "rarity": "Peu Commune",
+   "era": "ex",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 6.61,
+    "confidence": 70,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex13-99",
+   "set": "EX Fantômes Holon",
+   "name": "Colhomard ex",
+   "localId": "99",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 40.3,
+    "confidence": 62,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "pop9-15",
+   "set": "POP Série 9",
+   "name": "Pikachu",
+   "localId": "15",
+   "rarity": "Commune",
+   "era": "ex",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 26.02,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex4-24",
+   "set": "EX Team Magma vs Team Aqua",
+   "name": "Cacnea de Team Aqua",
+   "localId": "24",
+   "rarity": "Peu Commune",
+   "era": "ex",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 22.1,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex9-95",
+   "set": "EX Émeraude",
+   "name": "Charmina ex",
+   "localId": "95",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 110.52,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex4-6",
+   "set": "EX Team Magma vs Team Aqua",
+   "name": "Kaimorse de Team Aqua",
+   "localId": "6",
+   "rarity": "Holo Rare",
+   "era": "ex",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 104.84,
+    "confidence": 70,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "pop4-9",
+   "set": "POP Série 4",
+   "name": "Fan Club Pokémon",
+   "localId": "9",
+   "rarity": "Peu Commune",
+   "era": "ex",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 153.56,
+    "confidence": 65,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex10-102",
+   "set": "EX Forces Cachées",
+   "name": "Mentali ex",
+   "localId": "102",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 575.41,
+    "confidence": 61,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex3-97",
+   "set": "EX Dragon",
+   "name": "Rayquaza ex",
+   "localId": "97",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 513.91,
+    "confidence": 63,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex6-105",
+   "set": "EX Rouge Feu & Vert Feuille",
+   "name": "Dracaufeu ex",
+   "localId": "105",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 1923.53,
+    "confidence": 58,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "hgss4-45",
+   "set": "Triomphant",
+   "name": "Nidorina",
+   "localId": "45",
+   "rarity": "Peu Commune",
+   "era": "dp",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.38,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dp3-80",
+   "set": "Merveilles Secrètes",
+   "name": "Cheniti Cape Déchet",
+   "localId": "80",
+   "rarity": "Commune",
+   "era": "dp",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.22,
+    "confidence": 68,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "hgss2-23",
+   "set": "Déchaînement",
+   "name": "Roserade",
+   "localId": "23",
+   "rarity": "Rare",
+   "era": "dp",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.53,
+    "confidence": 67,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "col1-24",
+   "set": "L'appel des Légendes",
+   "name": "Mélo",
+   "localId": "24",
+   "rarity": "Rare",
+   "era": "dp",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 4.24,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dp2-6",
+   "set": "Trésors Mystérieux",
+   "name": "Archéodong",
+   "localId": "6",
+   "rarity": "Rare Holo",
+   "era": "dp",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 3.16,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dp1-69",
+   "set": "Diamant & Perle",
+   "name": "Azurill",
+   "localId": "69",
+   "rarity": "Commune",
+   "era": "dp",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 2.77,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "hgss2-8",
+   "set": "Déchaînement",
+   "name": "Shaymin",
+   "localId": "8",
+   "rarity": "Holo Rare",
+   "era": "dp",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 6.78,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "pl2-18",
+   "set": "Rivaux Émergeants",
+   "name": "Mentali 4 Niv. 55",
+   "localId": "18",
+   "rarity": "Rare",
+   "era": "dp",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 5.78,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dp7-8",
+   "set": "Tempête",
+   "name": "Raichu",
+   "localId": "8",
+   "rarity": "Rare Holo",
+   "era": "dp",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 10.1,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dp2-121",
+   "set": "Trésors Mystérieux",
+   "name": "Élekable",
+   "localId": "121",
+   "rarity": "Rare Holo LV.X",
+   "era": "dp",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 39.04,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "hgssp-HGSS07",
+   "set": "Promo HGSS",
+   "name": "Aligatueur",
+   "localId": "HGSS07",
+   "rarity": "Promo",
+   "era": "dp",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 21.14,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "hgss2-87",
+   "set": "Déchaînement",
+   "name": "Steelix",
+   "localId": "87",
+   "rarity": "Rare Prime",
+   "era": "dp",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 26.33,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dp5-99",
+   "set": "Aube Majestueuse",
+   "name": "Phyllali",
+   "localId": "99",
+   "rarity": "Rare Holo LV.X",
+   "era": "dp",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 253.08,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "col1-SL9",
+   "set": "L'appel des Légendes",
+   "name": "Raikou",
+   "localId": "SL9",
+   "rarity": "Holo Rare",
+   "era": "dp",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 107.38,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "hgss3-81",
+   "set": "Indomptable",
+   "name": "Mentali",
+   "localId": "81",
+   "rarity": "Rare Prime",
+   "era": "dp",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 156.93,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "col1-20",
+   "set": "L'appel des Légendes",
+   "name": "Rayquaza",
+   "localId": "20",
+   "rarity": "Holo Rare",
+   "era": "dp",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 1019.64,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw2-86",
+   "set": "Pouvoirs Émergents",
+   "name": "Furaiglon",
+   "localId": "86",
+   "rarity": "Commune",
+   "era": "bw",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.15,
+    "confidence": 69,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw8-27",
+   "set": "Tempète Plasma",
+   "name": "Cochignon",
+   "localId": "27",
+   "rarity": "Peu Commune",
+   "era": "bw",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.35,
+    "confidence": 70,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "bw7-15",
+   "set": "Frontières Franchies",
+   "name": "Farfaduvet",
+   "localId": "15",
+   "rarity": "Rare",
+   "era": "bw",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.52,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw5-53",
+   "set": "Explorateurs Obscurs",
+   "name": "Ptéra",
+   "localId": "53",
+   "rarity": "Rare",
+   "era": "bw",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 3.44,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw3-81",
+   "set": "Nobles Victoires",
+   "name": "Scalpion",
+   "localId": "81",
+   "rarity": "Commune",
+   "era": "bw",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.17,
+    "confidence": 59,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw4-93",
+   "set": "Destinées Futures",
+   "name": "Énergie Prisme",
+   "localId": "93",
+   "rarity": "Peu Commune",
+   "era": "bw",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.28,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dv1-16",
+   "set": "Coffre des Dragons",
+   "name": "Tranchodon",
+   "localId": "16",
+   "rarity": "Rare",
+   "era": "bw",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 13.16,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw10-103",
+   "set": "Explosion Plasma",
+   "name": "Viridium",
+   "localId": "103",
+   "rarity": "Magnifique rare",
+   "era": "bw",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 18.2,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw7-32",
+   "set": "Frontières Franchies",
+   "name": "Psykokwak",
+   "localId": "32",
+   "rarity": "Commune",
+   "era": "bw",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 14.28,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw3-43",
+   "set": "Nobles Victoires",
+   "name": "Victini",
+   "localId": "43",
+   "rarity": "Rare",
+   "era": "bw",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 21.8,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw4-101",
+   "set": "Destinées Futures",
+   "name": "Lugulabre",
+   "localId": "101",
+   "rarity": "Magnifique rare",
+   "era": "bw",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 42.26,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw7-148",
+   "set": "Frontières Franchies",
+   "name": "Tcheren",
+   "localId": "148",
+   "rarity": "Ultra Rare",
+   "era": "bw",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 36.9,
+    "confidence": 68,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw9-119",
+   "set": "Glaciation Plasma",
+   "name": "Miasmax",
+   "localId": "119",
+   "rarity": "Magnifique rare",
+   "era": "bw",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 112.25,
+    "confidence": 61,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw6-124",
+   "set": "Dragons Éxaltés",
+   "name": "Giratina-EX",
+   "localId": "124",
+   "rarity": "Ultra Rare",
+   "era": "bw",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 240.64,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw5-107",
+   "set": "Explorateurs Obscurs",
+   "name": "Darkrai-EX",
+   "localId": "107",
+   "rarity": "Ultra Rare",
+   "era": "bw",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 221.37,
+    "confidence": 68,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw6-120",
+   "set": "Dragons Éxaltés",
+   "name": "Mew-EX",
+   "localId": "120",
+   "rarity": "Ultra Rare",
+   "era": "bw",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 635.11,
+    "confidence": 62,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw8-136",
+   "set": "Tempète Plasma",
+   "name": "Dracaufeu",
+   "localId": "136",
+   "rarity": "Magnifique rare",
+   "era": "bw",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 829.48,
+    "confidence": 66,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw8-137",
+   "set": "Tempète Plasma",
+   "name": "Tortank",
+   "localId": "137",
+   "rarity": "Magnifique rare",
+   "era": "bw",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 576.73,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "g1-49",
+   "set": "Générations",
+   "name": "Rhinocorne",
+   "localId": "49",
+   "rarity": "Commune",
+   "era": "xy",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.12,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy4-49",
+   "set": "Vigueur Spectrale",
+   "name": "Géolithe",
+   "localId": "49",
+   "rarity": "Peu Commune",
+   "era": "xy",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.22,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy11-55",
+   "set": "Offensive Vapeur",
+   "name": "Tarinorme",
+   "localId": "55",
+   "rarity": "Rare",
+   "era": "xy",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.14,
+    "confidence": 62,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy10-83",
+   "set": "Impact des Destins",
+   "name": "Altaria EX",
+   "localId": "83",
+   "rarity": "Ultra Rare",
+   "era": "xy",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 3.85,
+    "confidence": 68,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy4-12",
+   "set": "Vigueur Spectrale",
+   "name": "Némélios",
+   "localId": "12",
+   "rarity": "Rare",
+   "era": "xy",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.66,
+    "confidence": 66,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dc1-19",
+   "set": "Double Danger",
+   "name": "Grahyèna de la Team Magma",
+   "localId": "19",
+   "rarity": "Commune",
+   "era": "xy",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 4.02,
+    "confidence": 67,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xyp-XY122",
+   "set": "Promo XY",
+   "name": "Tortank EX",
+   "localId": "XY122",
+   "rarity": "Promo",
+   "era": "xy",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 9.17,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy0-27",
+   "set": "Bienvenue à Kalos",
+   "name": "Écrémeuh",
+   "localId": "27",
+   "rarity": "Sans Rareté",
+   "era": "xy",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 10.35,
+    "confidence": 65,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy7-26",
+   "set": "Origines Antiques",
+   "name": "Voltali",
+   "localId": "26",
+   "rarity": "Rare",
+   "era": "xy",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 8.48,
+    "confidence": 67,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy5-163",
+   "set": "Primo-Choc",
+   "name": "Échange",
+   "localId": "163",
+   "rarity": "Magnifique rare",
+   "era": "xy",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 42.62,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xyp-XY41",
+   "set": "Promo XY",
+   "name": "Kyogre EX",
+   "localId": "XY41",
+   "rarity": "Promo",
+   "era": "xy",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 22.9,
+    "confidence": 70,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "g1-RC30",
+   "set": "Générations",
+   "name": "Gardevoir-EX",
+   "localId": "RC30",
+   "rarity": "Ultra Rare",
+   "era": "xy",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 54.08,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy9-114",
+   "set": "Rupture Turbo",
+   "name": "Léviator EX",
+   "localId": "114",
+   "rarity": "Ultra Rare",
+   "era": "xy",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 110.5,
+    "confidence": 62,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xyp-XY148",
+   "set": "Promo XY",
+   "name": "Shaymin-EX",
+   "localId": "XY148",
+   "rarity": "Promo",
+   "era": "xy",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 138.6,
+    "confidence": 69,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy7-97",
+   "set": "Origines Antiques",
+   "name": "Primo-Groudon EX",
+   "localId": "97",
+   "rarity": "Magnifique rare",
+   "era": "xy",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 303.19,
+    "confidence": 62,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm3-85",
+   "set": "Ombres Ardentes",
+   "name": "Farfuret",
+   "localId": "85",
+   "rarity": "Commune",
+   "era": "sm",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.08,
+    "confidence": 63,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm7-140",
+   "set": "Tempête Céleste",
+   "name": "PokéNav",
+   "localId": "140",
+   "rarity": "Peu Commune",
+   "era": "sm",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.19,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm1-50",
+   "set": "Soleil et Lune",
+   "name": "Lanturn",
+   "localId": "50",
+   "rarity": "Rare",
+   "era": "sm",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.11,
+    "confidence": 60,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm12-264",
+   "set": "Éclipse Cosmique",
+   "name": "Attrape-Suprême",
+   "localId": "264",
+   "rarity": "Magnifique rare",
+   "era": "sm",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 3.95,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm3-138",
+   "set": "Ombres Ardentes",
+   "name": "Grotadmorv d’Alola GX",
+   "localId": "138",
+   "rarity": "Ultra Rare",
+   "era": "sm",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 3.89,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm115-32",
+   "set": "Destinées Occultes",
+   "name": "Mew",
+   "localId": "32",
+   "rarity": "Rare",
+   "era": "sm",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 3.53,
+    "confidence": 59,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "sm8-144",
+   "set": "Tonnerre Perdu",
+   "name": "Xerneas ◇",
+   "localId": "144",
+   "rarity": "Rare",
+   "era": "sm",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 9.53,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm4-113",
+   "set": "Invasion Carmin",
+   "name": "Grolem d’Alola GX",
+   "localId": "113",
+   "rarity": "Magnifique rare",
+   "era": "sm",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 9.53,
+    "confidence": 76,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm1-139",
+   "set": "Soleil et Lune",
+   "name": "Lokhlass GX",
+   "localId": "139",
+   "rarity": "Ultra Rare",
+   "era": "sm",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 11.86,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm12-143",
+   "set": "Éclipse Cosmique",
+   "name": "Togepi, Mélo et Toudoudou GX",
+   "localId": "143",
+   "rarity": "Ultra Rare",
+   "era": "sm",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 38,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm2-158",
+   "set": "Gardiens Ascendants",
+   "name": "Nymphali GX",
+   "localId": "158",
+   "rarity": "Magnifique rare",
+   "era": "sm",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 58.73,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "smp-SM109",
+   "set": "Promo SM",
+   "name": "Pikachu de Sacha",
+   "localId": "SM109",
+   "rarity": "Promo",
+   "era": "sm",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 89.26,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm8-207",
+   "set": "Tonnerre Perdu",
+   "name": "Lugia GX",
+   "localId": "207",
+   "rarity": "Ultra Rare",
+   "era": "sm",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 199.81,
+    "confidence": 61,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "smp-SM193",
+   "set": "Promo SM",
+   "name": "Carchacrok et Giratina GX",
+   "localId": "SM193",
+   "rarity": "Promo",
+   "era": "sm",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 162.77,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm11-242",
+   "set": "Harmonie des Esprits",
+   "name": "Mewtwo et Mew GX",
+   "localId": "242",
+   "rarity": "Magnifique rare",
+   "era": "sm",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 242.93,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm9-170",
+   "set": "Duo de Choc",
+   "name": "Latias et Latios GX",
+   "localId": "170",
+   "rarity": "Ultra Rare",
+   "era": "sm",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 1880.03,
+    "confidence": 66,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm9-165",
+   "set": "Duo de Choc",
+   "name": "Ectoplasma et Mimiqui GX",
+   "localId": "165",
+   "rarity": "Ultra Rare",
+   "era": "sm",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 1569.18,
+    "confidence": 58,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm9-161",
+   "set": "Duo de Choc",
+   "name": "Magicarpe et Wailord GX",
+   "localId": "161",
+   "rarity": "Ultra Rare",
+   "era": "sm",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 587.25,
+    "confidence": 63,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh12-102",
+   "set": "Tempête Argentée",
+   "name": "Ursaking V",
+   "localId": "102",
+   "rarity": "Holo Rare V",
+   "era": "swsh",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.66,
+    "confidence": 67,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh2-120",
+   "set": "Clash des Rebelles",
+   "name": "Vaututrice",
+   "localId": "120",
+   "rarity": "Rare",
+   "era": "swsh",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.21,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh10.5-007",
+   "set": "Pokémon GO",
+   "name": "Migalos",
+   "localId": "007",
+   "rarity": "Peu Commune",
+   "era": "swsh",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.06,
+    "confidence": 65,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh8-256",
+   "set": "Poing de Fusion",
+   "name": "Rongrigou V",
+   "localId": "256",
+   "rarity": "Ultra Rare",
+   "era": "swsh",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 2.11,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh4.5sv-SV076",
+   "set": "Destinées Radieuses Coffre Étincelant",
+   "name": "Smogo",
+   "localId": "SV076",
+   "rarity": "Shiny rare",
+   "era": "swsh",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 4.93,
+    "confidence": 76,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swshp-SWSH132",
+   "set": "Promo SWSH",
+   "name": "Lanssorien",
+   "localId": "SWSH132",
+   "rarity": "Promo",
+   "era": "swsh",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 2.36,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh12.5gg-GG63",
+   "set": "Zénith Suprême Galerie Galaroise",
+   "name": "Nacchara",
+   "localId": "GG63",
+   "rarity": "Ultra Rare",
+   "era": "swsh",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 7.47,
+    "confidence": 76,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh4.5sv-SV047",
+   "set": "Destinées Radieuses Coffre Étincelant",
+   "name": "Ponyta de Galar",
+   "localId": "SV047",
+   "rarity": "Shiny rare",
+   "era": "swsh",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 19.38,
+    "confidence": 62,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh9tg-TG01",
+   "set": "Stars Étincelantes Galerie de Dresseurs",
+   "name": "Pyroli",
+   "localId": "TG01",
+   "rarity": "Rare",
+   "era": "swsh",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 19.2,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh8-250",
+   "set": "Poing de Fusion",
+   "name": "Mew V",
+   "localId": "250",
+   "rarity": "Ultra Rare",
+   "era": "swsh",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 37.04,
+    "confidence": 67,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swshp-SWSH032",
+   "set": "Promo SWSH",
+   "name": "Ronflex",
+   "localId": "SWSH032",
+   "rarity": "Promo",
+   "era": "swsh",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 25.39,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh3-20",
+   "set": "Ténèbres Embrasées",
+   "name": "Dracaufeu VMAX",
+   "localId": "20",
+   "rarity": "Holo Rare VMAX",
+   "era": "swsh",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 43.49,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh12-186",
+   "set": "Tempête Argentée",
+   "name": "Lugia V",
+   "localId": "186",
+   "rarity": "Ultra Rare",
+   "era": "swsh",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 492.74,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh7-205",
+   "set": "Évolution Céleste",
+   "name": "Phyllali VMAX",
+   "localId": "205",
+   "rarity": "Magnifique rare",
+   "era": "swsh",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 297.78,
+    "confidence": 64,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "cel25cc-CC002",
+   "set": "Célébrations Collection Classique",
+   "name": "Dracaufeu",
+   "localId": "CC002",
+   "rarity": "Collection Classique",
+   "era": "swsh",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 190.06,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh8-271",
+   "set": "Poing de Fusion",
+   "name": "Ectoplasma VMAX",
+   "localId": "271",
+   "rarity": "Magnifique rare",
+   "era": "swsh",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 688.02,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh11-186",
+   "set": "Origine Perdue",
+   "name": "Giratina V",
+   "localId": "186",
+   "rarity": "Ultra Rare",
+   "era": "swsh",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 919.32,
+    "confidence": 76,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "swsh7-218",
+   "set": "Évolution Céleste",
+   "name": "Rayquaza VMAX",
+   "localId": "218",
+   "rarity": "Magnifique rare",
+   "era": "swsh",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 1063.88,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv04-061",
+   "set": "Faille Paradoxe",
+   "name": "Négapi",
+   "localId": "061",
+   "rarity": "Commune",
+   "era": "sv",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.04,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv02-187",
+   "set": "Évolutions à Paldea",
+   "name": "Saguaro",
+   "localId": "187",
+   "rarity": "Peu Commune",
+   "era": "sv",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.12,
+    "confidence": 74,
+    "french": 4
+   },
+   "reference": null
+  },
+  {
+   "id": "sv01-023",
+   "set": "Écarlate et Violet",
+   "name": "Arboliva",
+   "localId": "023",
+   "rarity": "Rare",
+   "era": "sv",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.2,
+    "confidence": 70,
+    "french": 3
+   },
+   "reference": null
+  },
+  {
+   "id": "sv03-200",
+   "set": "Flammes Obsidiennes",
+   "name": "Superdofin",
+   "localId": "200",
+   "rarity": "Illustration rare",
+   "era": "sv",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 2.74,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv04-224",
+   "set": "Faille Paradoxe",
+   "name": "Tutankafer-ex",
+   "localId": "224",
+   "rarity": "Ultra Rare",
+   "era": "sv",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 2.16,
+    "confidence": 72,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "sv05-123",
+   "set": "Forces Temporelles",
+   "name": "Ire-Foudre-ex",
+   "localId": "123",
+   "rarity": "Double rare",
+   "era": "sv",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.25,
+    "confidence": 74,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "sv02-227",
+   "set": "Évolutions à Paldea",
+   "name": "Flamenroule",
+   "localId": "227",
+   "rarity": "Illustration rare",
+   "era": "sv",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 6.29,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv07-173",
+   "set": "Couronne Stellaire",
+   "name": "Terapagos-ex",
+   "localId": "173",
+   "rarity": "Hyper rare",
+   "era": "sv",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 12.8,
+    "confidence": 76,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "svp-173",
+   "set": "SVP Black Star Promos",
+   "name": "Évoli",
+   "localId": "173",
+   "rarity": "Promo",
+   "era": "sv",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 16.27,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv08.5-164",
+   "set": "Évolutions Prismatiques",
+   "name": "Gromago-ex",
+   "localId": "164",
+   "rarity": "Illustration spéciale rare",
+   "era": "sv",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 30.71,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv02-212",
+   "set": "Évolutions à Paldea",
+   "name": "Magirêve",
+   "localId": "212",
+   "rarity": "Illustration rare",
+   "era": "sv",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 20.78,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv10-241",
+   "set": "Rivalités Destinées",
+   "name": "Carchacrok-ex de Cynthia",
+   "localId": "241",
+   "rarity": "Hyper rare",
+   "era": "sv",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 21.28,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv10.5b-171",
+   "set": "Foudre Noire",
+   "name": "Victini",
+   "localId": "171",
+   "rarity": "Rare Noir Blanc",
+   "era": "sv",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 397.05,
+    "confidence": 69,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv10-232",
+   "set": "Rivalités Destinées",
+   "name": "Carchacrok-ex de Cynthia",
+   "localId": "232",
+   "rarity": "Illustration spéciale rare",
+   "era": "sv",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 206.18,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "svp-045",
+   "set": "SVP Black Star Promos",
+   "name": "Hôtel \" Au paradis des Pokémon \"",
+   "localId": "045",
+   "rarity": "Promo",
+   "era": "sv",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 130.97,
+    "confidence": 65,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv08.5-161",
+   "set": "Évolutions Prismatiques",
+   "name": "Noctali-ex",
+   "localId": "161",
+   "rarity": "Illustration spéciale rare",
+   "era": "sv",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 1486.26,
+    "confidence": 69,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sv04.5-232",
+   "set": "Destinées de Paldea",
+   "name": "Mew-ex",
+   "localId": "232",
+   "rarity": "Illustration spéciale rare",
+   "era": "sv",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 576.62,
+    "confidence": 74,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "sv10-231",
+   "set": "Rivalités Destinées",
+   "name": "Mewtwo-ex de la Team Rocket",
+   "localId": "231",
+   "rarity": "Illustration spéciale rare",
+   "era": "sv",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 1135.67,
+    "confidence": 74,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "me05-006",
+   "set": "Nuit Noire",
+   "name": "Théffroyable",
+   "localId": "006",
+   "rarity": "Peu Commune",
+   "era": "me",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.06,
+    "confidence": 73,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "me02.5-149",
+   "set": "Héros Transcendants",
+   "name": "Togedemaru-ex",
+   "localId": "149",
+   "rarity": "Double rare",
+   "era": "me",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.63,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me04-086",
+   "set": "Chaos Ascendant",
+   "name": "Énergie Fire Nitro",
+   "localId": "086",
+   "rarity": "Rare",
+   "era": "me",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.08,
+    "confidence": 68,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "me06-129",
+   "set": "Règne Delta",
+   "name": "Attrape-Pokémon",
+   "localId": "129",
+   "rarity": "Ultra Rare",
+   "era": "me",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.7,
+    "confidence": 66,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me02-101",
+   "set": "Flammes Fantasmagoriques",
+   "name": "Libégon",
+   "localId": "101",
+   "rarity": "Illustration rare",
+   "era": "me",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 3.14,
+    "confidence": 76,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "me02.5-038",
+   "set": "Héros Transcendants",
+   "name": "Pyrobut-ex",
+   "localId": "038",
+   "rarity": "Double rare",
+   "era": "me",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.16,
+    "confidence": 76,
+    "french": 2
+   },
+   "reference": null
+  },
+  {
+   "id": "mep-042",
+   "set": "MEP Black Star Promos",
+   "name": "Tiplouf",
+   "localId": "042",
+   "rarity": "Promo",
+   "era": "me",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 6.74,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "30th-c-015",
+   "set": "Collection Classique 30ᵉ Anniversaire",
+   "name": "Rondoudou d'Erika",
+   "localId": "015",
+   "rarity": "Sans Rareté",
+   "era": "me",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 9.75,
+    "confidence": 76,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me02.5-265",
+   "set": "Héros Transcendants",
+   "name": "Méga-Momartik-ex",
+   "localId": "265",
+   "rarity": "Mega Attack Rare",
+   "era": "me",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 6.58,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me05-115",
+   "set": "Nuit Noire",
+   "name": "Méga-Lugulabre-ex",
+   "localId": "115",
+   "rarity": "Illustration spéciale rare",
+   "era": "me",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 24.36,
+    "confidence": 74,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "mep-014",
+   "set": "MEP Black Star Promos",
+   "name": "Malvalame",
+   "localId": "014",
+   "rarity": "Promo",
+   "era": "me",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 22.82,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me02.5-226",
+   "set": "Héros Transcendants",
+   "name": "Psykokwak",
+   "localId": "226",
+   "rarity": "Illustration rare",
+   "era": "me",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 57.04,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me04-116",
+   "set": "Chaos Ascendant",
+   "name": "Méga-Amphinobi-ex",
+   "localId": "116",
+   "rarity": "Illustration spéciale rare",
+   "era": "me",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 111.22,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "mep-092",
+   "set": "MEP Black Star Promos",
+   "name": "Hôtel « Au paradis des Pokémon »",
+   "localId": "092",
+   "rarity": "Promo",
+   "era": "me",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 140.11,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me02.5-295",
+   "set": "Héros Transcendants",
+   "name": "Méga-Dracolosse-ex",
+   "localId": "295",
+   "rarity": "Méga Hyper Rare",
+   "era": "me",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 153.62,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me02-125",
+   "set": "Flammes Fantasmagoriques",
+   "name": "Méga-Dracaufeu X-ex",
+   "localId": "125",
+   "rarity": "Illustration spéciale rare",
+   "era": "me",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 586.34,
+    "confidence": 70,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "30th-R",
+   "set": "30ᵉ Anniversaire",
+   "name": "Mew",
+   "localId": "R",
+   "rarity": "RGB Rare",
+   "era": "me",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 2855.12,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me02.5-276",
+   "set": "Héros Transcendants",
+   "name": "Pikachu-ex",
+   "localId": "276",
+   "rarity": "Illustration spéciale rare",
+   "era": "me",
+   "tier": "500 € et plus",
+   "why": "tirage",
+   "drawn": {
+    "price": 798.83,
+    "confidence": 74,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2018sm-fr-25",
+   "set": "Collection McDonald's 2018",
+   "name": "Rocabot",
+   "localId": "25",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.67,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "tk-sm-l-22",
+   "set": "SM Kit du dresseur (Lougarox)",
+   "name": "Bazoucan",
+   "localId": "22",
+   "rarity": "Rare",
+   "era": "divers",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.39,
+    "confidence": 72,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "tk-sm-r-25",
+   "set": "SM Kit du dresseur (Raichu d'Alola)",
+   "name": "Super Ball",
+   "localId": "25",
+   "rarity": "Peu Commune",
+   "era": "divers",
+   "tier": "moins de 1 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 0.15,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "tk-dp-l-8",
+   "set": "DP Kit dresseur (Lucario)",
+   "name": "Recherche d'énergie",
+   "localId": "8",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1,
+    "confidence": 75,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2018sm-fr-32",
+   "set": "Collection McDonald's 2018",
+   "name": "Minidraco",
+   "localId": "32",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.82,
+    "confidence": 73,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2019sm-fr-13",
+   "set": "Collection McDonald's 2019",
+   "name": "Goupix d'Alola",
+   "localId": "13",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "1 à 5 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 1.33,
+    "confidence": 70,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2013bw-7",
+   "set": "Collection McDonald's 2013",
+   "name": "Mentali",
+   "localId": "7",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 7.99,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2016xy-1",
+   "set": "Collection McDonald's 2016",
+   "name": "Goupix",
+   "localId": "1",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 6.56,
+    "confidence": 60,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2015xy-10",
+   "set": "Collection McDonald's 2015",
+   "name": "Marill",
+   "localId": "10",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "5 à 20 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 9.01,
+    "confidence": 60,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2012bw-10",
+   "set": "Collection McDonald's 2012",
+   "name": "Baggiguane",
+   "localId": "10",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 31.82,
+    "confidence": 69,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2012bw-3",
+   "set": "Collection McDonald's 2012",
+   "name": "Crabicoque",
+   "localId": "3",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 26.74,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2012bw-12",
+   "set": "Collection McDonald's 2012",
+   "name": "Coupenotte",
+   "localId": "12",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "20 à 100 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 21.5,
+    "confidence": 71,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2016xy-6",
+   "set": "Collection McDonald's 2016",
+   "name": "Pikachu",
+   "localId": "6",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "100 à 500 €",
+   "why": "tirage",
+   "drawn": {
+    "price": 195.01,
+    "confidence": 57,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw10-101",
+   "set": "Explosion Plasma",
+   "name": "Iris",
+   "localId": "101",
+   "rarity": "Ultra Rare",
+   "era": "bw",
+   "tier": "moins de 1 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 0.43,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy2-100",
+   "set": "Étincelles",
+   "name": "Dracaufeu EX",
+   "localId": "100",
+   "rarity": "Ultra Rare",
+   "era": "xy",
+   "tier": "5 à 20 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 11.51,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me06-138",
+   "set": "Règne Delta",
+   "name": "Méga-Rayquaza‑ex",
+   "localId": "138",
+   "rarity": "Illustration spéciale rare",
+   "era": "me",
+   "tier": "1 à 5 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 3.9,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex10-103",
+   "set": "EX Forces Cachées",
+   "name": "Aligatueur ex",
+   "localId": "103",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "5 à 20 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 14.25,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex13-104",
+   "set": "EX Fantômes Holon",
+   "name": "Pikachu ☆",
+   "localId": "104",
+   "rarity": "Rare",
+   "era": "ex",
+   "tier": "5 à 20 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 5.15,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ecard2-H29",
+   "set": "Aquapolis",
+   "name": "Noctali",
+   "localId": "H29",
+   "rarity": "Holo Rare",
+   "era": "wizards",
+   "tier": "100 à 500 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 112.78,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dp6-90",
+   "set": "Éveil des Légendes",
+   "name": "Osselait",
+   "localId": "90",
+   "rarity": "Commune",
+   "era": "dp",
+   "tier": "moins de 1 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 0.25,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy6-108",
+   "set": "Ciel Rugissant",
+   "name": "Alizée",
+   "localId": "108",
+   "rarity": "Ultra Rare",
+   "era": "xy",
+   "tier": "moins de 1 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 0.49,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "bw9-115",
+   "set": "Glaciation Plasma",
+   "name": "Ghetis",
+   "localId": "115",
+   "rarity": "Ultra Rare",
+   "era": "bw",
+   "tier": "5 à 20 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 5.88,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm115-22",
+   "set": "Destinées Occultes",
+   "name": "Électrode",
+   "localId": "22",
+   "rarity": "Rare",
+   "era": "sm",
+   "tier": "5 à 20 €",
+   "why": "prix douteux : écart avec le marché américain",
+   "drawn": {
+    "price": 16.54,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy5-146",
+   "set": "Primo-Choc",
+   "name": "Camérupt EX",
+   "localId": "146",
+   "rarity": "Ultra Rare",
+   "era": "xy",
+   "tier": "1 à 5 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 3.12,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "dp6-55",
+   "set": "Éveil des Légendes",
+   "name": "Scorvol",
+   "localId": "55",
+   "rarity": "Peu Commune",
+   "era": "dp",
+   "tier": "1 à 5 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 1.71,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "2018sm-fr-39",
+   "set": "Collection McDonald's 2018",
+   "name": "Passerouge",
+   "localId": "39",
+   "rarity": "Sans Rareté",
+   "era": "divers",
+   "tier": "moins de 1 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 0.98,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy9-107a",
+   "set": "Rupture Turbo",
+   "name": "Professeur Platane",
+   "localId": "107a",
+   "rarity": "Peu Commune",
+   "era": "xy",
+   "tier": "moins de 1 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 0.18,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "me06-021",
+   "set": "Règne Delta",
+   "name": "Maganon",
+   "localId": "021",
+   "rarity": "Rare",
+   "era": "me",
+   "tier": "moins de 1 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 0.06,
+    "confidence": 25,
+    "french": 1
+   },
+   "reference": null
+  },
+  {
+   "id": "ex11-66",
+   "set": "EX Espèces Delta",
+   "name": "Minidraco δ",
+   "localId": "66",
+   "rarity": "Commune",
+   "era": "ex",
+   "tier": "1 à 5 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 1.62,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xy8-51",
+   "set": "Impulsion Turbo",
+   "name": "Magnéti",
+   "localId": "51",
+   "rarity": "Commune",
+   "era": "xy",
+   "tier": "moins de 1 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 0.13,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "xyp-XY147",
+   "set": "Promo XY",
+   "name": "Hoopa",
+   "localId": "XY147",
+   "rarity": "Promo",
+   "era": "xy",
+   "tier": "20 à 100 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 85.89,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "sm5-97",
+   "set": "Ultra-Prisme",
+   "name": "Griknot",
+   "localId": "97",
+   "rarity": "Commune",
+   "era": "sm",
+   "tier": "moins de 1 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 0.09,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  },
+  {
+   "id": "ex11-65",
+   "set": "EX Espèces Delta",
+   "name": "Minidraco δ",
+   "localId": "65",
+   "rarity": "Commune",
+   "era": "ex",
+   "tier": "1 à 5 €",
+   "why": "prix douteux : produit partagé",
+   "drawn": {
+    "price": 1.62,
+    "confidence": 25,
+    "french": 0
+   },
+   "reference": null
+  }
+ ]
+}

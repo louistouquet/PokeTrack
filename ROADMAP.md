@@ -36,7 +36,6 @@ Deux causes, lues dans les journaux Vercel le 16 novembre.
 - **CardTrader** : soumettre la demande d'accord par leur formulaire (texte dans `docs/demandes-sources.md`). Il est réservé aux comptes connectés.
 - **eBay** : à l'arrivée des clés, soumettre la demande d'accord par l'espace développeur (même fichier).
 - **Réponses attendues** dans sa boîte : Cardmarket et PokéCardex, écrits le 16 novembre.
-- **Prix gradés** : accepte-t-il un modèle appris sur des ventes gradées observées, affiché comme estimation ? Question posée dans `docs/chantier-prix-fiables.md`.
 
 ## Chantier 1 : fiabiliser l'existant
 

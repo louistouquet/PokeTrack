@@ -30,7 +30,7 @@ Le fondateur demande deux choses, dans cet ordre :
 
 ## Les règles, non négociables
 
-1. **Budget zéro euro.** Aucun abonnement, aucune API payante. Firecrawl consomme des crédits du fondateur : mesurer la consommation, annoncer avant de lancer une tâche coûteuse (`firecrawl_agent` en particulier), préférer les lectures ciblées aux explorations larges.
+1. **Budget zéro euro.** Aucun abonnement, aucune API payante. Firecrawl : seulement les crédits compris dans le compte de base du fondateur (décision du 16 novembre). Outils gratuits d'abord, Firecrawl en dernier recours, chaque appel compté, jamais `firecrawl_agent`.
 2. **On respecte les règles de chaque site.** Avant toute collecte sur un site : lire ses conditions d'utilisation et son `robots.txt`, et citer la phrase qui autorise ou interdit. « Contourner » veut dire trouver une voie permise (API officielle, fichier public, flux, partenariat, affiliation, accord écrit, données apportées par la communauté). Cela ne veut jamais dire passer outre une interdiction, une protection technique ou une limite de débit. Un outil de collecte ne rend pas une collecte permise.
 3. **Classer chaque source :**
    - **A** : API ou fichier officiel, usage permis.
@@ -39,8 +39,9 @@ Le fondateur demande deux choses, dans cet ordre :
    - **D** : interdit ou inaccessible. On l'écrit et on n'y touche pas.
 4. **Rien d'inventé.** Un prix est observé ou estimé, et le site dit lequel. Une estimation porte sa marge d'erreur.
 5. **Pas de données personnelles.** Ni pseudonymes de vendeurs, ni annonces nominatives conservées.
-6. **Prix gradés.** Le fondateur a refusé tout multiplicateur fixe du prix non gradé. Un modèle appris sur des ventes gradées observées, validé et affiché comme estimation, est une autre chose : **lui poser la question avant de l'appliquer aux cartes gradées.**
-7. **Marché français uniquement** pour l'instant. Les marchés anglais, américain et japonais viendront peut-être plus tard : noter ce qu'on croise, sans le construire.
+6. **Prix gradés.** Le fondateur a refusé tout multiplicateur fixe du prix non gradé. Il a accepté le 16 novembre un modèle appris sur des ventes ou annonces gradées observées, à trois conditions : affiché comme estimation, « très solide », et qui continue d'apprendre en continu (réétalonné à chaque relevé).
+7. **Le prix affiché est une fourchette** (décision du 16 novembre) : ce que la carte se vend, et ce qu'elle coûte à l'achat aujourd'hui.
+8. **Marché français uniquement** pour l'instant. Les marchés anglais, américain et japonais viendront peut-être plus tard : noter ce qu'on croise, sans le construire.
 
 ## Déroulé
 
@@ -124,6 +125,5 @@ Un plan d'implémentation par étapes, chacune livrable seule, testée, vérifi�
 ## Ce qui passe par le fondateur
 
 - Soumettre les formulaires réservés aux comptes connectés (CardTrader, eBay développeur).
-- Accepter ou refuser un modèle pour les prix gradés.
 - Valider les seuils d'acceptation du modèle.
 - Tout ce qui coûte, se signe ou engage.
