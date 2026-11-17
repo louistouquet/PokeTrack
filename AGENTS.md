@@ -23,7 +23,7 @@ Lire d'abord `ROADMAP.md` (état, défauts connus, direction), puis `PRODUCT.md`
 - Les fichiers importés par `scripts/` s'exécutent tels quels dans Node : imports relatifs avec extension `.ts`, pas d'alias `@/`, syntaxe TypeScript effaçable uniquement.
 - GitHub Actions peut sauter un déclenchement planifié. Vérifier la branche `data` plutôt que supposer.
 - TCGdex renvoie des erreurs passagères sous charge : un relevé complet peut perdre des dizaines de cartes si l'on ne réessaie pas. `scripts/ingest.ts` réessaie et refuse de publier un relevé anormal ; garder ce comportement.
-- Le prix américain (TCGplayer) ne doit jamais entrer dans un prix affiché. Il ne sert que d'alarme (`usGap` dans `src/lib/snapshot.ts`).
+- Le prix américain (TCGplayer) n'est jamais affiché comme prix français. Depuis le 17 novembre, le fondateur l'autorise comme donnée d'entrée du modèle de prix ; le site dit alors qu'une estimation s'appuie sur un autre marché. Il sert aussi d'alarme (`usGap` dans `src/lib/snapshot.ts`).
 - eBay : ne pas activer `scripts/ebay.ts` tel quel, la licence de l'API l'interdit (voir `ROADMAP.md`). Décision du fondateur : n'afficher que les annonces en cours avec un lien vers eBay.
 - Prix gradés : uniquement observés (`src/lib/pricing/graded.ts`). Ne jamais réintroduire de multiplicateur du prix non gradé, le fondateur le refuse.
 - CardTrader : le jeton est injecté par le réseau de la session, pas par une variable. Pour lancer le relevé avec les annonces françaises : `CARDTRADER_TOKEN=proxy-injected NODE_USE_ENV_PROXY=1 node scripts/ingest.ts`. Sans `NODE_USE_ENV_PROXY=1`, Node contourne le proxy et reçoit un 401. En production, le jeton est le secret GitHub `CARDTRADER_TOKEN`.

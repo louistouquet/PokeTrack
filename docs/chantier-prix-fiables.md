@@ -41,7 +41,7 @@ Le fondateur demande deux choses, dans cet ordre :
 5. **Pas de données personnelles.** Ni pseudonymes de vendeurs, ni annonces nominatives conservées.
 6. **Prix gradés.** Le fondateur a refusé tout multiplicateur fixe du prix non gradé. Il a accepté le 16 novembre un modèle appris sur des ventes ou annonces gradées observées, à trois conditions : affiché comme estimation, « très solide », et qui continue d'apprendre en continu (réétalonné à chaque relevé).
 7. **Le prix affiché est une fourchette** (décision du 16 novembre) : ce que la carte se vend, et ce qu'elle coûte à l'achat aujourd'hui.
-8. **Marché français uniquement** pour l'instant. Les marchés anglais, américain et japonais viendront peut-être plus tard : noter ce qu'on croise, sans le construire.
+8. **Collecte mondiale, prix français d'abord** (décision du 17 novembre, qui remplace « marché français uniquement ») : toutes les langues et tous les pays entrent dans la base et dans l'apprentissage du modèle ; seul le prix français est validé et affiché au départ. Suite du chantier : `docs/prompts/base-prix-mondiale.md`.
 
 ## Déroulé
 
