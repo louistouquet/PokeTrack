@@ -6,13 +6,15 @@ Tant qu'une réponse écrite n'est pas arrivée, l'usage correspondant reste lim
 
 | Destinataire | Objet | Voie | État au 16 novembre 2026 |
 | --- | --- | --- | --- |
-| Cardmarket | Confirmation de l'usage des prix publics, prix par langue, affiliation | Courriel à `contact@cardmarket.com` | Envoyé depuis la boîte du fondateur. Pas de réponse. |
-| PokéCardex | Autorisation d'afficher leurs scans français pour les cartes sans illustration | Courriel à `contact@pokecardex.com` | Envoyé depuis la boîte du fondateur. Pas de réponse. |
+| Cardmarket | Confirmation de l'usage des prix publics, prix par langue, affiliation | Courriel à `contact@cardmarket.com` | Envoyé depuis la boîte du fondateur. Pas de réponse au 17 novembre. |
+| PokéCardex | Autorisation d'afficher leurs scans français pour les cartes sans illustration | Courriel à `contact@pokecardex.com` | Envoyé depuis la boîte du fondateur. Accusé de réception automatique le 16 novembre, pas de réponse sur le fond au 17. |
 | CardTrader | Accord pour publier un prix tiré de leurs annonces françaises | Formulaire réservé aux comptes connectés : `https://www.cardtrader.com/en-US/issues/new` | **À soumettre par le fondateur.** Texte ci-dessous. |
 | eBay | Accord pour dériver des prix des annonces | Espace développeur, après validation du compte | **À soumettre par le fondateur** quand les clés arrivent. Texte ci-dessous. |
 | TCGdex | Charge de notre relevé, contribution d'illustrations | Pas d'adresse publiée trouvée ; passer par leur dépôt GitHub ou leur Discord | À faire. |
 
 Les textes envoyés à Cardmarket et à PokéCardex sont dans la boîte d'envoi du fondateur.
+
+Prochain lot : les candidats issus de l'inventaire sont listés dans `docs/sources/inventaire.md` (section « Demandes d'accord à préparer »). Rien n'est envoyé avant que le fondateur ait validé les destinataires et le texte.
 
 ## Brouillons
 

@@ -4,11 +4,15 @@
 
 ## Où on en est
 
-État au soir du 16 novembre 2026.
+État au 17 novembre 2026.
 
 - **En ligne** : `https://poke-track-tau.vercel.app`, à jour avec `main`. Vérifié dans un navigateur le 16 novembre après la fusion de la demande n° 3 : huit pages, deux largeurs, console sans erreur.
 - **Relevé** : publié sur la branche `data` pour le 15 et le 16 novembre, aucun jour manquant. Le relevé du 16 novembre au soir a tourné sur GitHub avec CardTrader : 20 226 cartes, aucune perdue, 19 443 cotées. Le déclenchement planifié de GitHub fonctionne mais avec retard (celui de 4 h 17 UTC est parti à 12 h 41).
-- **Prochain chantier** : la recherche de sources et le modèle de prix, décrits dans `docs/chantier-prix-fiables.md`. À démarrer dans une nouvelle session.
+- **Chantier en cours** : « prix fiables » (`docs/chantier-prix-fiables.md`). État au 17 novembre :
+  - **Phase 1, inventaire : faite.** `docs/sources/inventaire.md` et sept fichiers de famille. Environ 170 sources ; aucune source nouvelle, gratuite et permise, d'un prix français. Le prix français n'existe que chez Cardmarket (par langue, non accessible) et CardTrader (branché). Le reste demande un accord écrit ou est fermé. Relecture par échantillon seulement.
+  - **Phase 2, cartes témoins : tirage fait, prix de référence à établir.** 190 cartes dans `docs/cartes-temoins.md`, tirage reproductible par `scripts/temoins.ts`. Aucun prix de référence n'est encore établi.
+  - **Phase 3, demandes d'accord : liste de candidats prête** (dans l'inventaire), rien d'envoyé. Le fondateur valide le lot avant envoi.
+  - **Phases 4 et 5** : non commencées. Constat de l'inventaire : un modèle gradé solide n'est pas faisable avec les seules données permises aujourd'hui ; il dépend des accords ou de la communauté.
 - **Cadrage** : `CADRAGE.md` porte les décisions du fondateur. L'architecture d'agents qu'il propose n'est ni validée ni construite.
 
 ### Ce que le site fait aujourd'hui, et ses limites
@@ -35,7 +39,9 @@ Deux causes, lues dans les journaux Vercel le 16 novembre.
 
 - **CardTrader** : soumettre la demande d'accord par leur formulaire (texte dans `docs/demandes-sources.md`). Il est réservé aux comptes connectés.
 - **eBay** : à l'arrivée des clés, soumettre la demande d'accord par l'espace développeur (même fichier).
-- **Réponses attendues** dans sa boîte : Cardmarket et PokéCardex, écrits le 16 novembre.
+- **Réponses attendues** dans sa boîte : Cardmarket et PokéCardex, écrits le 16 novembre. Au 17 novembre : aucune réponse de Cardmarket, accusé de réception automatique de PokéCardex.
+- **Lot de demandes d'accord** : valider la liste de `docs/sources/inventaire.md` (destinataires, texte) avant envoi.
+- **TCG Sense** : ses pages sont derrière une vérification anti-robots ; à lire dans un navigateur pour savoir d'où viennent ses prix par langue.
 
 ## Chantier 1 : fiabiliser l'existant
 
