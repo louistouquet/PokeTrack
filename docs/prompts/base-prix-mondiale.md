@@ -38,6 +38,7 @@ Le site affiche ce prix sous forme de **fourchette** : ce que la carte se vend, 
 | Prix gradés | Modèle appris sur des ventes ou annonces gradées **réellement observées**, affiché comme estimation, « très solide », réétalonné en continu. **Aucun multiplicateur fixe du prix non gradé**, jamais : le fondateur le refuse. |
 | Prix affiché | Une fourchette (vendu, à l'achat), pas un seul chiffre. |
 | Budget | **Zéro euro.** Aucun abonnement, aucune API payante, aucun service payant proposé. Firecrawl : seulement les crédits compris dans le compte de base ; outils gratuits d'abord, chaque appel payant compté, jamais `firecrawl_agent`. |
+| eBay | Sans accord écrit d'eBay, les annonces en cours sont affichées **à part**, comme des annonces : titre, prix, état, lien vers eBay, moins de six heures. Quelques annonces plutôt qu'un seul chiffre, et jamais présentées comme le prix de la carte. Elles n'entrent ni dans la base, ni dans l'historique, ni dans le modèle (la licence de l'API interdit d'utiliser le contenu eBay pour « suggest or model prices »). |
 | Illustrations | Hors de ce chantier : un autre prompt s'en charge. |
 | Site | Public et libre. |
 
